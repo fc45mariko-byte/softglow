@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+<title>Soft Glow</title>
+<meta name="theme-color" content="#5b504a">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Fraunces:opsz,wght@9..144,300;9..144,600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --brun:       #5b504a;
+    --brun-fonce: #4a4039;
+    --brun-light: #7a6c64;
+    --rose:       #f0a6c4;
+    --rose-pale:  #f4c8d8;
+    --rose-deep:  #d4788e;
+    --creme:      #f3e3dd;
+    --creme-dark: #e8d0c8;
+
+    --pois-brun:
+      radial-gradient(var(--creme) 18%, transparent 19%) 0 0 / 28px 28px,
+      radial-gradient(var(--creme) 18%, transparent 19%) 14px 14px / 28px 28px,
+      var(--brun);
+
+    --pois-rose:
+      radial-gradient(var(--brun) 15%, transparent 16%) 0 0 / 22px 22px,
+      radial-gradient(var(--brun) 15%, transparent 16%) 11px 11px / 22px 22px,
+      var(--rose-pale);
+
+    --font-display: 'Archivo Black', 'Arial Black', sans-serif;
+    --font-serif: 'Fraunces', serif;
+    --font-sans: system-ui, sans-serif;
+
+    --radius-sm: 10px;
+    --radius-md: 16px;
+    --radius-lg: 22px;
+    --radius-full: 9999px;
+
+    --shadow: 0 4px 18px rgba(74,64,57,.22);
+    --shadow-md: 0 8px 28px rgba(74,64,57,.28);
+
+    --transition: 0.2s ease;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { font-size: 16px; scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-sans);
+    background: var(--pois-brun);
+    background-attachment: fixed;
+    color: var(--brun);
+    min-height: 100vh;
+    padding-bottom: 72px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .container { max-width: 680px; margin: 0 auto; padding: 20px 16px; }
+
+  .page { display: none; }
+  .page.active { display: block; }
+
+  .block {
+    background: var(--rose-pale);
+    border-radius: var(--radius-lg);
+    padding: 20px;
+    margin-bottom: 14px;
+    box-shadow: var(--shadow);
+    border: 2px solid var(--creme-dark);
+  }
+  .block-dots {
+    background: var(--pois-rose);
+    border: 2px solid var(--rose-deep);
+  }
+  .block-brun {
+    background: var(--pois-brun);
+    background-attachment: fixed;
+    border: 2px solid var(--brun-fonce);
+  }
+
+  .page-hero { text-align: center; padding: 28px 20px 18px; }
+  .page-hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(2.4rem, 10vw, 3.6rem);
+    line-height: .92;
+    letter-spacing: 1px;
+    background: var(--pois-rose);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .page-hero p {
+    font-family: var(--font-serif);
+    font-size: .95rem;
+    color: var(--creme);
+    margin-top: 8px;
+    opacity: .9;
+  }
+
+  .section-title {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    letter-spacing: 1px;
+    color: var(--brun-fonce);
+    margin-bottom: 12px;
+    text-transform: uppercase;
+  }
+
+  .stats-row { display: flex; gap: 10px; flex-wrap: wrap; }
+  .stat-box {
+    flex: 1; min-width: 80px;
+    background: var(--creme);
+    border-radius: var(--radius-md);
+    padding: 12px 10px;
+    text-align: center;
+    border: 1.5px solid var(--creme-dark);
+  }
+  .stat-value { font-family: var(--font-display); font-size: 1.4rem; color: var(--brun-fonce); line-height: 1; }
+  .stat-label { font-size: .7rem; color: var(--brun-light); text-transform: uppercase; letter-spacing: .5px; margin-top: 4px; }
+
+  .progress-wrap { display: flex; align-items: center; gap: 18px; }
+  .progress-ring { position: relative; width: 100px; height: 100px; flex-shrink: 0; }
+  .progress-ring svg { transform: rotate(-90deg); }
+  .progress-ring .ring-bg { fill: none; stroke: var(--creme-dark); stroke-width: 8; }
+  .progress-ring .ring-fill { fill: none; stroke: var(--rose-deep); stroke-width: 8; stroke-linecap: round; stroke-dasharray: 283; stroke-dashoffset: calc(283 - (283 * var(--pct, 65)) / 100); transition: stroke-dashoffset 1s ease; }
+  .ring-text { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+  .ring-pct { font-family: var(--font-display); font-size: 1.3rem; color: var(--brun-fonce); line-height: 1; }
+  .ring-sub { font-size: .6rem; text-transform: uppercase; color: var(--brun-light); letter-spacing: .5px; }
+
+  .btn {
+    font-family: var(--font-display);
+    font-size: .8rem;
+    letter-spacing: 1.5px;
+    padding: 10px 20px;
+    border-radius: var(--radius-full);
+    cursor: pointer;
+    transition: transform var(--transition), box-shadow var(--transition);
+    border: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .btn:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+  .btn:active { transform: translateY(0); }
+  .btn-rose { background: var(--rose); color: var(--brun-fonce); border: 2px solid var(--rose-deep); }
+  .btn-outline { background: transparent; color: var(--brun-fonce); border: 2px solid var(--brun-fonce); }
+  .btn-sm { font-size: .72rem; padding: 7px 14px; }
+
+  .upload-pair { display: flex; gap: 12px; }
+  .upload-slot {
+    flex: 1; aspect-ratio: 3/4;
+    border: 2px dashed var(--rose-deep);
+    border-radius: var(--radius-md);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    cursor: pointer; overflow: hidden; background: var(--creme);
+    transition: border-color var(--transition);
+  }
+  .upload-slot:hover { border-color: var(--brun-fonce); }
+  .upload-slot img { width: 100%; height: 100%; object-fit: cover; }
+  .upload-slot .placeholder-icon { font-size: 1.6rem; }
+  .upload-slot p { font-size: .72rem; color: var(--brun-light); margin-top: 6px; text-align: center; padding: 0 8px; }
+  .upload-label { font-family: var(--font-display); font-size: .75rem; color: var(--brun-fonce); text-align: center; margin-top: 6px; letter-spacing: .5px; }
+  .upload-sub { font-size: .7rem; color: var(--brun-light); text-align: center; }
+
+  .quote {
+    font-family: var(--font-serif); font-style: italic; font-size: .95rem;
+    color: var(--brun); text-align: center; padding: 14px 20px; position: relative;
+  }
+  .quote::before { content: '\201C'; font-size: 2.5rem; color: var(--rose-deep); position: absolute; top: -4px; left: 6px; opacity: .6; }
+  .quote::after  { content: '\201D'; font-size: 2.5rem; color: var(--rose-deep); position: absolute; bottom: -16px; right: 6px; opacity: .6; }
+
+  .prompt-card { background: var(--pois-rose); border-radius: var(--radius-md); padding: 16px; text-align: center; }
+  .prompt-card p { font-family: var(--font-serif); font-size: .9rem; font-style: italic; color: var(--brun-fonce); line-height: 1.5; }
+
+  .slider-wrap {
+    position: relative; border-radius: var(--radius-md); overflow: hidden;
+    aspect-ratio: 4/5; background: var(--creme-dark); cursor: pointer; touch-action: none;
+  }
+  .slider-track { position: absolute; inset: 0; display: flex; transition: transform .2s ease; }
+  .slider-track img { flex: 0 0 100%; height: 100%; object-fit: cover; }
+  .slider-handle {
+    position: absolute; top: 50%; left: 50%;
+    width: 44px; height: 44px; background: var(--rose);
+    border: 3px solid var(--brun-fonce); border-radius: 50%;
+    transform: translate(-50%, -50%); cursor: grab; box-shadow: var(--shadow-md); z-index: 10;
+  }
+  .slider-labels { display: flex; justify-content: space-between; margin-top: 8px; }
+  .slider-labels span { font-size: .7rem; color: var(--brun-light); text-transform: uppercase; letter-spacing: .5px; }
+
+  .face-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .face-feat { background: var(--creme); border-radius: var(--radius-md); padding: 14px 12px; text-align: center; border: 1.5px solid var(--creme-dark); }
+  .face-feat-icon { font-size: 1.4rem; margin-bottom: 6px; }
+  .face-feat h4 { font-family: var(--font-display); font-size: .78rem; color: var(--brun-fonce); letter-spacing: .5px; margin-bottom: 4px; }
+  .face-feat p { font-size: .72rem; color: var(--brun-light); line-height: 1.4; }
+
+  .moodboard { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .moodboard-item { aspect-ratio: 3/4; border-radius: var(--radius-sm); overflow: hidden; cursor: pointer; }
+  .moodboard-item img { width: 100%; height: 100%; object-fit: cover; transition: transform .2s ease; }
+  .moodboard-item:hover img { transform: scale(1.05); }
+  .moodboard-2 { grid-template-columns: repeat(2, 1fr); }
+
+  .phase-card {
+    background: var(--creme); border-radius: var(--radius-lg); padding: 18px;
+    margin-bottom: 12px; border: 2px solid var(--creme-dark); position: relative; overflow: hidden;
+  }
+  .phase-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--rose), var(--rose-deep)); }
+  .phase-num { font-family: var(--font-display); font-size: 3rem; color: var(--rose-pale); line-height: 1; position: absolute; top: 12px; right: 16px; }
+  .phase-title { font-family: var(--font-display); font-size: 1.1rem; color: var(--brun-fonce); }
+  .phase-dur { font-size: .72rem; color: var(--brun-light); text-transform: uppercase; letter-spacing: .5px; margin: 4px 0 12px; }
+  .phase-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .phase-col h5 { font-family: var(--font-display); font-size: .75rem; color: var(--brun-fonce); letter-spacing: .5px; margin-bottom: 6px; }
+  .phase-col ul { list-style: none; }
+  .phase-col li { font-size: .77rem; color: var(--brun); line-height: 1.6; }
+  .phase-col li::before { content: '• '; color: var(--rose-deep); }
+
+  .ex-card { display: flex; gap: 10px; padding: 10px; background: var(--creme); border-radius: var(--radius-md); margin-bottom: 8px; }
+  .ex-img { width: 60px; height: 60px; border-radius: var(--radius-sm); object-fit: cover; flex-shrink: 0; }
+  .ex-name { font-family: var(--font-display); font-size: .82rem; color: var(--brun-fonce); }
+  .ex-desc { font-size: .73rem; color: var(--brun-light); margin-top: 2px; }
+
+  .form-group { margin-bottom: 12px; }
+  .form-label { display: block; font-family: var(--font-display); font-size: .75rem; color: var(--brun-fonce); letter-spacing: .5px; margin-bottom: 6px; }
+  .form-input { width: 100%; padding: 10px 12px; background: var(--creme); border: 1.5px solid var(--creme-dark); border-radius: var(--radius-md); color: var(--brun-fonce); font-family: var(--font-sans); font-size: .9rem; transition: border-color var(--transition); outline: none; }
+  .form-input:focus { border-color: var(--rose-deep); }
+  .form-range { width: 100%; height: 5px; background: var(--creme-dark); border-radius: var(--radius-full); outline: none; -webkit-appearance: none; }
+  .form-range::-webkit-slider-thumb { -webkit-appearance: none; width: 18px; height: 18px; background: var(--rose-deep); border-radius: 50%; cursor: pointer; }
+
+  .gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .gallery-item { position: relative; aspect-ratio: 3/4; border-radius: var(--radius-sm); overflow: hidden; }
+  .gallery-item img { width: 100%; height: 100%; object-fit: cover; }
+  .g-date { position: absolute; bottom: 6px; left: 6px; background: rgba(74,64,57,.7); color: var(--creme); font-size: .65rem; padding: 2px 6px; border-radius: 4px; }
+  .g-weight { position: absolute; top: 6px; right: 6px; background: var(--rose); color: var(--brun-fonce); font-family: var(--font-display); font-size: .65rem; padding: 2px 6px; border-radius: 4px; }
+
+  .milestone { display: flex; align-items: center; gap: 10px; padding: 10px; background: var(--creme); border-radius: var(--radius-md); margin-bottom: 8px; }
+  .milestone.done { opacity: 1; }
+  .milestone.pending { opacity: .55; }
+  .ms-icon { font-size: 1.2rem; flex-shrink: 0; }
+  .ms-title { font-family: var(--font-display); font-size: .8rem; color: var(--brun-fonce); }
+  .ms-date { font-size: .7rem; color: var(--brun-light); margin-top: 1px; }
+  .ms-check { margin-left: auto; color: var(--rose-deep); font-size: 1rem; }
+
+  .body-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .body-list h5 { font-family: var(--font-display); font-size: .78rem; color: var(--brun-fonce); letter-spacing: .5px; margin-bottom: 8px; }
+  .body-list li { font-size: .77rem; color: var(--brun); line-height: 1.7; list-style: none; }
+  .body-list li::before { content: '• '; color: var(--rose-deep); }
+
+  .bottom-nav {
+    position: fixed; bottom: 12px; left: 50%; transform: translateX(-50%);
+    background: var(--pois-brun); background-attachment: fixed;
+    border: 2.5px solid var(--brun-fonce); border-radius: var(--radius-full);
+    padding: 8px 16px; display: flex; gap: 4px; box-shadow: var(--shadow-md); z-index: 200;
+  }
+  .nav-btn {
+    font-family: var(--font-display); font-size: .68rem; letter-spacing: .5px;
+    padding: 7px 12px; border-radius: var(--radius-full); cursor: pointer;
+    border: none; background: transparent; color: var(--rose-pale); transition: all var(--transition);
+  }
+  .nav-btn:hover { background: rgba(240,166,196,.15); }
+  .nav-btn.active { background: var(--rose); color: var(--brun-fonce); }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+  .fade-in   { animation: fadeUp .5s ease forwards; }
+  .fade-in-1 { animation-delay: .08s; }
+  .fade-in-2 { animation-delay: .16s; }
+  .fade-in-3 { animation-delay: .24s; }
+  .fade-in-4 { animation-delay: .32s; }
+
+  .text-center { text-align: center; }
+  .mt-sm { margin-top: 10px; }
+  .flex-center { display: flex; justify-content: center; }
+  .flex-between { display: flex; align-items: center; justify-content: space-between; }
+  .w-full { width: 100%; }
+
+  @media (max-width: 400px) {
+    .phase-cols, .body-cols { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HOME -->
+<section id="home" class="page active">
+  <div class="container">
+    <div class="page-hero fade-in">
+      <h1>Soft Glow</h1>
+      <p>Your summer glow-up companion</p>
+    </div>
+    <div class="block fade-in-1">
+      <div class="upload-pair">
+        <div>
+          <div class="upload-slot" onclick="document.getElementById('current-photo').click()">
+            <input type="file" id="current-photo" accept="image/*" style="display:none" onchange="previewImage(this,'current-preview')">
+            <div class="placeholder-icon">📷</div>
+            <p>Current photo</p>
+            <img id="current-preview" style="display:none">
+          </div>
+          <p class="upload-label">Current</p>
+          <p class="upload-sub">75.4 kg</p>
+        </div>
+        <div>
+          <div class="upload-slot" onclick="document.getElementById('goal-photo').click()">
+            <input type="file" id="goal-photo" accept="image/*" style="display:none" onchange="previewImage(this,'goal-preview')">
+            <div class="placeholder-icon">✨</div>
+            <p>Goal photo</p>
+            <img id="goal-preview" style="display:none">
+          </div>
+          <p class="upload-label">Goal</p>
+          <p class="upload-sub">58–62 kg</p>
+        </div>
+      </div>
+    </div>
+    <div class="block block-dots fade-in-2">
+      <div class="progress-wrap">
+        <div class="progress-ring" style="--pct:65">
+          <svg width="100" height="100" viewBox="0 0 100 100">
+            <circle class="ring-bg" cx="50" cy="50" r="45"/>
+            <circle class="ring-fill" cx="50" cy="50" r="45"/>
+          </svg>
+          <div class="ring-text">
+            <span class="ring-pct">65%</span>
+            <span class="ring-sub">to goal</span>
+          </div>
+        </div>
+        <div class="stats-row" style="flex:1; flex-direction:column; gap:8px;">
+          <div class="stats-row">
+            <div class="stat-box"><div class="stat-value">75.4</div><div class="stat-label">Current kg</div></div>
+            <div class="stat-box"><div class="stat-value">58–62</div><div class="stat-label">Goal kg</div></div>
+          </div>
+          <div class="stats-row">
+            <div class="stat-box"><div class="stat-value">17.4</div><div class="stat-label">To lose</div></div>
+            <div class="stat-box" style="background:var(--rose-pale);"><div class="stat-value" style="color:var(--rose-deep);">↑62%</div><div class="stat-label">Glow score</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="block fade-in-3">
+      <div class="section-title">Daily Motivation</div>
+      <div class="prompt-card">
+        <p id="daily-prompt">"A short workout still beats no workout."</p>
+      </div>
+      <div class="flex-center mt-sm">
+        <button class="btn btn-outline btn-sm" onclick="rotatePrompt()">🔄 New prompt</button>
+      </div>
+    </div>
+    <div class="block fade-in-4">
+      <div class="stats-row">
+        <div class="stat-box"><div class="stat-value">↑78%</div><div class="stat-label">Face def.</div></div>
+        <div class="stat-box"><div class="stat-value">↑85%</div><div class="stat-label">Waist-hip</div></div>
+        <div class="stat-box"><div class="stat-value">12 wk</div><div class="stat-label">Roadmap</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FACE -->
+<section id="face" class="page">
+  <div class="container">
+    <div class="page-hero fade-in">
+      <h1>My Face</h1>
+      <p>Jawline · Cheekbones · Eye brightness</p>
+    </div>
+    <div class="block block-brun fade-in-1">
+      <div class="quote" style="color:var(--creme);">"The weight gain is hiding your bone structure. Let's reveal it."</div>
+    </div>
+    <div class="block fade-in-2">
+      <div class="section-title">Transformation slider</div>
+      <div class="slider-wrap" id="face-slider-wrap">
+        <div class="slider-track" id="face-slider-track">
+          <img src="https://images.unsplash.com/photo-1594824475317-d3b9b4b6e8e4?w=400&h=500&fit=crop" alt="Current">
+          <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&h=500&fit=crop" alt="10%">
+          <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=500&fit=crop" alt="25%">
+          <img src="https://images.unsplash.com/photo-1594824475317-d3b9b4b6e8e4?w=400&h=500&fit=crop" alt="50%">
+          <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&h=500&fit=crop" alt="Max">
+        </div>
+        <div class="slider-handle" id="face-slider-handle"></div>
+      </div>
+      <div class="slider-labels">
+        <span>Current</span><span>10%</span><span>25%</span><span>50%</span><span>Max</span>
+      </div>
+    </div>
+    <div class="block fade-in-3">
+      <div class="section-title">What fat loss reveals</div>
+      <div class="face-grid">
+        <div class="face-feat"><div class="face-feat-icon">💎</div><h4>Jawline</h4><p>Fat loss sharpens your jaw into an elegant defined line.</p></div>
+        <div class="face-feat"><div class="face-feat-icon">✨</div><h4>Cheekbones</h4><p>High cheekbones become more prominent as weight reduces.</p></div>
+        <div class="face-feat"><div class="face-feat-icon">👁️</div><h4>Eye Brightness</h4><p>Less puffiness, more definition — eyes appear larger.</p></div>
+        <div class="face-feat"><div class="face-feat-icon">💋</div><h4>Lip Shape</h4><p>A leaner face enhances your natural lip definition.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BODY -->
+<section id="body" class="page">
+  <div class="container">
+    <div class="page-hero fade-in">
+      <h1>My Body</h1>
+      <p>Glutes · Waist · Curves</p>
+    </div>
+    <div class="block fade-in-1">
+      <div class="section-title">Analysis</div>
+      <div class="body-cols">
+        <ul class="body-list">
+          <h5>✨ Strongest</h5>
+          <li>Natural hourglass</li><li>Full round glutes</li><li>Long toned legs</li>
+          <li>Strong shoulders</li><li>Small waist potential</li>
+        </ul>
+        <ul class="body-list">
+          <h5>🎯 To Enhance</h5>
+          <li>Waist definition</li><li>Glute lift</li><li>Shoulder definition</li>
+          <li>Posture</li><li>Overall toning</li>
+        </ul>
+      </div>
+    </div>
+    <div class="block fade-in-2">
+      <div class="flex-between" style="margin-bottom:10px;">
+        <div class="section-title" style="margin-bottom:0;">Athletic-Curvy Inspo</div>
+        <button class="btn btn-outline btn-sm" onclick="alert('Coming soon!')">+ Add</button>
+      </div>
+      <div class="moodboard">
+        <div class="moodboard-item"><img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=300&h=400&fit=crop" alt="Inspo"></div>
+        <div class="moodboard-item"><img src="https://images.unsplash.com/photo-1594824475317-d3b9b4b6e8e4?w=300&h=400&fit=crop" alt="Inspo"></div>
+        <div class="moodboard-item"><img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=300&h=400&fit=crop" alt="Inspo"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ROADMAP -->
+<section id="roadmap" class="page">
+  <div class="container">
+    <div class="page-hero fade-in">
+      <h1>Roadmap</h1>
+      <p>12 weeks to your most radiant self</p>
+    </div>
+    <div class="phase-card fade-in-1">
+      <span class="phase-num">1</span>
+      <div class="phase-title">Foundation</div>
+      <div class="phase-dur">Weeks 1–4</div>
+      <div class="phase-cols">
+        <div class="phase-col"><h5>🍽️ Nutrition</h5>
+          <ul><li>High protein 1.6–2.2g/kg</li><li>Deficit 300–500 kcal</li><li>Whole foods</li><li>3L water daily</li></ul>
+        </div>
+        <div class="phase-col"><h5>💪 Training</h5>
+          <ul><li>Full body 3×/week</li><li>Hip thrusts, squats</li><li>Lateral raises</li><li>Core: planks</li></ul>
+        </div>
+      </div>
+    </div>
+    <div class="phase-card fade-in-2">
+      <span class="phase-num">2</span>
+      <div class="phase-title">Intensify</div>
+      <div class="phase-dur">Weeks 5–8</div>
+      <div class="phase-cols">
+        <div class="phase-col"><h5>🍽️ Nutrition</h5>
+          <ul><li>Protein 2.2g/kg</li><li>Deficit 400–600 kcal</li><li>Carb cycling</li><li>More fiber</li></ul>
+        </div>
+        <div class="phase-col"><h5>💪 Training</h5>
+          <ul><li>Upper/Lower 4×/week</li><li>Bulgarian squats</li><li>Arnold press</li><li>Cardio 3×/week</li></ul>
+        </div>
+      </div>
+    </div>
+    <div class="phase-card fade-in-3">
+      <span class="phase-num">3</span>
+      <div class="phase-title">Sculpt & Shine</div>
+      <div class="phase-dur">Weeks 9–12</div>
+      <div class="phase-cols">
+        <div class="phase-col"><h5>🍽️ Nutrition</h5>
+          <ul><li>Protein 2.2g/kg+</li><li>Deficit 500–700 kcal</li><li>Refeed days</li><li>Collagen peptides</li></ul>
+        </div>
+        <div class="phase-col"><h5>💪 Training</h5>
+          <ul><li>PPL 5×/week</li><li>Heavy hip thrusts</li><li>Delt flyes</li><li>Cardio 4×/week</li></ul>
+        </div>
+      </div>
+    </div>
+    <div class="block fade-in-4">
+      <div class="section-title">Exercise Library</div>
+      <div class="ex-card">
+        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=80&h=80&fit=crop" alt="Hip Thrust" class="ex-img">
+        <div><div class="ex-name">Hip Thrust</div><div class="ex-desc">4×12 — Build glutes</div></div>
+      </div>
+      <div class="ex-card">
+        <img src="https://images.unsplash.com/photo-1594824475317-d3b9b4b6e8e4?w=80&h=80&fit=crop" alt="Lateral Raise" class="ex-img">
+        <div><div class="ex-name">Lateral Raise</div><div class="ex-desc">3×15 — Sculpt shoulders</div></div>
+      </div>
+    </div>
+    <div class="block block-dots fade-in-4">
+      <div class="section-title" style="color:var(--brun-fonce);">Week 1 Check-In</div>
+      <form id="checkin-form">
+        <div class="form-group"><label class="form-label">Weight (kg)</label><input type="number" step="0.1" class="form-input" placeholder="75.4"></div>
+        <div class="form-group"><label class="form-label">Waist (cm)</label><input type="number" class="form-input" placeholder="85"></div>
+        <div class="form-group"><label class="form-label">Energy (1–10)</label><input type="range" min="1" max="10" value="7" class="form-range"></div>
+        <button type="submit" class="btn btn-rose w-full">Save Check-In</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- INSPO -->
+<section id="inspo" class="page">
+  <div class="container">
+    <div class="page-hero fade-in">
+      <h1>My Inspo</h1>
+      <p>Elegant · Fit · Radiant</p>
+    </div>
+    <div class="block block-brun fade-in-1">
+      <div class="quote" style="color:var(--creme);">"I will be the hot ex-girlfriend."</div>
+    </div>
+    <div class="block fade-in-2">
+      <div class="flex-between" style="margin-bottom:10px;">
+        <div class="section-title" style="margin-bottom:0;">💄 Beauty</div>
+        <button class="btn btn-outline btn-sm" onclick="alert('Coming soon!')">+ Add</button>
+      </div>
+      <div class="moodboard">
+        <div class="moodboard-item"><img src="https://images.unsplash.com/photo-1594824475317-d3b9b4b6e8e4?w=300&h=400&fit=crop" alt="Beauty"></div>
+        <div class="moodboard-item"><img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=300&h=400&fit=crop" alt="Beauty"></div>
+        <div class="moodboard-item"><img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=300&h=400&fit=crop" alt="Beauty"></div>
+      </div>
+    </div>
+    <div class="block fade-in-3">
+      <div class="flex-between" style="margin-bottom:10px;">
+        <div class="section-title" style="margin-bottom:0;">🏆 Body Goals</div>
+        <button class="btn btn-outline btn-sm" onclick="alert('Coming soon!')">+ Add</button>
+      </div>
+      <div class="moodboard">
+        <div class="moodboard-item"><img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=300&h=400&fit=crop" alt="Body Goal"></div>
+        <div class="moodboard-item"><img src="https://images.unsplash.com/photo-1594824475317-d3b9b4b6e8e4?w=300&h=400&fit=crop" alt="Body Goal"></div>
+        <div class="moodboard-item"><img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=300&h=400&fit=crop" alt="Body Goal"></div>
+      </div>
+    </div>
+    <div class="block fade-in-4">
+      <div class="flex-between" style="margin-bottom:10px;">
+        <div class="section-title" style="margin-bottom:0;">🔥 Hotgal</div>
+        <button class="btn btn-outline btn-sm" onclick="alert('Coming soon!')">+ Add</button>
+      </div>
+      <div class="moodboard moodboard-2">
+        <div class="moodboard-item"><img src="https://images.unsplash.com/photo-1594824475317-d3b9b4b6e8e4?w=300&h=400&fit=crop" alt="Hotgal"></div>
+        <div class="moodboard-item"><img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=300&h=400&fit=crop" alt="Hotgal"></div>
+      </div>
+    </div>
+    <div class="text-center fade-in-4" style="padding:10px 0 6px;">
+      <p style="font-family:var(--font-serif); font-style:italic; font-size:.85rem; color:var(--creme);">"Do it so when old friends see you their jaws drop."</p>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRESS -->
+<section id="progress" class="page">
+  <div class="container">
+    <div class="page-hero fade-in">
+      <h1>Progress</h1>
+      <p>Every kilo lost. Every centimetre gained.</p>
+    </div>
+    <div class="block fade-in-1">
+      <div class="section-title">Photo Timeline</div>
+      <div class="gallery">
+        <div class="gallery-item"><img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=300&h=400&fit=crop" alt="Week 1"><div class="g-date">June 1</div><div class="g-weight">75.4kg</div></div>
+        <div class="gallery-item"><img src="https://images.unsplash.com/photo-1594824475317-d3b9b4b6e8e4?w=300&h=400&fit=crop" alt="Week 4"><div class="g-date">June 22</div><div class="g-weight">73.2kg</div></div>
+        <div class="gallery-item"><img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=300&h=400&fit=crop" alt="Week 8"><div class="g-date">July 13</div><div class="g-weight">70.1kg</div></div>
+      </div>
+      <div class="flex-center mt-sm">
+        <button class="btn btn-rose btn-sm" onclick="document.getElementById('gallery-upload').click()">+ Add photo</button>
+        <input type="file" id="gallery-upload" accept="image/*" style="display:none" onchange="addToGallery(this)">
+      </div>
+    </div>
+    <div class="block block-dots fade-in-2">
+      <div class="section-title">Weight Tracker</div>
+      <div class="stats-row">
+        <div class="stat-box"><div class="stat-value">75.4</div><div class="stat-label">Start</div></div>
+        <div class="stat-box"><div class="stat-value">62.0</div><div class="stat-label">Current</div></div>
+        <div class="stat-box"><div class="stat-value">13.4</div><div class="stat-label">Lost kg</div></div>
+      </div>
+    </div>
+    <div class="block fade-in-3">
+      <div class="section-title">Measurements</div>
+      <div class="stats-row">
+        <div class="stat-box"><div class="stat-value">85</div><div class="stat-label">Waist cm</div></div>
+        <div class="stat-box"><div class="stat-value">95</div><div class="stat-label">Hips cm</div></div>
+        <div class="stat-box"><div class="stat-value">24%</div><div class="stat-label">Body fat</div></div>
+      </div>
+    </div>
+    <div class="block fade-in-4">
+      <div class="section-title">Milestones</div>
+      <div class="milestone done"><span class="ms-icon">🏆</span><div><div class="ms-title">First 5 kg</div><div class="ms-date">June 22, 2026</div></div><span class="ms-check">✓</span></div>
+      <div class="milestone done"><span class="ms-icon">👗</span><div><div class="ms-title">Fit into jeans</div><div class="ms-date">July 15, 2026</div></div><span class="ms-check">✓</span></div>
+      <div class="milestone done"><span class="ms-icon">✨</span><div><div class="ms-title">Jawline visible</div><div class="ms-date">August 1, 2026</div></div><span class="ms-check">✓</span></div>
+      <div class="milestone pending"><span class="ms-icon">🎯</span><div><div class="ms-title">Goal: 62 kg</div><div class="ms-date">In progress…</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- NAV -->
+<nav class="bottom-nav">
+  <button class="nav-btn active" data-page="home">🏠</button>
+  <button class="nav-btn" data-page="face">👩</button>
+  <button class="nav-btn" data-page="body">💃</button>
+  <button class="nav-btn" data-page="roadmap">🗺️</button>
+  <button class="nav-btn" data-page="inspo">✨</button>
+  <button class="nav-btn" data-page="progress">📈</button>
+</nav>
+
+<script>
+const pages = document.querySelectorAll('.page');
+const navBtns = document.querySelectorAll('.nav-btn');
+function showPage(id) {
+  pages.forEach(p => p.classList.toggle('active', p.id === id));
+  navBtns.forEach(b => b.classList.toggle('active', b.dataset.page === id));
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+navBtns.forEach(b => b.addEventListener('click', () => showPage(b.dataset.page)));
+showPage(window.location.hash.slice(1) || 'home');
+
+function previewImage(input, previewId) {
+  if (!input.files || !input.files[0]) return;
+  const preview = document.getElementById(previewId);
+  const reader = new FileReader();
+  reader.onload = e => {
+    preview.src = e.target.result; preview.style.display = 'block';
+    const icon = preview.parentElement.querySelector('.placeholder-icon');
+    const txt  = preview.parentElement.querySelector('p');
+    if (icon) icon.style.display = 'none';
+    if (txt)  txt.style.display  = 'none';
+  };
+  reader.readAsDataURL(input.files[0]);
+}
+
+(function() {
+  const wrap = document.getElementById('face-slider-wrap');
+  const track = document.getElementById('face-slider-track');
+  const handle = document.getElementById('face-slider-handle');
+  const n = track.querySelectorAll('img').length;
+  let dragging = false;
+  function setIdx(pct) {
+    const i = Math.round(Math.max(0, Math.min(1, pct)) * (n - 1));
+    track.style.transform = 'translateX(-' + (i * 100) + '%)';
+    handle.style.left = ((i / (n - 1)) * 100) + '%';
+  }
+  function getPct(e) {
+    const r = wrap.getBoundingClientRect();
+    return ((e.touches ? e.touches[0].clientX : e.clientX) - r.left) / r.width;
+  }
+  handle.addEventListener('mousedown', e => { dragging = true; e.preventDefault(); });
+  handle.addEventListener('touchstart', () => { dragging = true; }, { passive: true });
+  document.addEventListener('mousemove', e => { if (dragging) setIdx(getPct(e)); });
+  document.addEventListener('touchmove', e => { if (dragging) setIdx(getPct(e)); }, { passive: true });
+  document.addEventListener('mouseup', () => dragging = false);
+  document.addEventListener('touchend', () => dragging = false);
+  wrap.addEventListener('click', e => setIdx(getPct(e)));
+})();
+
+const prompts = [
+  'You have to break the pattern today or the cycle will repeat tomorrow.',
+  'Do it or not. The time will pass anyway.',
+  "Your goals don't care how you feel.",
+  'A short workout still beats no workout.',
+  "Don't wish for it, work for it.",
+  "Cravings will pass. Dreams won't.",
+  'Think before you eat.',
+  'Hunger is often a sign your body is doing what you asked it to do.',
+  'Losing weight is hard. Being fat is hard. Choose your hard.',
+  'I will be the hot ex-girlfriend.',
+  'Do it so when old friends see you their jaws drop.',
+  '2026 is my year.'
+];
+let promptIdx = new Date().getDay() % prompts.length;
+function renderPrompt() { document.getElementById('daily-prompt').textContent = '“' + prompts[promptIdx] + '”'; }
+function rotatePrompt() { promptIdx = (promptIdx + 1) % prompts.length; renderPrompt(); }
+renderPrompt();
+
+function addToGallery(input) {
+  if (!input.files || !input.files[0]) return;
+  const reader = new FileReader();
+  reader.onload = e => {
+    const g = document.querySelector('.gallery');
+    const d = document.createElement('div');
+    d.className = 'gallery-item';
+    d.innerHTML = '<img src="' + e.target.result + '" alt="Photo"><div class="g-date">' + new Date().toLocaleDateString() + '</div><div class="g-weight">— kg</div>';
+    g.appendChild(d);
+  };
+  reader.readAsDataURL(input.files[0]);
+}
+
+document.getElementById('checkin-form').addEventListener('submit', function(e) {
+  e.preventDefault(); alert('Check-in saved! Keep going ✨'); this.reset();
+});
+
+const io = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.opacity = '1';
+      entry.target.style.transform = 'translateY(0)';
+    }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-in, .fade-in-1, .fade-in-2, .fade-in-3, .fade-in-4').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(14px)';
+  el.style.transition = 'opacity .5s ease, transform .5s ease';
+  io.observe(el);
+});
+</script>
+</body>
+</html>
