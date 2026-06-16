@@ -165,14 +165,20 @@
   .upload-sub { font-size: .7rem; color: var(--brun-light); text-align: center; }
 
   .quote {
-    font-family: var(--font-serif); font-style: italic; font-size: .95rem;
-    color: var(--brun); text-align: center; padding: 14px 20px; position: relative;
+    font-family: var(--font-display);
+    font-style: oblique 14deg;
+    font-size: .95rem;
+    letter-spacing: .3px;
+    color: var(--brun);
+    text-align: center;
+    padding: 14px 20px;
+    position: relative;
   }
   .quote::before { content: '\201C'; font-size: 2.5rem; color: var(--rose-deep); position: absolute; top: -4px; left: 6px; opacity: .6; }
   .quote::after  { content: '\201D'; font-size: 2.5rem; color: var(--rose-deep); position: absolute; bottom: -16px; right: 6px; opacity: .6; }
 
   .prompt-card { background: var(--pois-rose); border-radius: var(--radius-md); padding: 16px; text-align: center; }
-  .prompt-card p { font-family: var(--font-serif); font-size: .9rem; font-style: italic; color: var(--brun-fonce); line-height: 1.5; }
+  .prompt-card p { font-family: var(--font-display); font-size: .9rem; font-style: oblique 12deg; color: var(--brun-fonce); line-height: 1.5; letter-spacing: .2px; }
 
   .slider-wrap {
     position: relative; border-radius: var(--radius-md); overflow: hidden;
@@ -417,9 +423,9 @@
     <div class="block fade-in-2">
       <div class="flex-between" style="margin-bottom:10px;">
         <div class="section-title" style="margin-bottom:0;">Athletic-Curvy Inspo</div>
-        <button class="btn btn-outline btn-sm" onclick="alert('Coming soon!')">+ Add</button>
+        <button class="btn btn-outline btn-sm" onclick="openSectionUpload('body-moodboard')">+ Add</button>
       </div>
-      <div class="moodboard">
+      <div id="body-moodboard" class="moodboard">
         <div class="moodboard-item"><img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=300&h=400&fit=crop" alt="Inspo"></div>
         <div class="moodboard-item"><img src="https://images.unsplash.com/photo-1594824475317-d3b9b4b6e8e4?w=300&h=400&fit=crop" alt="Inspo"></div>
         <div class="moodboard-item"><img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=300&h=400&fit=crop" alt="Inspo"></div>
@@ -488,11 +494,12 @@
     <div class="block block-dots fade-in-4">
       <div class="section-title" style="color:var(--brun-fonce);">Week 1 Check-In</div>
       <form id="checkin-form">
-        <div class="form-group"><label class="form-label">Weight (kg)</label><input type="number" step="0.1" class="form-input" placeholder="75.4"></div>
-        <div class="form-group"><label class="form-label">Waist (cm)</label><input type="number" class="form-input" placeholder="85"></div>
-        <div class="form-group"><label class="form-label">Energy (1–10)</label><input type="range" min="1" max="10" value="7" class="form-range"></div>
+        <div class="form-group"><label class="form-label">Weight (kg)</label><input type="number" name="weight" step="0.1" class="form-input" placeholder="75.4"></div>
+        <div class="form-group"><label class="form-label">Waist (cm)</label><input type="number" name="waist" class="form-input" placeholder="85"></div>
+        <div class="form-group"><label class="form-label">Energy (1–10)</label><input type="range" name="energy" min="1" max="10" value="7" class="form-range"></div>
         <button type="submit" class="btn btn-rose w-full">Save Check-In</button>
       </form>
+      <div id="checkin-history" class="mt-sm" style="font-size:.85rem; color:var(--brun-light);"></div>
     </div>
   </div>
 </section>
@@ -510,9 +517,9 @@
     <div class="block fade-in-2">
       <div class="flex-between" style="margin-bottom:10px;">
         <div class="section-title" style="margin-bottom:0;">💄 Beauty</div>
-        <button class="btn btn-outline btn-sm" onclick="alert('Coming soon!')">+ Add</button>
+        <button class="btn btn-outline btn-sm" onclick="openSectionUpload('inspo-beauty')">+ Add</button>
       </div>
-      <div class="moodboard">
+      <div id="inspo-beauty" class="moodboard">
         <div class="moodboard-item"><img src="https://images.unsplash.com/photo-1594824475317-d3b9b4b6e8e4?w=300&h=400&fit=crop" alt="Beauty"></div>
         <div class="moodboard-item"><img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=300&h=400&fit=crop" alt="Beauty"></div>
         <div class="moodboard-item"><img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=300&h=400&fit=crop" alt="Beauty"></div>
@@ -521,9 +528,9 @@
     <div class="block fade-in-3">
       <div class="flex-between" style="margin-bottom:10px;">
         <div class="section-title" style="margin-bottom:0;">🏆 Body Goals</div>
-        <button class="btn btn-outline btn-sm" onclick="alert('Coming soon!')">+ Add</button>
+        <button class="btn btn-outline btn-sm" onclick="openSectionUpload('inspo-body')">+ Add</button>
       </div>
-      <div class="moodboard">
+      <div id="inspo-body" class="moodboard">
         <div class="moodboard-item"><img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=300&h=400&fit=crop" alt="Body Goal"></div>
         <div class="moodboard-item"><img src="https://images.unsplash.com/photo-1594824475317-d3b9b4b6e8e4?w=300&h=400&fit=crop" alt="Body Goal"></div>
         <div class="moodboard-item"><img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=300&h=400&fit=crop" alt="Body Goal"></div>
@@ -532,15 +539,15 @@
     <div class="block fade-in-4">
       <div class="flex-between" style="margin-bottom:10px;">
         <div class="section-title" style="margin-bottom:0;">🔥 Hotgal</div>
-        <button class="btn btn-outline btn-sm" onclick="alert('Coming soon!')">+ Add</button>
+        <button class="btn btn-outline btn-sm" onclick="openSectionUpload('inspo-hotgal')">+ Add</button>
       </div>
-      <div class="moodboard moodboard-2">
+      <div id="inspo-hotgal" class="moodboard moodboard-2">
         <div class="moodboard-item"><img src="https://images.unsplash.com/photo-1594824475317-d3b9b4b6e8e4?w=300&h=400&fit=crop" alt="Hotgal"></div>
         <div class="moodboard-item"><img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=300&h=400&fit=crop" alt="Hotgal"></div>
       </div>
     </div>
     <div class="text-center fade-in-4" style="padding:10px 0 6px;">
-      <p style="font-family:var(--font-serif); font-style:italic; font-size:.85rem; color:var(--creme);">"Do it so when old friends see you their jaws drop."</p>
+      <p style="font-family:var(--font-display); font-style: oblique 12deg; font-size:.85rem; color:var(--creme);">"Do it so when old friends see you their jaws drop."</p>
     </div>
   </div>
 </section>
@@ -562,6 +569,7 @@
       <div class="flex-center mt-sm">
         <button class="btn btn-rose btn-sm" onclick="document.getElementById('gallery-upload').click()">+ Add photo</button>
         <input type="file" id="gallery-upload" accept="image/*" style="display:none" onchange="addToGallery(this)">
+        <input type="file" id="section-upload" accept="image/*" style="display:none" onchange="addSectionImage(this)">
       </div>
     </div>
     <div class="block block-dots fade-in-2">
@@ -668,22 +676,154 @@ function renderPrompt() { document.getElementById('daily-prompt').textContent = 
 function rotatePrompt() { promptIdx = (promptIdx + 1) % prompts.length; renderPrompt(); }
 renderPrompt();
 
-function addToGallery(input) {
+const STORAGE_KEYS = {
+  photos: 'softglow-photos',
+  gallery: 'softglow-gallery',
+  sections: 'softglow-sections',
+  checkins: 'softglow-checkins'
+};
+let sectionUploadTarget = null;
+const galleryItems = loadJSON(STORAGE_KEYS.gallery, []);
+const sectionImages = loadJSON(STORAGE_KEYS.sections, {});
+const checkinEntries = loadJSON(STORAGE_KEYS.checkins, []);
+
+function saveJSON(key, value) {
+  localStorage.setItem(key, JSON.stringify(value));
+}
+
+function loadJSON(key, fallback) {
+  try {
+    const value = localStorage.getItem(key);
+    return value ? JSON.parse(value) : fallback;
+  } catch (err) {
+    return fallback;
+  }
+}
+
+function setImagePreview(previewId, src) {
+  const preview = document.getElementById(previewId);
+  if (!preview) return;
+  preview.src = src;
+  preview.style.display = 'block';
+  const icon = preview.parentElement.querySelector('.placeholder-icon');
+  const txt  = preview.parentElement.querySelector('p');
+  if (icon) icon.style.display = 'none';
+  if (txt)  txt.style.display  = 'none';
+}
+
+function previewImage(input, previewId) {
   if (!input.files || !input.files[0]) return;
   const reader = new FileReader();
   reader.onload = e => {
-    const g = document.querySelector('.gallery');
-    const d = document.createElement('div');
-    d.className = 'gallery-item';
-    d.innerHTML = '<img src="' + e.target.result + '" alt="Photo"><div class="g-date">' + new Date().toLocaleDateString() + '</div><div class="g-weight">— kg</div>';
-    g.appendChild(d);
+    setImagePreview(previewId, e.target.result);
+    const storageKey = previewId === 'current-preview' ? 'currentPhoto' : 'goalPhoto';
+    const data = loadJSON(STORAGE_KEYS.photos, {});
+    data[storageKey] = e.target.result;
+    saveJSON(STORAGE_KEYS.photos, data);
   };
   reader.readAsDataURL(input.files[0]);
 }
 
+function createGalleryItem(item) {
+  const d = document.createElement('div');
+  d.className = 'gallery-item';
+  d.innerHTML = '<img src="' + item.src + '" alt="Photo"><div class="g-date">' + item.date + '</div><div class="g-weight">' + item.weight + '</div>';
+  document.querySelector('.gallery').appendChild(d);
+}
+
+function renderGallery() {
+  const gallery = document.querySelector('.gallery');
+  gallery.innerHTML = '';
+  galleryItems.forEach(createGalleryItem);
+}
+
+function addToGallery(input) {
+  if (!input.files || !input.files[0]) return;
+  const reader = new FileReader();
+  reader.onload = e => {
+    const item = {
+      src: e.target.result,
+      date: new Date().toLocaleDateString(),
+      weight: '— kg'
+    };
+    galleryItems.push(item);
+    saveJSON(STORAGE_KEYS.gallery, galleryItems);
+    createGalleryItem(item);
+  };
+  reader.readAsDataURL(input.files[0]);
+}
+
+function openSectionUpload(sectionId) {
+  sectionUploadTarget = sectionId;
+  document.getElementById('section-upload').click();
+}
+
+function addSectionImage(input) {
+  if (!input.files || !input.files[0] || !sectionUploadTarget) return;
+  const reader = new FileReader();
+  reader.onload = e => {
+    const section = document.getElementById(sectionUploadTarget);
+    if (!section) return;
+    const item = document.createElement('div');
+    item.className = 'moodboard-item';
+    item.innerHTML = '<img src="' + e.target.result + '" alt="Custom inspo">';
+    section.appendChild(item);
+    sectionImages[sectionUploadTarget] = sectionImages[sectionUploadTarget] || [];
+    sectionImages[sectionUploadTarget].push(e.target.result);
+    saveJSON(STORAGE_KEYS.sections, sectionImages);
+  };
+  reader.readAsDataURL(input.files[0]);
+}
+
+function renderSectionImages() {
+  Object.keys(sectionImages).forEach(sectionId => {
+    const section = document.getElementById(sectionId);
+    if (!section) return;
+    sectionImages[sectionId].forEach(src => {
+      const item = document.createElement('div');
+      item.className = 'moodboard-item';
+      item.innerHTML = '<img src="' + src + '" alt="Saved inspo">';
+      section.appendChild(item);
+    });
+  });
+}
+
+function renderCheckinHistory() {
+  const history = document.getElementById('checkin-history');
+  if (!history) return;
+  if (!checkinEntries.length) {
+    history.textContent = 'No saved check-ins yet.';
+    return;
+  }
+  history.innerHTML = checkinEntries.slice(0, 5).map(entry =>
+    '<div style="margin-bottom:8px;">' + entry.date + ' — ' + entry.weight + 'kg, ' + entry.waist + 'cm waist, energy ' + entry.energy + '</div>'
+  ).join('');
+}
+
 document.getElementById('checkin-form').addEventListener('submit', function(e) {
-  e.preventDefault(); alert('Check-in saved! Keep going ✨'); this.reset();
+  e.preventDefault();
+  const form = e.currentTarget;
+  const weight = form.weight.value.trim();
+  const waist = form.waist.value.trim();
+  const energy = form.energy.value;
+  if (!weight || !waist) return;
+  checkinEntries.unshift({ date: new Date().toLocaleDateString(), weight, waist, energy });
+  if (checkinEntries.length > 20) checkinEntries.length = 20;
+  saveJSON(STORAGE_KEYS.checkins, checkinEntries);
+  renderCheckinHistory();
+  form.reset();
 });
+
+function loadSavedPhotos() {
+  const photos = loadJSON(STORAGE_KEYS.photos, {});
+  if (photos.currentPhoto) setImagePreview('current-preview', photos.currentPhoto);
+  if (photos.goalPhoto) setImagePreview('goal-preview', photos.goalPhoto);
+}
+
+renderGallery();
+renderSectionImages();
+renderCheckinHistory();
+loadSavedPhotos();
 
 const io = new IntersectionObserver(entries => {
   entries.forEach(entry => {
