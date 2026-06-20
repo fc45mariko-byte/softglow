@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
@@ -9,171 +9,178 @@
   <link rel="manifest" href="manifest.json" />
   <link rel="apple-touch-icon" href="icons/icon-192.png" />
   <title>Mochi</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
 
-  <!-- HEADER -->
-  <header class="app-header">
-    <div class="header-left">
-      <span class="greeting" id="greeting">good morning</span>
-      <span class="username">Fati ♡</span>
-    </div>
-    <div class="header-right">
-      <div class="mochi-trigger" id="mochiTrigger" title="Talk to Mochi">
-        <img src="icons/mochi-char.png" alt="Mochi" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'" />
-        <div class="mochi-fallback">🎀</div>
-      </div>
-    </div>
-  </header>
+  <!-- 6 SWIPE SCREENS -->
+  <div class="swipe-container" id="swipeContainer">
 
-  <!-- NAV TABS -->
-  <nav class="tab-nav">
-    <button class="tab active" data-tab="home">Home</button>
-    <button class="tab" data-tab="pink-poison">Pink Poison</button>
-    <button class="tab" data-tab="body">Body</button>
-    <button class="tab" data-tab="rituel">Rituel</button>
-    <button class="tab" data-tab="meals">Meals</button>
-  </nav>
-
-  <!-- MAIN CONTENT -->
-  <main class="content">
-
-    <!-- HOME TAB -->
-    <section class="tab-panel active" id="tab-home">
-      <div class="summary-grid">
-
-        <div class="card card-wide gradient-pink">
-          <div class="card-label">Pink Poison</div>
-          <div class="card-value" id="home-revenue">—</div>
-          <div class="card-sub">bénéfice réel ce mois</div>
+    <!-- 1. TODAY -->
+    <section class="screen" id="screen-today">
+      <div class="screen-inner">
+        <div class="greeting-row">
+          <div class="greeting-text" id="greeting">good morning</div>
+          <div class="date-text" id="today-date"></div>
         </div>
-
-        <div class="card gradient-soft">
-          <div class="card-label">Skincare</div>
-          <div class="card-value" id="home-skincare">—/5</div>
-          <div class="card-sub">done today</div>
-        </div>
-
-        <div class="card gradient-nude">
+        <div class="glass-card">
           <div class="card-label">Body</div>
-          <div class="card-value" id="home-weight">—kg</div>
-          <div class="card-sub">logged today</div>
+          <div class="today-weight-row">
+            <span class="big-number" id="today-weight">&mdash;</span>
+            <span class="big-number-unit">kg</span>
+            <span class="today-goal-text" id="today-goal-text"></span>
+          </div>
+          <div class="progress-wrap" style="margin-top:10px">
+            <div class="progress-bar" id="today-progress"></div>
+          </div>
         </div>
-
-        <div class="card gradient-soft">
-          <div class="card-label">Meals</div>
-          <div class="card-value" id="home-meals">—</div>
-          <div class="card-sub">logged today</div>
+        <div class="glass-card">
+          <div class="card-label">Rituel</div>
+          <div class="today-rituel-count" id="today-rituel-count">0/5 done today</div>
+          <div class="step-dots" id="today-step-dots"></div>
         </div>
-
-      </div>
-
-      <!-- Skincare checklist on home -->
-      <div class="section-title">Skincare today</div>
-      <div class="checklist" id="skincare-home"></div>
-    </section>
-
-    <!-- PINK POISON TAB -->
-    <section class="tab-panel" id="tab-pink-poison">
-      <div class="section-header">
-        <div class="section-title">Pink Poison</div>
-        <button class="btn-add" id="openAddItem">+ article</button>
-      </div>
-
-      <div class="stat-row">
-        <div class="stat-box">
-          <div class="stat-val" id="pp-revenue">0€</div>
-          <div class="stat-label">bénéfice réel</div>
-        </div>
-        <div class="stat-box">
-          <div class="stat-val" id="pp-stock-val">0€</div>
-          <div class="stat-label">stock potentiel</div>
-        </div>
-        <div class="stat-box">
-          <div class="stat-val" id="pp-margin">0%</div>
-          <div class="stat-label">marge moy.</div>
-        </div>
-      </div>
-
-      <div class="filter-row">
-        <button class="filter active" data-filter="all">Tous</button>
-        <button class="filter" data-filter="En stock">En stock</button>
-        <button class="filter" data-filter="Vendu">Vendu</button>
-        <button class="filter" data-filter="Annulé">Annulé</button>
-      </div>
-
-      <div class="item-list" id="pp-list"></div>
-    </section>
-
-    <!-- BODY TAB -->
-    <section class="tab-panel" id="tab-body">
-      <div class="section-title">Body tracking</div>
-
-      <div class="before-after">
-        <div class="ba-slot">
-          <div class="ba-label">Current</div>
-          <div class="ba-weight" id="ba-current">—kg</div>
-        </div>
-        <div class="ba-dots">· · ·</div>
-        <div class="ba-slot">
-          <div class="ba-label">Goal</div>
-          <div class="ba-weight" id="ba-goal">—kg</div>
-        </div>
-      </div>
-
-      <div class="progress-bar-wrap">
-        <div class="progress-bar" id="body-progress"></div>
-      </div>
-
-      <div class="section-header" style="margin-top:1.5rem">
-        <div class="section-title small">Log</div>
-        <button class="btn-add" id="openLogWeight">+ log</button>
-      </div>
-      <div class="item-list" id="weight-log"></div>
-    </section>
-
-    <!-- RITUEL TAB -->
-    <section class="tab-panel" id="tab-rituel">
-      <div class="section-title">Rituel du jour</div>
-      <div class="date-display" id="rituel-date"></div>
-      <div class="checklist" id="skincare-full">
-        <label class="check-item"><input type="checkbox" data-step="Oil Cleanser" /><span>Oil Cleanser</span></label>
-        <label class="check-item"><input type="checkbox" data-step="Toner" /><span>Toner</span></label>
-        <label class="check-item"><input type="checkbox" data-step="Vitamin C Serum" /><span>Vitamin C Serum</span></label>
-        <label class="check-item"><input type="checkbox" data-step="Moisturizer" /><span>Moisturizer</span></label>
-        <label class="check-item"><input type="checkbox" data-step="SPF 50+" /><span>SPF 50+ <span class="tag">non-negotiable</span></span></label>
       </div>
     </section>
 
-    <!-- MEALS TAB -->
-    <section class="tab-panel" id="tab-meals">
-      <div class="section-header">
-        <div class="section-title">Meals</div>
-        <button class="btn-add" id="openAddMeal">+ meal</button>
+    <!-- 2. BODY -->
+    <section class="screen" id="screen-body">
+      <div class="screen-inner">
+        <div class="screen-header">
+          <div class="screen-title">Body</div>
+          <button class="btn-pill" id="openLogWeight">+ log</button>
+        </div>
+        <div class="glass-card">
+          <div class="ba-row">
+            <div class="ba-slot">
+              <div class="ba-label">Current</div>
+              <div class="ba-number" id="ba-current">&mdash;kg</div>
+            </div>
+            <div class="ba-arrow">&rarr;</div>
+            <div class="ba-slot">
+              <div class="ba-label">Goal</div>
+              <div class="ba-number" id="ba-goal">&mdash;kg</div>
+            </div>
+          </div>
+          <div class="progress-wrap" style="margin-top:14px">
+            <div class="progress-bar" id="body-progress"></div>
+          </div>
+        </div>
+        <div class="glass-card chart-card">
+          <canvas id="weight-chart"></canvas>
+        </div>
+        <div class="item-list" id="weight-log"></div>
       </div>
-      <div class="item-list" id="meal-list"></div>
     </section>
 
-  </main>
+    <!-- 3. RITUEL -->
+    <section class="screen" id="screen-rituel">
+      <div class="screen-inner">
+        <div class="screen-title">Rituel du jour</div>
+        <div class="date-sub" id="rituel-date"></div>
+        <div class="checklist" id="skincare-full">
+          <label class="check-item"><input type="checkbox" data-step="Oil Cleanser" /><span>Oil Cleanser</span></label>
+          <label class="check-item"><input type="checkbox" data-step="Toner" /><span>Toner</span></label>
+          <label class="check-item"><input type="checkbox" data-step="Vitamin C Serum" /><span>Vitamin C Serum</span></label>
+          <label class="check-item"><input type="checkbox" data-step="Moisturizer" /><span>Moisturizer</span></label>
+          <label class="check-item"><input type="checkbox" data-step="SPF 50+" /><span>SPF 50+ <span class="step-tag">non-negotiable</span></span></label>
+        </div>
+      </div>
+    </section>
 
-  <!-- MODAL: Add Pink Poison item -->
-  <div class="modal-overlay" id="modal-item">
-    <div class="modal">
-      <div class="modal-title">Nouvel article</div>
-      <input class="input" type="text" id="item-name" placeholder="Nom de l'article" />
-      <input class="input" type="number" id="item-buy" placeholder="Prix achat (€)" />
-      <input class="input" type="number" id="item-sell" placeholder="Prix vente (€)" />
-      <select class="input" id="item-status">
-        <option value="En stock">En stock</option>
-        <option value="Vendu">Vendu</option>
-        <option value="Annulé">Annulé</option>
-      </select>
-      <div class="modal-actions">
-        <button class="btn-cancel" id="cancelItem">Annuler</button>
-        <button class="btn-save" id="saveItem">Sauvegarder</button>
+    <!-- 4. MEALS -->
+    <section class="screen" id="screen-meals">
+      <div class="screen-inner">
+        <div class="screen-header">
+          <div class="screen-title">Meals</div>
+          <button class="btn-pill" id="openAddMeal">+ meal</button>
+        </div>
+        <div class="item-list" id="meal-list">
+          <div class="empty-state">rien encore &mdash; log ton premier repas &#127872;</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. FINANCES / PINK POISON -->
+    <section class="screen" id="screen-finances">
+      <div class="screen-inner">
+        <div class="screen-header">
+          <div class="screen-title">Pink Poison</div>
+          <button class="btn-pill" id="openAddItem">+ article</button>
+        </div>
+        <div class="stat-row">
+          <div class="glass-card stat-box">
+            <div class="stat-val" id="pp-revenue">0&euro;</div>
+            <div class="stat-label">b&eacute;n&eacute;fice r&eacute;el</div>
+          </div>
+          <div class="glass-card stat-box">
+            <div class="stat-val" id="pp-stock-val">0&euro;</div>
+            <div class="stat-label">stock potentiel</div>
+          </div>
+          <div class="glass-card stat-box">
+            <div class="stat-val" id="pp-margin">0%</div>
+            <div class="stat-label">marge moy.</div>
+          </div>
+        </div>
+        <div class="filter-row">
+          <button class="filter active" data-filter="all">Tous</button>
+          <button class="filter" data-filter="En stock">En stock</button>
+          <button class="filter" data-filter="Vendu">Vendu</button>
+          <button class="filter" data-filter="Annul&eacute;">Annul&eacute;</button>
+        </div>
+        <div class="item-list" id="pp-list">
+          <div class="empty-state">aucun article pour l&apos;instant &#127872;</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. MOOD -->
+    <section class="screen" id="screen-mood">
+      <div class="screen-inner">
+        <div class="screen-title">Mood</div>
+        <div class="glass-card mood-card">
+          <div class="mood-number" id="mood-display">5</div>
+          <div class="mood-label">comment tu te sens&nbsp;?</div>
+          <input type="range" id="mood-slider" min="1" max="10" value="5" class="mood-slider" />
+          <input type="text" id="mood-note" class="input" placeholder="un mot sur ta journ&eacute;e&hellip;" />
+          <button class="btn-pill" style="margin-top:8px;width:100%" id="saveMoodBtn">save</button>
+        </div>
+        <div class="item-list" id="mood-list">
+          <div class="empty-state">aucun log mood &#127872;</div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- DOT INDICATORS -->
+  <div class="dot-nav" id="dotNav">
+    <span class="dot active" data-screen="0"></span>
+    <span class="dot" data-screen="1"></span>
+    <span class="dot" data-screen="2"></span>
+    <span class="dot" data-screen="3"></span>
+    <span class="dot" data-screen="4"></span>
+    <span class="dot" data-screen="5"></span>
+  </div>
+
+  <!-- MOCHI FLOAT -->
+  <div class="mochi-float" id="mochiFloat" role="button" tabindex="0" aria-label="Talk to Mochi">
+    <img class="mochi-img" id="mochiImg" alt="Mochi" />
+    <div class="mochi-fallback" id="mochiFallback">&#127872;</div>
+  </div>
+
+  <!-- MOCHI CHAT -->
+  <div class="chat-overlay" id="chatOverlay" role="dialog" aria-modal="true">
+    <div class="chat-panel">
+      <div class="chat-header">
+        <div class="chat-title">&#127872; Mochi</div>
+        <button class="chat-close" id="chatClose" aria-label="Fermer">&times;</button>
+      </div>
+      <div class="chat-messages" id="chatMessages">
+        <div class="msg ai">Heyy &ccedil;a va&nbsp;? &#127872; What do you wanna check today?</div>
+      </div>
+      <div class="chat-input-row">
+        <input class="chat-input" id="chatInput" type="text" placeholder="Dis-moi quelque chose&hellip;" autocomplete="off" />
+        <button class="chat-send" id="chatSend" aria-label="Envoyer">&uarr;</button>
       </div>
     </div>
   </div>
@@ -182,8 +189,8 @@
   <div class="modal-overlay" id="modal-weight">
     <div class="modal">
       <div class="modal-title">Log poids</div>
-      <input class="input" type="number" id="weight-val" placeholder="Poids (kg)" step="0.1" />
-      <input class="input" type="number" id="weight-goal" placeholder="Objectif (kg)" step="0.1" />
+      <input class="input" type="number" id="weight-val" placeholder="Poids (kg)" step="0.1" inputmode="decimal" />
+      <input class="input" type="number" id="weight-goal-inp" placeholder="Objectif (kg) &mdash; optionnel" step="0.1" inputmode="decimal" />
       <div class="modal-actions">
         <button class="btn-cancel" id="cancelWeight">Annuler</button>
         <button class="btn-save" id="saveWeight">Sauvegarder</button>
@@ -196,38 +203,41 @@
     <div class="modal">
       <div class="modal-title">Log repas</div>
       <select class="input" id="meal-type">
-        <option value="Petit déj">Petit déj</option>
-        <option value="Déjeuner">Déjeuner</option>
-        <option value="Dîner">Dîner</option>
+        <option value="Petit d&eacute;j">Petit d&eacute;j</option>
+        <option value="D&eacute;jeuner">D&eacute;jeuner</option>
+        <option value="D&icirc;ner">D&icirc;ner</option>
         <option value="Snack">Snack</option>
       </select>
-      <div class="ingredient-select" id="ingredient-select"></div>
-      <input class="input" type="text" id="meal-custom" placeholder="Autre ingrédient (optionnel)" />
+      <input class="input" type="text" id="meal-note" placeholder="What did you eat?" />
       <div class="modal-actions">
         <button class="btn-cancel" id="cancelMeal">Annuler</button>
-        <button class="btn-save" id="saveMeal">Sauvegarder</button>
+        <button class="btn-save" id="saveMealBtn">Sauvegarder</button>
       </div>
     </div>
   </div>
 
-  <!-- MOCHI CHAT PANEL -->
-  <div class="chat-overlay" id="chatOverlay">
-    <div class="chat-panel">
-      <div class="chat-header">
-        <div class="chat-title">🎀 Mochi</div>
-        <button class="chat-close" id="chatClose">✕</button>
-      </div>
-      <div class="chat-messages" id="chatMessages">
-        <div class="msg ai">Heyy c'est moi 🎀 Comment je peux t'aider ?</div>
-      </div>
-      <div class="chat-input-row">
-        <input class="chat-input" id="chatInput" type="text" placeholder="Dis-moi quelque chose…" />
-        <button class="chat-send" id="chatSend">↑</button>
+  <!-- MODAL: Add Pink Poison item -->
+  <div class="modal-overlay" id="modal-item">
+    <div class="modal">
+      <div class="modal-title">Nouvel article</div>
+      <input class="input" type="text" id="item-name" placeholder="Nom de l&apos;article" />
+      <input class="input" type="number" id="item-buy" placeholder="Prix achat (&euro;)" inputmode="decimal" />
+      <input class="input" type="number" id="item-sell" placeholder="Prix vente (&euro;) &mdash; optionnel" inputmode="decimal" />
+      <select class="input" id="item-status">
+        <option value="En stock">En stock</option>
+        <option value="Vendu">Vendu</option>
+        <option value="Annul&eacute;">Annul&eacute;</option>
+      </select>
+      <div class="modal-actions">
+        <button class="btn-cancel" id="cancelItem">Annuler</button>
+        <button class="btn-save" id="saveItem">Sauvegarder</button>
       </div>
     </div>
   </div>
 
+  <script src="js/config.js"></script>
   <script src="js/db.js"></script>
+  <script src="js/mochi.js"></script>
   <script src="js/app.js"></script>
 </body>
 </html>
