@@ -1,119 +1,69 @@
 # Mochi 🎀
 
-Your personal dashboard. Pink Poison tracker, body log, skincare rituel, meals, and Mochi — your built-in AI.
+Personal dashboard PWA — Pink Poison tracker, body log, skincare rituel, meals, mood, and Mochi your AI companion.
 
----
-
-## Stack
-
-| Layer | Tool |
-|---|---|
-| App (PWA) | HTML/CSS/JS |
-| Hosting | GitHub Pages |
-| Database | Supabase (Postgres) |
-| AI companion | Anthropic API (claude-haiku-4-5) |
-
----
-
-## Setup — do this once
+## Setup (one time)
 
 ### 1. Supabase
 
-1. Go to [supabase.com](https://supabase.com) → New project (free)
-2. Once created, go to **Table Editor** and create these 3 tables:
+Create a free project at supabase.com, then create these 4 tables:
 
-**`pink_poison`**
-| column | type | default |
-|---|---|---|
-| id | int8 | generated always as identity |
-| created_at | timestamptz | now() |
-| name | text | |
-| buy_price | float8 | |
-| sell_price | float8 | |
-| status | text | 'En stock' |
+**`pink_poison`** — `id int8 identity`, `created_at timestamptz default now()`, `name text`, `buy_price float8`, `sell_price float8 null`, `status text default 'En stock'`
 
-**`body_log`**
-| column | type | default |
-|---|---|---|
-| id | int8 | generated always as identity |
-| logged_at | timestamptz | now() |
-| weight | float8 | |
-| goal_weight | float8 | |
+**`body_log`** — `id int8 identity`, `logged_at timestamptz default now()`, `weight float8`, `goal_weight float8 null`
 
-**`meals`**
-| column | type | default |
-|---|---|---|
-| id | int8 | generated always as identity |
-| logged_at | timestamptz | now() |
-| meal_type | text | |
-| ingredients | text[] | |
+**`meals`** — `id int8 identity`, `logged_at timestamptz default now()`, `meal_type text`, `note text null`
 
-3. Go to **Settings → API** and copy:
-   - `Project URL` → paste into `js/db.js` as `SUPABASE_URL`
-   - `anon public` key → paste into `js/db.js` as `SUPABASE_KEY`
+**`mood_log`** — `id int8 identity`, `logged_at timestamptz default now()`, `score int2`, `note text null`
 
-4. Go to **Authentication → Policies** and for each table, add a policy:
-   - Policy name: `allow all`
-   - Target roles: leave empty
-   - Using expression: `true`
+For each table: **Authentication → Policies → New policy → "For full customization"** → set `using (true)` for all operations (SELECT, INSERT, UPDATE, DELETE).
 
----
+Go to **Settings → API**, copy `Project URL` and `anon public` key.
 
-### 2. Anthropic API key
+### 2. Anthropic key
 
-1. Go to [console.anthropic.com](https://console.anthropic.com)
-2. API Keys → Create key
-3. Paste it into `js/app.js` as `ANTHROPIC_KEY`
+Get a key at console.anthropic.com → API Keys.
 
----
+### 3. Fill in `js/config.js`
 
-### 3. GitHub Pages
-
-1. Push all files to the `main` branch of this repo
-2. Go to repo **Settings → Pages → Source**: select `main` branch, `/ (root)`
-3. Your app is live at `https://fc45mariko-byte.github.io/softglow`
-
----
-
-### 4. Install on iPhone
-
-1. Open the URL in **Safari** (must be Safari, not Chrome)
-2. Tap the **Share** button → **Add to Home Screen**
-3. Tap **Add**
-
-Done. Mochi is now on your home screen like a native app.
-
----
-
-### 5. App icon
-
-Put your Mochi image in `icons/` as:
-- `icon-192.png` (192×192px)
-- `icon-512.png` (512×512px)
-- `mochi-char.png` — the character in the header
-
----
-
-## File structure
-
-```
-softglow/
-├── index.html
-├── manifest.json
-├── sw.js
-├── css/
-│   └── style.css
-├── js/
-│   ├── db.js
-│   └── app.js
-└── icons/
-    ├── icon-192.png
-    ├── icon-512.png
-    └── mochi-char.png
+```js
+const SUPABASE_URL = 'https://xxxx.supabase.co';
+const SUPABASE_KEY = 'eyJ...';
+const ANTHROPIC_KEY = 'sk-ant-...';
 ```
 
+### 4. Add your icons
+
+Put your Mochi art in `icons/`:
+- `icon-192.png` + `icon-512.png` — app icon
+- `mochi-neutral.png` — default face
+- `mochi-happy.png` — all rituel done or mood ≥ 7
+- `mochi-sleepy.png` — night hours (21h–5h)
+- `mochi-cheer.png` — Pink Poison sale logged
+
+Any missing image falls back gracefully to the next, then to 🎀.
+
+### 5. Deploy to GitHub Pages
+
+1. Merge `claude/my-app-dpeutc` → `main`
+2. Repo **Settings → Pages → Source**: `main` branch, `/ (root)`
+3. Live at `https://fc45mariko-byte.github.io/softglow`
+
+### 6. Install on iPhone
+
+Safari → share → **Add to Home Screen** → Add. Done.
+
 ---
 
-## Updating the app
+## Screens (swipe left/right)
 
-Push changes to `main` → GitHub Pages redeploys in ~1 min → pull-to-refresh on iPhone picks up the update.
+| # | Screen | What's there |
+|---|---|---|
+| 1 | Today | Body summary + rituel progress glance |
+| 2 | Body | Weight log, goal progress bar, line chart |
+| 3 | Rituel | 5-step skincare checklist (resets daily) |
+| 4 | Meals | Free-text meal log for today |
+| 5 | Pink Poison | Vinted resale tracker + stats |
+| 6 | Mood | 1–10 slider + note |
+
+Mochi (bottom-right) reacts to your data and opens a Franglais AI chat.
