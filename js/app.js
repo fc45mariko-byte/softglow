@@ -16,7 +16,7 @@ function applyGradient() {
 }
 
 // STATE
-let ppItems = [], ppFilter = 'all';
+let ppItems = [], ppFilter = 'all', ppEditId = null;
 let weightLogs = [], mealLogs = [], moodLogs = [];
 
 // SWIPE + DOTS
@@ -110,7 +110,7 @@ function renderPP() {
     const m   = item.sell_price && item.buy_price
       ? Math.round(((item.sell_price - item.buy_price) / item.buy_price) * 100) : null;
     const cls = item.status === 'Vendu' ? 'vendu' : item.status === 'Annulé' ? 'annule' : '';
-    return `<div class="item-card"><div class="item-name">${item.name}</div><div class="item-meta">
+    return `<div class="item-card" data-pp-id="${item.id}" style="cursor:pointer"><div class="item-name">${item.name}</div><div class="item-meta">
       <span>Achat: ${item.buy_price}€</span>
       ${item.sell_price ? `<span>Vente: ${item.sell_price}€</span>` : ''}
       ${m !== null ? `<span class="margin-tag">+${m}%</span>` : ''}
@@ -134,6 +134,22 @@ document.querySelectorAll('.filter').forEach(btn => {
     document.querySelectorAll('.filter').forEach(f => f.classList.remove('active'));
     btn.classList.add('active'); ppFilter = btn.dataset.filter; renderPP();
   });
+});
+
+// Tap a PP card to edit it
+document.getElementById('pp-list').addEventListener('click', e => {
+  const card = e.target.closest('[data-pp-id]');
+  if (!card) return;
+  const id   = parseInt(card.dataset.ppId);
+  const item = ppItems.find(i => i.id === id);
+  if (!item) return;
+  ppEditId = id;
+  document.getElementById('modal-item-title').textContent = 'Modifier l\'article';
+  document.getElementById('item-name').value   = item.name;
+  document.getElementById('item-buy').value    = item.buy_price;
+  document.getElementById('item-sell').value   = item.sell_price || '';
+  document.getElementById('item-status').value = item.status;
+  openModal('modal-item');
 });
 
 // RENDER: BODY
@@ -261,22 +277,40 @@ document.getElementById('saveMealBtn').addEventListener('click', async () => {
   }
 });
 
-// Pink Poison
-document.getElementById('openAddItem').addEventListener('click', () => openModal('modal-item'));
-document.getElementById('cancelItem').addEventListener('click',  () => closeModal('modal-item'));
+// Pink Poison — open in ADD mode
+document.getElementById('openAddItem').addEventListener('click', () => {
+  ppEditId = null;
+  document.getElementById('modal-item-title').textContent = 'Nouvel article';
+  ['item-name','item-buy','item-sell'].forEach(id => { document.getElementById(id).value = ''; });
+  document.getElementById('item-status').value = 'En stock';
+  openModal('modal-item');
+});
+document.getElementById('cancelItem').addEventListener('click', () => {
+  ppEditId = null;
+  closeModal('modal-item');
+});
 document.getElementById('saveItem').addEventListener('click', async () => {
   const name   = document.getElementById('item-name').value.trim();
   const buy    = parseFloat(document.getElementById('item-buy').value);
   const sell   = parseFloat(document.getElementById('item-sell').value) || null;
   const status = document.getElementById('item-status').value;
   if (!name || !buy) return;
-  const saved = await PP.add({ name, buy_price: buy, sell_price: sell, status });
-  if (saved) {
-    ppItems.unshift(saved[0]);
-    if (status === 'Vendu' && typeof mochiTriggerCheer === 'function') mochiTriggerCheer();
-    renderPP(); closeModal('modal-item');
-    ['item-name','item-buy','item-sell'].forEach(id => { document.getElementById(id).value = ''; });
+
+  if (ppEditId !== null) {
+    const patch = { name, buy_price: buy, sell_price: sell, status };
+    await PP.update(ppEditId, patch);
+    const idx = ppItems.findIndex(i => i.id === ppEditId);
+    if (idx !== -1) ppItems[idx] = { ...ppItems[idx], ...patch };
+    ppEditId = null;
+  } else {
+    const saved = await PP.add({ name, buy_price: buy, sell_price: sell, status });
+    if (saved) {
+      ppItems.unshift(saved[0]);
+      if (status === 'Vendu' && typeof mochiTriggerCheer === 'function') mochiTriggerCheer();
+    }
   }
+  renderPP(); closeModal('modal-item');
+  ['item-name','item-buy','item-sell'].forEach(id => { document.getElementById(id).value = ''; });
 });
 
 // Mood
