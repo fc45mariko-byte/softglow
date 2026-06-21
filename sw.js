@@ -1,4 +1,4 @@
-const CACHE = 'mochi-v2';
+const CACHE = 'mochi-v3';
 const CORE  = ['/', '/index.html', '/manifest.json', '/css/style.css',
                '/js/config.js', '/js/db.js', '/js/mochi.js', '/js/app.js'];
 
