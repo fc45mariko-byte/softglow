@@ -107,10 +107,11 @@ function renderPP() {
   const list     = document.getElementById('pp-list');
   const filtered = ppFilter === 'all' ? ppItems : ppItems.filter(i => i.status === ppFilter);
   list.innerHTML = filtered.length ? filtered.map(item => {
-    const m   = item.sell_price && item.buy_price
+    const m      = item.sell_price && item.buy_price
       ? Math.round(((item.sell_price - item.buy_price) / item.buy_price) * 100) : null;
-    const cls = item.status === 'Vendu' ? 'vendu' : item.status === 'Annulé' ? 'annule' : '';
-    return `<div class="item-card" data-pp-id="${item.id}" style="cursor:pointer"><div class="item-name">${item.name}</div><div class="item-meta">
+    const cls    = item.status === 'Vendu' ? 'vendu' : item.status === 'Annulé' ? 'annule' : '';
+    const ppIdx  = ppItems.indexOf(item);
+    return `<div class="item-card" data-pp-idx="${ppIdx}" style="cursor:pointer"><div class="item-name">${item.name}</div><div class="item-meta">
       <span>Achat: ${item.buy_price}€</span>
       ${item.sell_price ? `<span>Vente: ${item.sell_price}€</span>` : ''}
       ${m !== null ? `<span class="margin-tag">+${m}%</span>` : ''}
@@ -138,12 +139,11 @@ document.querySelectorAll('.filter').forEach(btn => {
 
 // Tap a PP card to edit it
 document.getElementById('pp-list').addEventListener('click', e => {
-  const card = e.target.closest('[data-pp-id]');
+  const card = e.target.closest('[data-pp-idx]');
   if (!card) return;
-  const id   = parseInt(card.dataset.ppId);
-  const item = ppItems.find(i => i.id === id);
+  const item = ppItems[parseInt(card.dataset.ppIdx)];
   if (!item) return;
-  ppEditId = id;
+  ppEditId = item.id;
   document.getElementById('modal-item-title').textContent = 'Modifier l\'article';
   document.getElementById('item-name').value   = item.name;
   document.getElementById('item-buy').value    = item.buy_price;
