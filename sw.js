@@ -1,9 +1,11 @@
-const CACHE = 'mochi-v2';
+const CACHE = 'mochi-v4';
 const CORE  = ['/', '/index.html', '/manifest.json', '/css/style.css',
-               '/js/config.js', '/js/db.js', '/js/mochi.js', '/js/app.js'];
+               '/js/config.js', '/js/db.js', '/js/mochi.js', '/js/app.js',
+               '/icons/mochi-neutral.png', '/icons/mochi-happy.png',
+               '/icons/mochi-thinking.png', '/icons/mochi-cheer.png'];
 
 self.addEventListener('install', e => {
-  e.waitUntil(caches.open(CACHE).then(c => c.addAll(CORE)));
+  e.waitUntil(caches.open(CACHE).then(c => c.addAll(CORE).catch(() => {})));
   self.skipWaiting();
 });
 
