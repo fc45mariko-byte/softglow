@@ -13,10 +13,9 @@
 </head>
 <body>
 
-  <!-- 6 SWIPE SCREENS -->
   <div class="swipe-container" id="swipeContainer">
 
-    <!-- 1. TODAY -->
+    <!-- 0. TODAY -->
     <section class="screen" id="screen-today">
       <div class="screen-inner">
         <div class="greeting-row">
@@ -36,72 +35,117 @@
         </div>
         <div class="glass-card">
           <div class="card-label">Rituel</div>
-          <div class="today-rituel-count" id="today-rituel-count">0/5 done today</div>
-          <div class="step-dots" id="today-step-dots"></div>
+          <div class="today-rituel-row">
+            <span class="today-rituel-label">Matin</span>
+            <span class="today-rituel-count-sm" id="today-matin-count">0/5</span>
+          </div>
+          <div class="step-dots" id="today-matin-dots"></div>
+          <div class="today-rituel-row" style="margin-top:12px">
+            <span class="today-rituel-label">Soir</span>
+            <span class="today-rituel-count-sm" id="today-soir-count">0/6</span>
+          </div>
+          <div class="step-dots" id="today-soir-dots"></div>
         </div>
       </div>
     </section>
 
-    <!-- 2. BODY -->
+    <!-- 1. BODY -->
     <section class="screen" id="screen-body">
       <div class="screen-inner">
         <div class="screen-header">
           <div class="screen-title">Body</div>
           <button class="btn-pill" id="openLogWeight">+ log</button>
         </div>
-        <div class="glass-card">
-          <div class="ba-row">
-            <div class="ba-slot">
-              <div class="ba-label">Current</div>
-              <div class="ba-number" id="ba-current">&mdash;kg</div>
+        <div class="tab-pills" id="body-tabs">
+          <button class="tab-pill active" data-tab="poids">Poids</button>
+          <button class="tab-pill" data-tab="mesures">Mesures</button>
+        </div>
+        <div id="tab-poids">
+          <div class="glass-card">
+            <div class="ba-row">
+              <div class="ba-slot">
+                <div class="ba-label">Current</div>
+                <div class="ba-number" id="ba-current">&mdash;kg</div>
+              </div>
+              <div class="ba-arrow">&rarr;</div>
+              <div class="ba-slot">
+                <div class="ba-label">Goal</div>
+                <div class="ba-number" id="ba-goal">&mdash;kg</div>
+              </div>
             </div>
-            <div class="ba-arrow">&rarr;</div>
-            <div class="ba-slot">
-              <div class="ba-label">Goal</div>
-              <div class="ba-number" id="ba-goal">&mdash;kg</div>
+            <div class="progress-wrap" style="margin-top:14px">
+              <div class="progress-bar" id="body-progress"></div>
             </div>
           </div>
-          <div class="progress-wrap" style="margin-top:14px">
-            <div class="progress-bar" id="body-progress"></div>
+          <div class="glass-card chart-card">
+            <canvas id="weight-chart"></canvas>
           </div>
+          <div class="item-list" id="weight-log"></div>
         </div>
-        <div class="glass-card chart-card">
-          <canvas id="weight-chart"></canvas>
+        <div id="tab-mesures" style="display:none">
+          <div class="screen-header" style="margin-bottom:12px">
+            <div></div>
+            <button class="btn-pill" id="openAddMeasure">+ mesure</button>
+          </div>
+          <div class="measure-summary-grid" id="measure-summary"></div>
+          <div class="item-list" id="measure-list"></div>
         </div>
-        <div class="item-list" id="weight-log"></div>
       </div>
     </section>
 
-    <!-- 3. RITUEL -->
+    <!-- 2. RITUEL -->
     <section class="screen" id="screen-rituel">
       <div class="screen-inner">
         <div class="screen-title">Rituel du jour</div>
         <div class="date-sub" id="rituel-date"></div>
-        <div class="checklist" id="skincare-full">
-          <label class="check-item"><input type="checkbox" data-step="Oil Cleanser" /><span>Oil Cleanser</span></label>
-          <label class="check-item"><input type="checkbox" data-step="Toner" /><span>Toner</span></label>
-          <label class="check-item"><input type="checkbox" data-step="Vitamin C Serum" /><span>Vitamin C Serum</span></label>
-          <label class="check-item"><input type="checkbox" data-step="Moisturizer" /><span>Moisturizer</span></label>
-          <label class="check-item"><input type="checkbox" data-step="SPF 50+" /><span>SPF 50+ <span class="step-tag">non-negotiable</span></span></label>
+        <div class="tab-pills" id="rituel-tabs">
+          <button class="tab-pill active" data-tab="matin">Matin</button>
+          <button class="tab-pill" data-tab="soir">Soir</button>
+        </div>
+        <div id="tab-matin">
+          <div class="checklist" id="skincare-matin">
+            <label class="check-item"><input type="checkbox" data-step="Oil Cleanser" /><span>Oil Cleanser</span></label>
+            <label class="check-item"><input type="checkbox" data-step="Toner" /><span>Toner</span></label>
+            <label class="check-item"><input type="checkbox" data-step="Vitamin C Serum" /><span>Vitamin C Serum</span></label>
+            <label class="check-item"><input type="checkbox" data-step="Moisturizer" /><span>Moisturizer</span></label>
+            <label class="check-item"><input type="checkbox" data-step="SPF 50+" /><span>SPF 50+ <span class="step-tag">non-negotiable</span></span></label>
+          </div>
+        </div>
+        <div id="tab-soir" style="display:none">
+          <div class="checklist" id="skincare-soir">
+            <label class="check-item"><input type="checkbox" data-step="Double Cleanse" /><span>Double Cleanse</span></label>
+            <label class="check-item"><input type="checkbox" data-step="Exfoliant" /><span>Exfoliant <span class="step-tag">2–3×/week</span></span></label>
+            <label class="check-item"><input type="checkbox" data-step="Toner" /><span>Toner</span></label>
+            <label class="check-item"><input type="checkbox" data-step="Retinol/Treatment" /><span>Retinol / Treatment</span></label>
+            <label class="check-item"><input type="checkbox" data-step="Night Moisturizer" /><span>Night Moisturizer</span></label>
+            <label class="check-item"><input type="checkbox" data-step="Lip mask" /><span>Lip mask</span></label>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- 4. MEALS -->
+    <!-- 3. MEALS -->
     <section class="screen" id="screen-meals">
       <div class="screen-inner">
         <div class="screen-header">
           <div class="screen-title">Meals</div>
           <button class="btn-pill" id="openAddMeal">+ meal</button>
         </div>
-        <div class="item-list" id="meal-list">
-          <div class="empty-state">rien encore &mdash; log ton premier repas &#127872;</div>
+        <div class="tab-pills" id="meals-tabs">
+          <button class="tab-pill active" data-tab="today">Today</button>
+          <button class="tab-pill" data-tab="historique">Historique</button>
+        </div>
+        <div id="tab-meals-today">
+          <div class="item-list" id="meal-list"></div>
+        </div>
+        <div id="tab-meals-historique" style="display:none">
+          <div id="meal-history-list"></div>
         </div>
       </div>
     </section>
 
-    <!-- 5. FINANCES / PINK POISON -->
-    <section class="screen" id="screen-finances">
+    <!-- 4. PINK POISON -->
+    <section class="screen" id="screen-pp">
       <div class="screen-inner">
         <div class="screen-header">
           <div class="screen-title">Pink Poison</div>
@@ -127,8 +171,40 @@
           <button class="filter" data-filter="Vendu">Vendu</button>
           <button class="filter" data-filter="Annul&eacute;">Annul&eacute;</button>
         </div>
-        <div class="item-list" id="pp-list">
-          <div class="empty-state">aucun article pour l&apos;instant &#127872;</div>
+        <div class="item-list" id="pp-list"></div>
+      </div>
+    </section>
+
+    <!-- 5. FINANCES -->
+    <section class="screen" id="screen-finances">
+      <div class="screen-inner">
+        <div class="screen-header">
+          <div class="screen-title">Finances</div>
+          <button class="btn-pill" id="openAddExpense">+ d&eacute;pense</button>
+        </div>
+        <div class="stat-row">
+          <div class="glass-card stat-box">
+            <div class="stat-val" id="fin-pp-benefit">0&euro;</div>
+            <div class="stat-label">b&eacute;n&eacute;fice PP</div>
+          </div>
+          <div class="glass-card stat-box">
+            <div class="stat-val" id="fin-expenses">0&euro;</div>
+            <div class="stat-label">d&eacute;penses mois</div>
+          </div>
+          <div class="glass-card stat-box">
+            <div class="stat-val" id="fin-balance">0&euro;</div>
+            <div class="stat-label">balance</div>
+          </div>
+        </div>
+        <div class="tab-pills" id="finances-tabs">
+          <button class="tab-pill active" data-tab="depenses">D&eacute;penses</button>
+          <button class="tab-pill" data-tab="pp-mirror">Pink Poison</button>
+        </div>
+        <div id="tab-depenses">
+          <div class="item-list" id="expense-list"></div>
+        </div>
+        <div id="tab-pp-mirror" style="display:none">
+          <div class="item-list" id="pp-mirror-list"></div>
         </div>
       </div>
     </section>
@@ -144,9 +220,7 @@
           <input type="text" id="mood-note" class="input" placeholder="un mot sur ta journ&eacute;e&hellip;" />
           <button class="btn-pill" style="margin-top:8px;width:100%" id="saveMoodBtn">save</button>
         </div>
-        <div class="item-list" id="mood-list">
-          <div class="empty-state">aucun log mood &#127872;</div>
-        </div>
+        <div class="item-list" id="mood-list"></div>
       </div>
     </section>
 
@@ -160,7 +234,11 @@
     <span class="dot" data-screen="3"></span>
     <span class="dot" data-screen="4"></span>
     <span class="dot" data-screen="5"></span>
+    <span class="dot" data-screen="6"></span>
   </div>
+
+  <!-- SPEECH BUBBLE -->
+  <div class="mochi-bubble" id="mochiBubble"></div>
 
   <!-- MOCHI FLOAT -->
   <div class="mochi-float" id="mochiFloat" role="button" tabindex="0" aria-label="Talk to Mochi">
@@ -172,11 +250,14 @@
   <div class="chat-overlay" id="chatOverlay" role="dialog" aria-modal="true">
     <div class="chat-panel">
       <div class="chat-header">
-        <div class="chat-title">&#127872; Mochi</div>
+        <div class="chat-header-left">
+          <img class="chat-avatar" id="chatAvatar" alt="Mochi" />
+          <div class="chat-title">Mochi</div>
+        </div>
         <button class="chat-close" id="chatClose" aria-label="Fermer">&times;</button>
       </div>
       <div class="chat-messages" id="chatMessages">
-        <div class="msg ai">Heyy &ccedil;a va&nbsp;? &#127872; What do you wanna check today?</div>
+        <div class="msg ai">What do you want to look at?</div>
       </div>
       <div class="chat-input-row">
         <input class="chat-input" id="chatInput" type="text" placeholder="Dis-moi quelque chose&hellip;" autocomplete="off" />
@@ -188,7 +269,7 @@
   <!-- MODAL: Log weight -->
   <div class="modal-overlay" id="modal-weight">
     <div class="modal">
-      <div class="modal-title">Log poids</div>
+      <div class="modal-title" id="modal-weight-title">Log poids</div>
       <input class="input" type="number" id="weight-val" placeholder="Poids (kg)" step="0.1" inputmode="decimal" />
       <input class="input" type="number" id="weight-goal-inp" placeholder="Objectif (kg) &mdash; optionnel" step="0.1" inputmode="decimal" />
       <div class="modal-actions">
@@ -198,10 +279,10 @@
     </div>
   </div>
 
-  <!-- MODAL: Add meal -->
+  <!-- MODAL: Add/Edit meal -->
   <div class="modal-overlay" id="modal-meal">
     <div class="modal">
-      <div class="modal-title">Log repas</div>
+      <div class="modal-title" id="modal-meal-title">Log repas</div>
       <select class="input" id="meal-type">
         <option value="Petit d&eacute;j">Petit d&eacute;j</option>
         <option value="D&eacute;jeuner">D&eacute;jeuner</option>
@@ -209,6 +290,10 @@
         <option value="Snack">Snack</option>
       </select>
       <input class="input" type="text" id="meal-note" placeholder="What did you eat?" />
+      <div class="healthy-toggle">
+        <button class="healthy-btn" id="healthy-yes">&#129382; Healthy</button>
+        <button class="healthy-btn" id="healthy-no">&#127849; Not healthy</button>
+      </div>
       <div class="modal-actions">
         <button class="btn-cancel" id="cancelMeal">Annuler</button>
         <button class="btn-save" id="saveMealBtn">Sauvegarder</button>
@@ -216,10 +301,10 @@
     </div>
   </div>
 
-  <!-- MODAL: Add Pink Poison item -->
+  <!-- MODAL: Add/Edit Pink Poison item -->
   <div class="modal-overlay" id="modal-item">
     <div class="modal">
-      <div class="modal-title">Nouvel article</div>
+      <div class="modal-title" id="modal-item-title">Nouvel article</div>
       <input class="input" type="text" id="item-name" placeholder="Nom de l&apos;article" />
       <input class="input" type="number" id="item-buy" placeholder="Prix achat (&euro;)" inputmode="decimal" />
       <input class="input" type="number" id="item-sell" placeholder="Prix vente (&euro;) &mdash; optionnel" inputmode="decimal" />
@@ -231,6 +316,46 @@
       <div class="modal-actions">
         <button class="btn-cancel" id="cancelItem">Annuler</button>
         <button class="btn-save" id="saveItem">Sauvegarder</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: Add/Edit measurement -->
+  <div class="modal-overlay" id="modal-measure">
+    <div class="modal">
+      <div class="modal-title" id="modal-measure-title">Nouvelles mesures</div>
+      <div class="measure-input-grid">
+        <input class="input" type="number" id="m-poitrine" placeholder="Poitrine (cm)" inputmode="decimal" />
+        <input class="input" type="number" id="m-taille" placeholder="Taille (cm)" inputmode="decimal" />
+        <input class="input" type="number" id="m-hanches" placeholder="Hanches (cm)" inputmode="decimal" />
+        <input class="input" type="number" id="m-bras-g" placeholder="Bras G (cm)" inputmode="decimal" />
+        <input class="input" type="number" id="m-bras-d" placeholder="Bras D (cm)" inputmode="decimal" />
+        <input class="input" type="number" id="m-cuisse-g" placeholder="Cuisse G (cm)" inputmode="decimal" />
+        <input class="input" type="number" id="m-cuisse-d" placeholder="Cuisse D (cm)" inputmode="decimal" />
+      </div>
+      <div class="modal-actions">
+        <button class="btn-cancel" id="cancelMeasure">Annuler</button>
+        <button class="btn-save" id="saveMeasure">Sauvegarder</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: Add/Edit expense -->
+  <div class="modal-overlay" id="modal-expense">
+    <div class="modal">
+      <div class="modal-title" id="modal-expense-title">Nouvelle d&eacute;pense</div>
+      <input class="input" type="number" id="exp-amount" placeholder="Montant (&euro;)" inputmode="decimal" />
+      <select class="input" id="exp-category">
+        <option value="Vinted achats">Vinted achats</option>
+        <option value="Transports">Transports</option>
+        <option value="Nourriture">Nourriture</option>
+        <option value="Beaut&eacute;">Beaut&eacute;</option>
+        <option value="Autre">Autre</option>
+      </select>
+      <input class="input" type="text" id="exp-note" placeholder="Note (optionnel)" />
+      <div class="modal-actions">
+        <button class="btn-cancel" id="cancelExpense">Annuler</button>
+        <button class="btn-save" id="saveExpense">Sauvegarder</button>
       </div>
     </div>
   </div>
