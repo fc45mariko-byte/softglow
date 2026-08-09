@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gestion financière — Cours détaillé · Master Plans</title>
+<meta name="description" content="Fiche de cours détaillée — Gestion financière, discipline 06 de L'Architecture des Disciplines.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Josefin+Sans:wght@300;400;600&family=Spectral:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>:root{--dom:#2f8a6e;--dom-lt:#8fd0b8}</style>
+</head>
+<body>
+<div class="sheet">
+  <div class="top">
+    <span class="cn">Master Plans · Cours détaillé · Discipline 06/19</span>
+    <a class="backlink" href="index.html">↩ Index des matières</a>
+  </div>
+
+<section class="disc" id="d06">
+  <div class="tab">篇 VI</div>
+  <div class="dhead">
+    <p class="dnum">Discipline 06</p>
+    <h3>Gestion financière</h3>
+    <p class="dmeta">S6 · 2 ECTS · Isabelle Noël · Langlois &amp; Friédérich ; Buisard</p>
+    <div class="cls">
+      <span class="clab">Classification</span>
+      <span class="cbar"><span class="sy" style="width:65%"></span><span class="au" style="width:35%"></span></span>
+      <span class="crd">Système <b class="s">65%</b> · Automatisme <b class="a">35%</b></span>
+      <span class="verd hyb">Hybride</span>
+    </div>
+  </div>
+  <div class="dbody">
+    <p class="blockt"><span class="bdot"></span>Problème générateur</p>
+    <p class="gen">Une entreprise peut être <b>rentable et mourir quand même</b>. Comment lire des comptes pour distinguer un problème de rentabilité (structurel) d'un problème de trésorerie (temporel) — et agir sur le bon ?</p>
+
+    <p class="blockt"><span class="bdot"></span>Chapitres &amp; ordre logique</p>
+    <ol class="ch"><li><span class="cnum">C1</span><div class="cbody"><b>Du bilan comptable au bilan fonctionnel</b><span class="k fondation">FONDATION</span><span class="k sys">SYS</span><span class="dep">Prérequis : <b>Comptabilité C6</b> · reclassement par cycle</span></div></li>
+<li><span class="cnum">C2</span><div class="cbody"><b>FRNG, BFR, trésorerie nette</b><span class="k fondation">FONDATION</span><span class="k sys">SYS</span><span class="dep">Prérequis : <b>C1</b> · <b>Ouvre :</b> tout le reste de la discipline</span></div></li>
+<li><span class="cnum">C3</span><div class="cbody"><b>Les Soldes Intermédiaires de Gestion</b><span class="k sys">SYS</span><span class="k auto">AUT</span><span class="dep">Prérequis : compte de résultat (Compta C6)</span></div></li>
+<li><span class="cnum">C4</span><div class="cbody"><b>La capacité d'autofinancement</b><span class="k sys">SYS</span><span class="dep">Prérequis : <b>C3</b> · fait la jonction résultat ↔ bilan</span></div></li>
+<li><span class="cnum">C5</span><div class="cbody"><b>Les ratios &amp; l'effet de levier</b><span class="k sys">SYS</span><span class="k auto">AUT</span><span class="dep">Prérequis : <b>C1, C2, C3</b></span></div></li>
+<li><span class="cnum">C6</span><div class="cbody"><b>Le diagnostic financier d'ensemble</b><span class="k sys">SYS</span><span class="dep">Prérequis : tous · l'épreuve type</span></div></li></ol>
+
+    <p class="blockt"><span class="bdot"></span>Structure de dépendance</p>
+    <div class="strata">
+<div class="tier"><div class="tl">Import</div><div class="tc"><span class="node x">Compta générale · bilan &amp; compte de résultat</span></div></div>
+<div class="flow"><span class="fdot"></span>deux lectures parallèles du même jeu de comptes<span class="fdot"></span></div>
+<div class="tier"><div class="tl">Deux axes</div><div class="tc"><span class="node f">C1→C2 · Axe bilan : survivre</span><span class="ar">‖</span><span class="node s">C3→C4 · Axe résultat : gagner</span></div></div>
+<div class="flow"><span class="fdot"></span>les ratios croisent les deux axes<span class="fdot"></span></div>
+<div class="tier"><div class="tl">Croisement</div><div class="tc"><span class="node s">C5 · Ratios &amp; levier</span><span class="ar">→</span><span class="node s">C6 · Diagnostic</span></div></div>
+</div>
+    <p class="note">L'architecture est <b>binaire</b> : un axe de survie (bilan → trésorerie) et un axe de performance (résultat → rentabilité). Chaque notion appartient à l'un ou à l'autre ; les ratios les relient.</p>
+
+    <p class="blockt"><span class="bdot"></span>Concepts-colonnes</p>
+    <div class="spine"><span class="sp">Temps entre décaissement et encaissement<i>C1·C2·C5</i></span><span class="sp">Bénéfice ≠ trésorerie<i>C2·C4</i></span><span class="sp">Cause vs conséquence : TN est un résultat<i>C2</i></span></div>
+
+    
+  </div>
+</section>
+
+  <div class="foot">
+    <a class="navbtn prev" href="05-comptabilite-generale.html">← Comptabilité générale</a>
+    <a class="navbtn home" href="index.html">Index des matières</a>
+    <a class="navbtn next" href="07-outils-de-gestion.html">Outils de gestion →</a>
+  </div>
+  <p class="foot mark">Master Plans — L'Architecture des Disciplines · Étape 2, cours détaillé</p>
+</div>
+</body>
+</html>

@@ -1,0 +1,1085 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Master Plans — L'Architecture des Disciplines</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Josefin+Sans:wght@300;400;600&family=Spectral:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --rose:#d9689a; --rose-clair:#f0b9d2; --blush:#f7dbe8;
+  --lav:#b79bd6; --lav-clair:#d8c6ec;
+  --perv:#7f9bd8; --perv-fonce:#4f6db6; --bleu:#3f5aa0;
+  --prune:#5f4270; --prune-clair:#7d5f8e; --encre:#4a3358;
+  --carte:rgba(255,255,255,.64); --or:#e0a34e;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Spectral',Georgia,serif;color:var(--encre);line-height:1.68;
+  background:
+    radial-gradient(1100px 760px at 12% -4%, #f9d9e8 0%, transparent 58%),
+    radial-gradient(1000px 900px at 96% 30%, #aec0ea 0%, transparent 52%),
+    radial-gradient(1000px 720px at 34% 104%, #f3cfe2 0%, transparent 58%),
+    linear-gradient(158deg,#f3dbea 0%, #ddccec 42%, #c3cdec 72%, #ecd2e4 100%);
+  background-attachment:fixed;overflow-x:hidden;
+}
+.sheet{max-width:1060px;margin:0 auto;padding:26px 18px 90px}
+.top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;
+  border-bottom:1px solid rgba(217,104,154,.4);padding-bottom:10px;margin-bottom:20px}
+.top .cn{font-family:'Josefin Sans';font-weight:300;letter-spacing:.3em;color:var(--perv-fonce);
+  font-size:.68rem;text-transform:uppercase}
+.blooms{display:flex;gap:6px}.blooms svg{width:24px;height:24px}
+
+/* hero */
+.hero{text-align:center;padding:4px 0 2px}
+.eyebrow{font-family:'Josefin Sans';letter-spacing:.4em;text-transform:uppercase;font-size:.7rem;color:var(--rose)}
+h1{font-family:'Cormorant Garamond';font-weight:700;font-size:clamp(2.3rem,6.6vw,4.2rem);
+  line-height:1;color:var(--prune);margin:6px 0}
+h1 .it{font-style:italic;font-weight:600;color:var(--rose)}
+.enfr{font-family:'Josefin Sans';font-weight:300;letter-spacing:.24em;text-transform:uppercase;
+  font-size:.74rem;color:var(--perv-fonce)}
+.hero-illus{width:min(680px,96%);margin:12px auto 0;display:block}
+.intro{max-width:760px;margin:12px auto 0;color:var(--prune);font-size:1rem}
+
+/* étapes */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:20px}
+.st{background:rgba(255,255,255,.55);border:1px solid rgba(183,155,214,.5);border-radius:14px;padding:12px 14px}
+.st.on{background:linear-gradient(120deg,var(--rose),var(--lav));border-color:transparent;color:#fff}
+.st .sl{font-family:'Josefin Sans';font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;opacity:.75}
+.st b{display:block;font-family:'Cormorant Garamond';font-size:1.05rem;font-weight:600;line-height:1.2;margin-top:2px}
+.st.on b{color:#fff}
+@media(max-width:640px){.steps{grid-template-columns:1fr}}
+
+/* légende */
+.leg{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:18px}
+.lg{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.6);
+  border:1px solid rgba(183,155,214,.5);border-radius:20px;padding:5px 14px;
+  font-family:'Josefin Sans';font-size:.66rem;letter-spacing:.08em;color:var(--prune)}
+.lg i{width:9px;height:9px;border-radius:50%;display:block}
+.lg i.s{background:var(--perv-fonce)} .lg i.a{background:var(--rose)}
+.lg i.h{background:var(--lav)} .lg i.f{background:var(--or)} .lg i.p{background:#5d9e86}
+
+/* index */
+.index{background:var(--carte);border:1px solid rgba(217,104,154,.28);border-radius:20px;
+  padding:20px 24px;margin-top:24px;box-shadow:0 14px 40px rgba(95,66,112,.1)}
+.index h2{font-family:'Josefin Sans';font-size:.64rem;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--rose);margin-bottom:12px}
+.index ol{list-style:none;counter-reset:ix;column-count:2;column-gap:28px}
+.index li{counter-increment:ix;font-size:.86rem;padding:3px 0 3px 30px;position:relative;break-inside:avoid}
+.index li::before{content:counter(ix,decimal-leading-zero);position:absolute;left:0;top:5px;
+  font-family:'Josefin Sans';font-size:.62rem;color:var(--lav)}
+.index a{color:var(--encre);text-decoration:none;border-bottom:1px solid transparent}
+.index a:hover{border-bottom-color:var(--rose)}
+.index .ix{font-family:'Josefin Sans';font-size:.56rem;letter-spacing:.08em;margin-left:6px;padding:1px 6px;
+  border-radius:8px;color:#fff}
+.index .ix.sys{background:var(--perv-fonce)} .index .ix.aut{background:var(--rose)} .index .ix.hyb{background:var(--lav)}
+@media(max-width:640px){.index ol{column-count:1}}
+
+/* discipline */
+.disc{position:relative;margin-top:38px;background:var(--carte);backdrop-filter:blur(3px);
+  border:1px solid rgba(217,104,154,.26);border-radius:22px;
+  box-shadow:0 16px 46px rgba(95,66,112,.13)}
+.tab{position:absolute;top:-15px;left:26px;background:linear-gradient(120deg,var(--rose),var(--lav));
+  color:#fff;border-radius:16px;padding:6px 18px;font-family:'Cormorant Garamond';font-weight:600;
+  font-size:.95rem;letter-spacing:.06em;box-shadow:0 8px 18px rgba(217,104,154,.34)}
+.dhead{padding:26px 26px 16px;border-bottom:1px solid rgba(183,155,214,.4)}
+.dnum{font-family:'Josefin Sans';font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--lav)}
+.dhead h3{font-family:'Cormorant Garamond';font-weight:700;font-size:1.5rem;line-height:1.14;
+  color:var(--prune);margin:2px 0 3px}
+.dmeta{font-family:'Josefin Sans';font-size:.72rem;color:var(--prune-clair)}
+.cls{display:flex;align-items:center;gap:12px;margin-top:14px;flex-wrap:wrap}
+.clab{font-family:'Josefin Sans';font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;color:var(--lav)}
+.cbar{flex:1 1 200px;height:14px;display:flex;border-radius:8px;overflow:hidden;min-width:170px;
+  border:1px solid rgba(183,155,214,.5);background:#fff}
+.cbar .sy{background:linear-gradient(90deg,#9db4e4,var(--perv-fonce))}
+.cbar .au{background:linear-gradient(90deg,var(--rose-clair),var(--rose))}
+.crd{font-family:'Josefin Sans';font-size:.68rem;color:var(--prune);white-space:nowrap}
+.crd b.s{color:var(--perv-fonce)} .crd b.a{color:var(--rose)}
+.verd{font-family:'Josefin Sans';font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;
+  color:#fff;padding:4px 11px;border-radius:12px}
+.verd.sys{background:var(--perv-fonce)} .verd.aut{background:var(--rose)} .verd.hyb{background:var(--lav)}
+
+.dbody{padding:20px 26px 26px}
+.blockt{display:flex;align-items:center;gap:9px;font-family:'Josefin Sans';font-size:.62rem;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--rose);margin:24px 0 10px}
+.blockt:first-child{margin-top:0}
+.bdot{width:14px;height:14px;flex:none;background:
+  radial-gradient(circle at 50% 50%, #fff 0 22%, var(--rose) 23% 40%, transparent 41%),
+  conic-gradient(from 0deg, var(--rose-clair) 0 12.5%, transparent 0 25%, var(--rose-clair) 0 37.5%, transparent 0 50%, var(--rose-clair) 0 62.5%, transparent 0 75%, var(--rose-clair) 0 87.5%, transparent 0);
+  border-radius:50%}
+.gen{font-size:.97rem;color:var(--prune);background:rgba(255,255,255,.55);
+  border-left:3px solid var(--rose);border-radius:0 12px 12px 0;padding:12px 16px}
+.gen b{color:var(--rose);font-weight:600}
+
+/* chapitres */
+.ch{list-style:none}
+.ch li{display:flex;gap:12px;padding:8px 0;border-bottom:1px dotted rgba(183,155,214,.55)}
+.ch li:last-child{border-bottom:none}
+.cnum{flex:none;width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.85);
+  border:1.5px solid var(--lav);display:flex;align-items:center;justify-content:center;
+  font-family:'Josefin Sans';font-size:.6rem;color:var(--prune);margin-top:2px}
+.cbody{flex:1;min-width:0}
+.cbody b{font-weight:600;color:var(--encre);font-size:.92rem}
+.k{display:inline-block;font-family:'Josefin Sans';font-size:.52rem;letter-spacing:.1em;
+  padding:1px 6px;margin-left:6px;border-radius:8px;vertical-align:2px;color:#fff}
+.k.fondation{background:var(--or)} .k.sys{background:var(--perv-fonce)} .k.auto{background:var(--rose)}
+.dep{display:block;font-size:.76rem;color:var(--prune-clair);font-style:italic;margin-top:1px}
+.dep b{color:var(--rose);font-style:normal;font-weight:600}
+
+/* strates */
+.strata{background:rgba(255,255,255,.5);border:1px solid rgba(183,155,214,.45);border-radius:16px;overflow:hidden}
+.tier{display:grid;grid-template-columns:96px 1fr;border-bottom:1px solid rgba(183,155,214,.35)}
+.tier:last-child{border-bottom:none}
+.tl{font-family:'Josefin Sans';font-size:.56rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--prune-clair);padding:12px 8px;border-right:1px solid rgba(183,155,214,.35);
+  display:flex;align-items:center;justify-content:center;text-align:center;background:rgba(216,198,236,.28)}
+.tc{padding:12px;display:flex;flex-wrap:wrap;gap:8px;align-items:center;min-width:0}
+.node{font-family:'Josefin Sans';font-size:.74rem;padding:6px 12px;border-radius:14px;
+  background:#fff;border:1.5px solid rgba(183,155,214,.6);white-space:nowrap;color:var(--encre)}
+.node.f{border-color:var(--or);background:rgba(224,163,78,.1)}
+.node.s{border-color:var(--perv);background:rgba(127,155,216,.1)}
+.node.a{border-color:var(--rose);background:rgba(217,104,154,.09)}
+.node.x{border-style:dashed;background:rgba(255,255,255,.6)}
+.ar{color:var(--prune-clair);font-size:1.05rem;font-weight:600;flex:none;opacity:.85}
+.flow{display:flex;align-items:center;justify-content:center;gap:10px;padding:6px 12px;
+  background:rgba(216,198,236,.22);border-bottom:1px solid rgba(183,155,214,.35);
+  font-size:.78rem;font-style:italic;color:var(--prune-clair);text-align:center}
+.fdot{width:9px;height:9px;flex:none;border-radius:50%;
+  background:radial-gradient(circle,#fff 0 25%,var(--lav) 26% 100%)}
+.note{font-size:.84rem;color:var(--prune-clair);font-style:italic;margin-top:10px}
+.note b{color:var(--rose);font-style:normal}
+
+/* spine */
+.spine{display:flex;flex-wrap:wrap;gap:8px}
+.sp{font-family:'Josefin Sans';font-size:.74rem;border:1px solid #5d9e86;color:#3f7a66;
+  padding:5px 12px;border-radius:14px;background:rgba(93,158,134,.08)}
+.sp i{color:var(--prune-clair);font-size:.62rem;font-style:normal;margin-left:6px}
+
+/* split */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.split > div{border-radius:14px;padding:14px 16px}
+.split .u{background:rgba(127,155,216,.1);border:1px solid rgba(127,155,216,.45)}
+.split .m{background:rgba(217,104,154,.09);border:1px solid rgba(217,104,154,.4)}
+.split h5{font-family:'Josefin Sans';font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:8px}
+.split .u h5{color:var(--perv-fonce)} .split .m h5{color:var(--rose)}
+.split ul{list-style:none}
+.split li{font-size:.83rem;padding:3px 0 3px 16px;position:relative;color:var(--encre)}
+.split li::before{content:"❀";position:absolute;left:0;font-size:.55rem;top:6px;color:var(--lav)}
+@media(max-width:600px){.split{grid-template-columns:1fr}}
+
+/* cross map */
+.cross{margin-top:38px;background:var(--carte);border:1px solid rgba(217,104,154,.26);
+  border-radius:22px;padding:24px 26px;box-shadow:0 16px 46px rgba(95,66,112,.13);position:relative}
+.cross h2{font-family:'Cormorant Garamond';font-weight:700;font-size:1.45rem;color:var(--prune)}
+.cross > p{font-size:.9rem;color:var(--prune-clair);margin-bottom:6px}
+.cm{display:grid;grid-template-columns:160px 1fr;gap:14px;padding:11px 0;
+  border-top:1px dotted rgba(183,155,214,.55);font-size:.87rem;align-items:start}
+.cm .k2{font-family:'Josefin Sans';font-size:.64rem;letter-spacing:.08em;color:#3f7a66;padding-top:3px}
+.cm .v{color:var(--encre)} .cm .v b{color:var(--rose);font-weight:600}
+@media(max-width:560px){.cm{grid-template-columns:1fr;gap:3px}}
+
+.foot{margin-top:40px;text-align:center}
+.foot .mark{display:inline-flex;align-items:center;gap:10px;color:var(--prune);
+  font-family:'Cormorant Garamond';font-style:italic;font-size:1rem}
+.foot .mark svg{width:26px;height:26px;color:var(--rose)}
+@media(max-width:620px){
+  .tier{grid-template-columns:72px 1fr}
+  .tc{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .tl{font-size:.5rem;padding:10px 4px}
+}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <linearGradient id="gRose" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f0a9c8"/><stop offset="1" stop-color="#d9689a"/></linearGradient>
+  <linearGradient id="gLav" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#d4c1ec"/><stop offset="1" stop-color="#a382cf"/></linearGradient>
+  <linearGradient id="gPerv" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#a9bce8"/><stop offset="1" stop-color="#5670bc"/></linearGradient>
+  <radialGradient id="gSun" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#fbe3b0"/><stop offset="1" stop-color="#f0b9d2"/></radialGradient>
+  <symbol id="bloom" viewBox="-60 -60 120 120"><g fill="currentColor">
+    <g opacity=".55"><ellipse rx="15" ry="40"/><ellipse rx="15" ry="40" transform="rotate(45)"/><ellipse rx="15" ry="40" transform="rotate(90)"/><ellipse rx="15" ry="40" transform="rotate(135)"/></g>
+    <g opacity=".8" transform="rotate(22.5) scale(.72)"><ellipse rx="14" ry="38"/><ellipse rx="14" ry="38" transform="rotate(45)"/><ellipse rx="14" ry="38" transform="rotate(90)"/><ellipse rx="14" ry="38" transform="rotate(135)"/></g>
+    <circle r="15" fill="#fff" opacity=".92"/><circle r="8"/></g></symbol>
+  <symbol id="i-flower" viewBox="0 0 24 24" fill="currentColor"><ellipse cx="12" cy="12" rx="3" ry="8"/><ellipse cx="12" cy="12" rx="3" ry="8" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="3" ry="8" transform="rotate(120 12 12)"/><circle cx="12" cy="12" r="2.6" fill="#fff"/></symbol>
+</defs></svg>
+
+<div class="sheet">
+  <div class="top">
+    <span class="cn">L3 LEA · Commerce International · Étape 1</span>
+    <span class="blooms">
+      <svg viewBox="-60 -60 120 120" style="color:var(--rose)"><use href="#bloom"/></svg>
+      <svg viewBox="-60 -60 120 120" style="color:var(--lav)"><use href="#bloom"/></svg>
+      <svg viewBox="-60 -60 120 120" style="color:var(--perv)"><use href="#bloom"/></svg>
+    </span>
+  </div>
+
+  <div class="hero">
+    <p class="eyebrow">Master Plans</p>
+    <h1>L'Architecture <span class="it">des Disciplines</span></h1>
+    <p class="enfr">Course Architecture · Structure before Content</p>
+
+    <svg class="hero-illus" viewBox="0 0 680 210" role="img" aria-label="Réseau de disciplines">
+      <circle cx="340" cy="96" r="58" fill="url(#gSun)" opacity=".72"/>
+      <g stroke="#c9a0d6" stroke-width="1.5" fill="none" stroke-dasharray="3 6" opacity=".9">
+        <path d="M340 96 C250 60 180 52 108 50"/><path d="M340 96 C250 84 190 96 108 100"/>
+        <path d="M340 96 C250 120 190 146 112 156"/><path d="M340 96 C430 60 500 52 572 50"/>
+        <path d="M340 96 C430 84 500 96 572 100"/><path d="M340 96 C430 120 500 146 568 156"/>
+      </g>
+      <use href="#bloom" x="76" y="24" width="52" height="52" style="color:var(--rose)"/>
+      <use href="#bloom" x="76" y="76" width="46" height="46" style="color:var(--lav)"/>
+      <use href="#bloom" x="80" y="132" width="46" height="46" style="color:var(--perv)"/>
+      <use href="#bloom" x="548" y="24" width="52" height="52" style="color:var(--perv)"/>
+      <use href="#bloom" x="550" y="76" width="46" height="46" style="color:var(--rose)"/>
+      <use href="#bloom" x="546" y="132" width="46" height="46" style="color:var(--lav)"/>
+      <use href="#bloom" x="304" y="60" width="72" height="72" style="color:var(--rose)"/>
+      <circle cx="340" cy="96" r="21" fill="url(#gRose)"/>
+      <text x="340" y="93" text-anchor="middle" font-family="Cormorant Garamond" font-weight="700" font-size="10" fill="#fff">19</text>
+      <text x="340" y="104" text-anchor="middle" font-family="Josefin Sans" font-size="6.5" fill="#fff" letter-spacing="1">MATIÈRES</text>
+      <g fill="none" stroke-linecap="round" opacity=".85">
+        <path d="M20 188q26-12 52 0t52 0 52 0 52 0 52 0 52 0 52 0 52 0 52 0 52 0 52 0" stroke="#8aa4de" stroke-width="2.6"/>
+        <path d="M0 202q28-12 56 0t56 0 56 0 56 0 56 0 56 0 56 0 56 0 56 0 56 0 56 0" stroke="#e6a6c6" stroke-width="2.6"/>
+      </g>
+    </svg>
+
+    <p class="intro">Aucune explication de chapitre ici. Ce document cartographie, pour chaque discipline, sa nature, ses chapitres, leur ordre logique, leurs dépendances, ses fondations et les concepts qui la traversent — le plan de masse avant la construction.</p>
+
+    <div class="steps">
+      <div class="st on"><span class="sl">Étape 1</span><b>Master Plan</b></div>
+      <div class="st"><span class="sl">Étape 2</span><b>Un document par chapitre</b></div>
+      <div class="st"><span class="sl">Par chapitre</span><b>Problème → logique native → algorithme génératif → principes → faits</b></div>
+    </div>
+
+    <div class="leg">
+      <span class="lg"><i class="s"></i>System — se reconstruit par raisonnement</span>
+      <span class="lg"><i class="a"></i>Automation — s'acquiert par répétition</span>
+      <span class="lg"><i class="h"></i>Hybride</span>
+      <span class="lg"><i class="f"></i>Chapitre-fondation</span>
+      <span class="lg"><i class="p"></i>Concept-colonne</span>
+    </div>
+  </div>
+
+  <div class="index">
+    <h2>Index des disciplines</h2>
+    <ol><li><a href="#d01">Techniques du Commerce International</a><span class="ix sys">SYS</span></li><li><a href="#d02">Introduction au commerce international</a><span class="ix sys">SYS</span></li><li><a href="#d03">Droit des affaires internationales</a><span class="ix sys">SYS</span></li><li><a href="#d04">Droit des contrats &amp; Common Law</a><span class="ix hyb">HYB</span></li><li><a href="#d05">Comptabilité générale</a><span class="ix hyb">HYB</span></li><li><a href="#d06">Gestion financière</a><span class="ix hyb">HYB</span></li><li><a href="#d07">Outils de gestion</a><span class="ix hyb">HYB</span></li><li><a href="#d08">Management interculturel</a><span class="ix sys">SYS</span></li><li><a href="#d09">Gestion de projet</a><span class="ix hyb">HYB</span></li><li><a href="#d10">Rédaction universitaire &amp; initiation à la recherche</a><span class="ix hyb">HYB</span></li><li><a href="#d11">Anglais économique et commercial</a><span class="ix hyb">HYB</span></li><li><a href="#d12">Traduction anglaise · thème &amp; version</a><span class="ix aut">AUT</span></li><li><a href="#d13">Compréhension et expression anglaises</a><span class="ix aut">AUT</span></li><li><a href="#d14">Espagnol économique et commercial</a><span class="ix hyb">HYB</span></li><li><a href="#d15">Thème &amp; version espagnols</a><span class="ix aut">AUT</span></li><li><a href="#d16">Civilisation britannique — The UK since 1945</a><span class="ix sys">SYS</span></li><li><a href="#d17">Civilisation espagnole — de la Transición à nos jours</a><span class="ix sys">SYS</span></li><li><a href="#d18">Civilisation américaine — publicité et marketing</a><span class="ix sys">SYS</span></li><li><a href="#d19">Civilisation latino-américaine — la ville contemporaine</a><span class="ix sys">SYS</span></li></ol>
+  </div>
+
+
+<section class="disc" id="d01">
+  <div class="tab">篇 I</div>
+  <div class="dhead">
+    <p class="dnum">Discipline 01</p>
+    <h3>Techniques du Commerce International</h3>
+    <p class="dmeta">S5 + S6 · Isabelle Noël · TCI 1 (24h · 3 ECTS) + TCI 2 (2 ECTS)</p>
+    <div class="cls">
+      <span class="clab">Classification</span>
+      <span class="cbar"><span class="sy" style="width:85%"></span><span class="au" style="width:15%"></span></span>
+      <span class="crd">Système <b class="s">85%</b> · Automatisme <b class="a">15%</b></span>
+      <span class="verd sys">Système</span>
+    </div>
+  </div>
+  <div class="dbody">
+    <p class="blockt"><span class="bdot"></span>Problème générateur</p>
+    <p class="gen">Comment faire circuler une marchandise et un paiement entre deux parties qui <b>ne partagent ni droit, ni monnaie, ni tribunal, ni confiance</b> — sachant que la marchandise et l'argent ne voyagent jamais ensemble ?</p>
+
+    <p class="blockt"><span class="bdot"></span>Chapitres &amp; ordre logique</p>
+    <ol class="ch"><li><span class="cnum">C1</span><div class="cbody"><b>Le système d'échange et ses acteurs</b><span class="k fondation">FONDATION</span><span class="k sys">SYS</span><span class="dep">Prérequis : aucun · <b>Ouvre :</b> tous les chapitres suivants</span></div></li>
+<li><span class="cnum">C2</span><div class="cbody"><b>Les Incoterms 2020</b><span class="k fondation">FONDATION</span><span class="k sys">SYS</span><span class="dep">Prérequis : <b>C1</b> · <b>Ouvre :</b> C3, C4, C5, C6, C7</span></div></li>
+<li><span class="cnum">C3</span><div class="cbody"><b>Le transport international &amp; la conteneurisation</b><span class="k sys">SYS</span><span class="dep">Prérequis : <b>C1, C2</b></span></div></li>
+<li><span class="cnum">C4</span><div class="cbody"><b>Le connaissement et les documents de transport</b><span class="k fondation">FONDATION</span><span class="k sys">SYS</span><span class="dep">Prérequis : <b>C3</b> · <b>Ouvre :</b> C6 (garantie bancaire), C5 (déclaration)</span></div></li>
+<li><span class="cnum">C5</span><div class="cbody"><b>La douane : espèce, origine, valeur, régimes</b><span class="k sys">SYS</span><span class="k auto">AUT</span><span class="dep">Prérequis : <b>C2</b> — la valeur CIF est l'assiette</span></div></li>
+<li><span class="cnum">C6</span><div class="cbody"><b>Moyens de paiement &amp; crédit documentaire</b><span class="k sys">SYS</span><span class="dep">Prérequis : <b>C2, C4</b> · dépendance forte au connaissement</span></div></li>
+<li><span class="cnum">C7</span><div class="cbody"><b>L'assurance transport &amp; la gestion du risque</b><span class="k sys">SYS</span><span class="dep">Prérequis : <b>C2, C3, C4</b> — comble les plafonds de responsabilité</span></div></li>
+<li><span class="cnum">C8</span><div class="cbody"><b>Échanges intracommunautaires &amp; régimes UE</b><span class="k sys">SYS</span><span class="k auto">AUT</span><span class="dep">Prérequis : <b>C5</b> — se définit par contraste avec le régime pays tiers</span></div></li></ol>
+
+    <p class="blockt"><span class="bdot"></span>Structure de dépendance</p>
+    <div class="strata">
+<div class="tier"><div class="tl">Socle</div><div class="tc"><span class="node f">C1 · Acteurs &amp; flux</span><span class="ar">→</span><span class="node f">C2 · Incoterms</span></div></div>
+<div class="flow"><span class="fdot"></span>l'Incoterm détermine à la fois le document, la valeur taxable et le risque assuré<span class="fdot"></span></div>
+<div class="tier"><div class="tl">Noyau</div><div class="tc"><span class="node s">C3 · Transport</span><span class="ar">→</span><span class="node f">C4 · Connaissement</span><span class="ar">→</span><span class="node s">C6 · Crédit documentaire</span></div></div>
+<div class="tier"><div class="tl">Parallèle</div><div class="tc"><span class="node s">C5 · Douane</span><span class="ar">·</span><span class="node s">C7 · Assurance</span><span class="ar">·</span><span class="node s">C8 · Intra-UE</span></div></div>
+<div class="flow"><span class="fdot"></span>tout converge vers une seule opération complète<span class="fdot"></span></div>
+<div class="tier"><div class="tl">Synthèse</div><div class="tc"><span class="node x">Monter une opération export de bout en bout</span></div></div>
+</div>
+    <p class="note">C2 et C4 sont les deux verrous : sans eux, C5, C6 et C7 restent des listes à mémoriser. Avec eux, ils se déduisent.</p>
+
+    <p class="blockt"><span class="bdot"></span>Concepts-colonnes</p>
+    <div class="spine"><span class="sp">Transfert du risque<i>C2·C3·C4·C6·C7</i></span><span class="sp">Valeur CIF<i>C2·C5·C6</i></span><span class="sp">Document = preuve = valeur<i>C4·C5·C6</i></span><span class="sp">Désynchronisation des flux<i>C1·C6</i></span><span class="sp">Qui paie quand ça tourne mal<i>tous</i></span></div>
+
+    <p class="blockt"><span class="bdot"></span>Compréhension / automatisme</p><div class="split"><div class="u"><h5>À comprendre</h5><ul><li>Pourquoi le risque et le coût se séparent dans la famille C</li><li>Pourquoi seul le connaissement maritime est un titre</li><li>Pourquoi les banques ne regardent que des documents</li></ul></div><div class="m"><h5>À automatiser</h5><ul><li>Les 11 sigles ↔ point de transfert du risque</li><li>Mode de transport ↔ document correspondant</li><li>Calcul valeur en douane → droits → TVA</li><li>Conventions et leurs dates</li></ul></div></div>
+  </div>
+</section>
+
+<section class="disc" id="d02">
+  <div class="tab">篇 II</div>
+  <div class="dhead">
+    <p class="dnum">Discipline 02</p>
+    <h3>Introduction au commerce international</h3>
+    <p class="dmeta">S5 · CM 20h · 3 ECTS · CT écrit 1h · Isabelle Noël</p>
+    <div class="cls">
+      <span class="clab">Classification</span>
+      <span class="cbar"><span class="sy" style="width:90%"></span><span class="au" style="width:10%"></span></span>
+      <span class="crd">Système <b class="s">90%</b> · Automatisme <b class="a">10%</b></span>
+      <span class="verd sys">Système</span>
+    </div>
+  </div>
+  <div class="dbody">
+    <p class="blockt"><span class="bdot"></span>Problème générateur</p>
+    <p class="gen">Une entreprise a des ressources limitées et un monde entier de marchés possibles. <b>Comment décider où aller, avec quelle offre et sous quelle forme de présence</b>, avant d'avoir engagé l'argent ?</p>
+
+    <p class="blockt"><span class="bdot"></span>Chapitres &amp; ordre logique</p>
+    <ol class="ch"><li><span class="cnum">C1</span><div class="cbody"><b>Le diagnostic export interne</b><span class="k fondation">FONDATION</span><span class="k sys">SYS</span><span class="dep">Prérequis : aucun · établit la capacité réelle à exporter</span></div></li>
+<li><span class="cnum">C2</span><div class="cbody"><b>Le diagnostic externe &amp; la sélection des marchés</b><span class="k fondation">FONDATION</span><span class="k sys">SYS</span><span class="dep">Prérequis : <b>C1</b> · on ne sélectionne qu'au regard de ses propres forces</span></div></li>
+<li><span class="cnum">C3</span><div class="cbody"><b>Le risque pays et sa hiérarchisation</b><span class="k sys">SYS</span><span class="dep">Prérequis : <b>C2</b></span></div></li>
+<li><span class="cnum">C4</span><div class="cbody"><b>Les modes de présence à l'international</b><span class="k sys">SYS</span><span class="dep">Prérequis : <b>C1, C3</b> · arbitrage contrôle / investissement / risque</span></div></li>
+<li><span class="cnum">C5</span><div class="cbody"><b>La prospection</b><span class="k sys">SYS</span><span class="dep">Prérequis : <b>C2, C4</b></span></div></li>
+<li><span class="cnum">C6</span><div class="cbody"><b>Le marketing mix adapté à l'export</b><span class="k sys">SYS</span><span class="dep">Prérequis : <b>C2</b> · adaptation vs standardisation</span></div></li></ol>
+
+    <p class="blockt"><span class="bdot"></span>Structure de dépendance</p>
+    <div class="strata">
+<div class="tier"><div class="tl">Amont</div><div class="tc"><span class="node f">C1 · Puis-je exporter ?</span><span class="ar">→</span><span class="node f">C2 · Où ?</span></div></div>
+<div class="flow"><span class="fdot"></span>la réponse « où » conditionne toutes les décisions suivantes<span class="fdot"></span></div>
+<div class="tier"><div class="tl">Décision</div><div class="tc"><span class="node s">C3 · À quel risque ?</span><span class="ar">→</span><span class="node s">C4 · Sous quelle forme ?</span></div></div>
+<div class="tier"><div class="tl">Exécution</div><div class="tc"><span class="node s">C5 · Prospection</span><span class="ar">·</span><span class="node s">C6 · Mix export</span></div></div>
+</div>
+    <p class="note">Cette discipline se situe <em>avant</em> les TCI dans la chronologie réelle d'une entreprise : on décide d'exporter ici, puis on exécute avec les TCI.</p>
+
+    <p class="blockt"><span class="bdot"></span>Concepts-colonnes</p>
+    <div class="spine"><span class="sp">Arbitrage contrôle ↔ engagement<i>C4·C5</i></span><span class="sp">Adaptation ↔ standardisation<i>C6</i></span><span class="sp">Diagnostic avant décision<i>C1·C2</i></span></div>
+
+    
+  </div>
+</section>
+
+<section class="disc" id="d03">
+  <div class="tab">篇 III</div>
+  <div class="dhead">
+    <p class="dnum">Discipline 03</p>
+    <h3>Droit des affaires internationales</h3>
+    <p class="dmeta">S5 · CM 10h + TD 10h · 3 ECTS · Isabelle Noël</p>
+    <div class="cls">
+      <span class="clab">Classification</span>
+      <span class="cbar"><span class="sy" style="width:85%"></span><span class="au" style="width:15%"></span></span>
+      <span class="crd">Système <b class="s">85%</b> · Automatisme <b class="a">15%</b></span>
+      <span class="verd sys">Système</span>
+    </div>
+  </div>
+  <div class="dbody">
+    <p class="blockt"><span class="bdot"></span>Problème générateur</p>
+    <p class="gen">Il n'existe <b>aucun législateur mondial ni tribunal mondial du commerce</b>. Comment un contrat entre deux États souverains peut-il malgré tout être régi par des règles prévisibles, et un litige tranché ?</p>
+
+    <p class="blockt"><span class="bdot"></span>Chapitres &amp; ordre logique</p>
+    <ol class="ch"><li><span class="cnum">C1</span><div class="cbody"><b>L'absence d'ordre juridique mondial</b><span class="k fondation">FONDATION</span><span class="k sys">SYS</span><span class="dep">Prérequis : aucun · pose le vide que tout le reste comble</span></div></li>
+<li><span class="cnum">C2</span><div class="cbody"><b>Hard law : traités, OMC, règlements européens</b><span class="k sys">SYS</span><span class="dep">Prérequis : <b>C1</b></span></div></li>
+<li><span class="cnum">C3</span><div class="cbody"><b>Soft law : lex mercatoria, usages, codes de conduite</b><span class="k fondation">FONDATION</span><span class="k sys">SYS</span><span class="dep">Prérequis : <b>C1</b> · explique pourquoi Incoterms et RUU 600 s'appliquent sans être des lois</span></div></li>
+<li><span class="cnum">C4</span><div class="cbody"><b>Les instruments d'uniformisation</b><span class="k sys">SYS</span><span class="dep">Prérequis : <b>C2, C3</b></span></div></li>
+<li><span class="cnum">C5</span><div class="cbody"><b>Loi applicable &amp; juridiction compétente</b><span class="k sys">SYS</span><span class="dep">Prérequis : <b>C2</b></span></div></li>
+<li><span class="cnum">C6</span><div class="cbody"><b>L'arbitrage commercial international</b><span class="k sys">SYS</span><span class="dep">Prérequis : <b>C3, C5</b> · l'aboutissement de la logique privée</span></div></li></ol>
+
+    <p class="blockt"><span class="bdot"></span>Structure de dépendance</p>
+    <div class="strata">
+<div class="tier"><div class="tl">Le vide</div><div class="tc"><span class="node f">C1 · Pas de souverain mondial</span></div></div>
+<div class="flow"><span class="fdot"></span>deux réponses parallèles et concurrentes<span class="fdot"></span></div>
+<div class="tier"><div class="tl">Réponses</div><div class="tc"><span class="node s">C2 · Hard law · les États</span><span class="ar">‖</span><span class="node f">C3 · Soft law · les marchands</span></div></div>
+<div class="tier"><div class="tl">Outils</div><div class="tc"><span class="node s">C4 · Uniformisation</span><span class="ar">·</span><span class="node s">C5 · Conflits de lois</span></div></div>
+<div class="tier"><div class="tl">Sortie</div><div class="tc"><span class="node s">C6 · Arbitrage</span></div></div>
+</div>
+    <p class="note">Lien majeur : <b>C3 est le chapitre qui explique les TCI</b>. Incoterms et RUU 600 sont de la soft law émise par la CCI — d'où leur application conditionnée à la citation dans le contrat.</p>
+
+    <p class="blockt"><span class="bdot"></span>Concepts-colonnes</p>
+    <div class="spine"><span class="sp">Autonomie de la volonté<i>C3·C5·C6</i></span><span class="sp">Prévisibilité contractuelle<i>tous</i></span><span class="sp">Norme privée vs étatique<i>C2·C3</i></span></div>
+
+    
+  </div>
+</section>
+
+<section class="disc" id="d04">
+  <div class="tab">篇 IV</div>
+  <div class="dhead">
+    <p class="dnum">Discipline 04</p>
+    <h3>Droit des contrats &amp; Common Law</h3>
+    <p class="dmeta">S6 · 2 ECTS · Isabelle Noël · Gleason, <em>International Commercial Law for Managers</em></p>
+    <div class="cls">
+      <span class="clab">Classification</span>
+      <span class="cbar"><span class="sy" style="width:75%"></span><span class="au" style="width:25%"></span></span>
+      <span class="crd">Système <b class="s">75%</b> · Automatisme <b class="a">25%</b></span>
+      <span class="verd hyb">Hybride</span>
+    </div>
+  </div>
+  <div class="dbody">
+    <p class="blockt"><span class="bdot"></span>Problème générateur</p>
+    <p class="gen">Le droit français part de <b>règles écrites appliquées à des cas</b> ; la common law part de <b>cas dont on extrait des règles</b>. Comment contracter avec un partenaire dont le raisonnement juridique fonctionne à l'envers du sien ?</p>
+
+    <p class="blockt"><span class="bdot"></span>Chapitres &amp; ordre logique</p>
+    <ol class="ch"><li><span class="cnum">C1</span><div class="cbody"><b>Deux logiques : civil law vs common law</b><span class="k fondation">FONDATION</span><span class="k sys">SYS</span><span class="dep">Prérequis : aucun · le renversement à saisir avant tout le reste</span></div></li>
+<li><span class="cnum">C2</span><div class="cbody"><b>Le précédent : stare decisis, ratio decidendi, obiter dictum</b><span class="k fondation">FONDATION</span><span class="k sys">SYS</span><span class="k auto">AUT</span><span class="dep">Prérequis : <b>C1</b> · vocabulaire à automatiser</span></div></li>
+<li><span class="cnum">C3</span><div class="cbody"><b>L'Equity et ses remèdes</b><span class="k sys">SYS</span><span class="dep">Prérequis : <b>C1, C2</b> · née d'un défaut de la common law elle-même</span></div></li>
+<li><span class="cnum">C4</span><div class="cbody"><b>Formation du contrat : offer, acceptance, consideration, intention</b><span class="k fondation">FONDATION</span><span class="k sys">SYS</span><span class="dep">Prérequis : <b>C1</b> · <b>consideration</b> n'a aucun équivalent français</span></div></li>
+<li><span class="cnum">C5</span><div class="cbody"><b>L'Uniform Commercial Code, Article 2</b><span class="k sys">SYS</span><span class="dep">Prérequis : <b>C4</b></span></div></li>
+<li><span class="cnum">C6</span><div class="cbody"><b>Organisation judiciaire &amp; effets du Brexit</b><span class="k sys">SYS</span><span class="k auto">AUT</span><span class="dep">Prérequis : <b>C1, C2</b></span></div></li></ol>
+
+    <p class="blockt"><span class="bdot"></span>Structure de dépendance</p>
+    <div class="strata">
+<div class="tier"><div class="tl">Renversement</div><div class="tc"><span class="node f">C1 · Le cas fait la règle</span></div></div>
+<div class="flow"><span class="fdot"></span>ce renversement engendre mécaniquement les trois piliers suivants<span class="fdot"></span></div>
+<div class="tier"><div class="tl">Piliers</div><div class="tc"><span class="node f">C2 · Précédent</span><span class="ar">→</span><span class="node s">C3 · Equity · correctif</span><span class="ar">·</span><span class="node f">C4 · Contrat</span></div></div>
+<div class="tier"><div class="tl">Applications</div><div class="tc"><span class="node s">C5 · UCC art. 2</span><span class="ar">·</span><span class="node s">C6 · Juridictions &amp; Brexit</span></div></div>
+</div>
+    <p class="note">L'Equity ne s'ajoute pas à la common law : elle la corrige. Comprendre ce rapport de correction évite d'apprendre deux systèmes séparés.</p>
+
+    <p class="blockt"><span class="bdot"></span>Concepts-colonnes</p>
+    <div class="spine"><span class="sp">Le cas comme source<i>C1·C2</i></span><span class="sp">Correction d'un système par un autre<i>C3</i></span><span class="sp">Échange réciproque (consideration)<i>C4·C5</i></span></div>
+
+    <p class="blockt"><span class="bdot"></span>Compréhension / automatisme</p><div class="split"><div class="u"><h5>À comprendre</h5><ul><li>Pourquoi l'Equity a dû naître : la common law était trop rigide</li><li>Pourquoi la <em>consideration</em> existe : un contrat suppose un échange, pas une promesse gratuite</li></ul></div><div class="m"><h5>À automatiser</h5><ul><li>Le lexique latin et anglais, restitué sans hésitation</li><li>Les quatre éléments de formation, dans l'ordre</li><li>Les remèdes d'Equity : injunction, specific performance, trust</li></ul></div></div>
+  </div>
+</section>
+
+<section class="disc" id="d05">
+  <div class="tab">篇 V</div>
+  <div class="dhead">
+    <p class="dnum">Discipline 05</p>
+    <h3>Comptabilité générale</h3>
+    <p class="dmeta">S5 · CM 15h + TD 15h · 3 ECTS · Isabelle Noël · PCG en vigueur</p>
+    <div class="cls">
+      <span class="clab">Classification</span>
+      <span class="cbar"><span class="sy" style="width:40%"></span><span class="au" style="width:60%"></span></span>
+      <span class="crd">Système <b class="s">40%</b> · Automatisme <b class="a">60%</b></span>
+      <span class="verd hyb">Hybride</span>
+    </div>
+  </div>
+  <div class="dbody">
+    <p class="blockt"><span class="bdot"></span>Problème générateur</p>
+    <p class="gen">Comment représenter fidèlement, à un instant donné et pour un tiers qui n'était pas là, <b>tout ce qu'une entreprise possède, doit, gagne et dépense</b> — de façon vérifiable et non falsifiable ?</p>
+
+    <p class="blockt"><span class="bdot"></span>Chapitres &amp; ordre logique</p>
+    <ol class="ch"><li><span class="cnum">C1</span><div class="cbody"><b>Principes comptables &amp; normalisation (PCG)</b><span class="k fondation">FONDATION</span><span class="k sys">SYS</span><span class="dep">Prérequis : aucun</span></div></li>
+<li><span class="cnum">C2</span><div class="cbody"><b>La partie double</b><span class="k fondation">FONDATION</span><span class="k sys">SYS</span><span class="k auto">AUT</span><span class="dep">Prérequis : <b>C1</b> · <b>verrou absolu</b> — rien ne fonctionne sans</span></div></li>
+<li><span class="cnum">C3</span><div class="cbody"><b>Opérations courantes : achats, ventes, TVA, frais accessoires</b><span class="k auto">AUT</span><span class="dep">Prérequis : <b>C2</b></span></div></li>
+<li><span class="cnum">C4</span><div class="cbody"><b>Charges de personnel</b><span class="k auto">AUT</span><span class="dep">Prérequis : <b>C2, C3</b></span></div></li>
+<li><span class="cnum">C5</span><div class="cbody"><b>Opérations d'inventaire : amortissements, dépréciations, provisions</b><span class="k sys">SYS</span><span class="k auto">AUT</span><span class="dep">Prérequis : <b>C2</b> + principe de prudence (C1)</span></div></li>
+<li><span class="cnum">C6</span><div class="cbody"><b>Documents de synthèse : bilan et compte de résultat</b><span class="k sys">SYS</span><span class="dep">Prérequis : <b>C3, C4, C5</b> · <b>Ouvre :</b> toute la Gestion financière du S6</span></div></li></ol>
+
+    <p class="blockt"><span class="bdot"></span>Structure de dépendance</p>
+    <div class="strata">
+<div class="tier"><div class="tl">Verrou</div><div class="tc"><span class="node f">C1 · Principes</span><span class="ar">→</span><span class="node f">C2 · Partie double</span></div></div>
+<div class="flow"><span class="fdot"></span>tout enregistrement obéit ensuite au même geste<span class="fdot"></span></div>
+<div class="tier"><div class="tl">Flux</div><div class="tc"><span class="node a">C3 · Courant</span><span class="ar">·</span><span class="node a">C4 · Personnel</span><span class="ar">·</span><span class="node a">C5 · Inventaire</span></div></div>
+<div class="flow"><span class="fdot"></span>agrégation<span class="fdot"></span></div>
+<div class="tier"><div class="tl">Sortie</div><div class="tc"><span class="node s">C6 · Bilan + compte de résultat</span><span class="ar">⇒</span><span class="node x">Gestion financière S6</span></div></div>
+</div>
+    <p class="note">C'est la discipline où la répétition compte le plus : la compréhension seule ne fait pas passer l'épreuve.</p>
+
+    <p class="blockt"><span class="bdot"></span>Concepts-colonnes</p>
+    <div class="spine"><span class="sp">Origine et emploi de la ressource<i>C2·C3</i></span><span class="sp">Principe de prudence<i>C1·C5</i></span><span class="sp">Image fidèle<i>C1·C6</i></span></div>
+
+    <p class="blockt"><span class="bdot"></span>Compréhension / automatisme</p><div class="split"><div class="u"><h5>À comprendre</h5><ul><li>Pourquoi tout enregistrement a deux faces : origine et emploi de la ressource</li><li>Pourquoi l'amortissement n'est pas une sortie d'argent</li><li>Pourquoi la prudence dissymétrise pertes et gains</li></ul></div><div class="m"><h5>À automatiser</h5><ul><li>Les numéros de comptes des classes 1 à 7</li><li>Le réflexe débit/crédit sans réfléchir</li><li>Les schémas d'écriture types</li><li>Amortissements linéaire et dégressif</li></ul></div></div>
+  </div>
+</section>
+
+<section class="disc" id="d06">
+  <div class="tab">篇 VI</div>
+  <div class="dhead">
+    <p class="dnum">Discipline 06</p>
+    <h3>Gestion financière</h3>
+    <p class="dmeta">S6 · 2 ECTS · Isabelle Noël · Langlois &amp; Friédérich ; Buisard</p>
+    <div class="cls">
+      <span class="clab">Classification</span>
+      <span class="cbar"><span class="sy" style="width:65%"></span><span class="au" style="width:35%"></span></span>
+      <span class="crd">Système <b class="s">65%</b> · Automatisme <b class="a">35%</b></span>
+      <span class="verd hyb">Hybride</span>
+    </div>
+  </div>
+  <div class="dbody">
+    <p class="blockt"><span class="bdot"></span>Problème générateur</p>
+    <p class="gen">Une entreprise peut être <b>rentable et mourir quand même</b>. Comment lire des comptes pour distinguer un problème de rentabilité (structurel) d'un problème de trésorerie (temporel) — et agir sur le bon ?</p>
+
+    <p class="blockt"><span class="bdot"></span>Chapitres &amp; ordre logique</p>
+    <ol class="ch"><li><span class="cnum">C1</span><div class="cbody"><b>Du bilan comptable au bilan fonctionnel</b><span class="k fondation">FONDATION</span><span class="k sys">SYS</span><span class="dep">Prérequis : <b>Comptabilité C6</b> · reclassement par cycle</span></div></li>
+<li><span class="cnum">C2</span><div class="cbody"><b>FRNG, BFR, trésorerie nette</b><span class="k fondation">FONDATION</span><span class="k sys">SYS</span><span class="dep">Prérequis : <b>C1</b> · <b>Ouvre :</b> tout le reste de la discipline</span></div></li>
+<li><span class="cnum">C3</span><div class="cbody"><b>Les Soldes Intermédiaires de Gestion</b><span class="k sys">SYS</span><span class="k auto">AUT</span><span class="dep">Prérequis : compte de résultat (Compta C6)</span></div></li>
+<li><span class="cnum">C4</span><div class="cbody"><b>La capacité d'autofinancement</b><span class="k sys">SYS</span><span class="dep">Prérequis : <b>C3</b> · fait la jonction résultat ↔ bilan</span></div></li>
+<li><span class="cnum">C5</span><div class="cbody"><b>Les ratios &amp; l'effet de levier</b><span class="k sys">SYS</span><span class="k auto">AUT</span><span class="dep">Prérequis : <b>C1, C2, C3</b></span></div></li>
+<li><span class="cnum">C6</span><div class="cbody"><b>Le diagnostic financier d'ensemble</b><span class="k sys">SYS</span><span class="dep">Prérequis : tous · l'épreuve type</span></div></li></ol>
+
+    <p class="blockt"><span class="bdot"></span>Structure de dépendance</p>
+    <div class="strata">
+<div class="tier"><div class="tl">Import</div><div class="tc"><span class="node x">Compta générale · bilan &amp; compte de résultat</span></div></div>
+<div class="flow"><span class="fdot"></span>deux lectures parallèles du même jeu de comptes<span class="fdot"></span></div>
+<div class="tier"><div class="tl">Deux axes</div><div class="tc"><span class="node f">C1→C2 · Axe bilan : survivre</span><span class="ar">‖</span><span class="node s">C3→C4 · Axe résultat : gagner</span></div></div>
+<div class="flow"><span class="fdot"></span>les ratios croisent les deux axes<span class="fdot"></span></div>
+<div class="tier"><div class="tl">Croisement</div><div class="tc"><span class="node s">C5 · Ratios &amp; levier</span><span class="ar">→</span><span class="node s">C6 · Diagnostic</span></div></div>
+</div>
+    <p class="note">L'architecture est <b>binaire</b> : un axe de survie (bilan → trésorerie) et un axe de performance (résultat → rentabilité). Chaque notion appartient à l'un ou à l'autre ; les ratios les relient.</p>
+
+    <p class="blockt"><span class="bdot"></span>Concepts-colonnes</p>
+    <div class="spine"><span class="sp">Temps entre décaissement et encaissement<i>C1·C2·C5</i></span><span class="sp">Bénéfice ≠ trésorerie<i>C2·C4</i></span><span class="sp">Cause vs conséquence : TN est un résultat<i>C2</i></span></div>
+
+    
+  </div>
+</section>
+
+<section class="disc" id="d07">
+  <div class="tab">篇 VII</div>
+  <div class="dhead">
+    <p class="dnum">Discipline 07</p>
+    <h3>Outils de gestion</h3>
+    <p class="dmeta">S6 · 2 ECTS · Isabelle Noël · contrôle de gestion appliqué</p>
+    <div class="cls">
+      <span class="clab">Classification</span>
+      <span class="cbar"><span class="sy" style="width:50%"></span><span class="au" style="width:50%"></span></span>
+      <span class="crd">Système <b class="s">50%</b> · Automatisme <b class="a">50%</b></span>
+      <span class="verd hyb">Hybride</span>
+    </div>
+  </div>
+  <div class="dbody">
+    <p class="blockt"><span class="bdot"></span>Problème générateur</p>
+    <p class="gen">Toutes les décisions de gestion doivent être prises <b>avant</b> de connaître la demande réelle. Comment décider quoi produire, quoi commander et quand, sans information certaine — et savoir de combien on peut se tromper ?</p>
+
+    <p class="blockt"><span class="bdot"></span>Chapitres &amp; ordre logique</p>
+    <ol class="ch"><li><span class="cnum">C1</span><div class="cbody"><b>Charges fixes vs variables : la reconstruction du réel</b><span class="k fondation">FONDATION</span><span class="k sys">SYS</span><span class="dep">Prérequis : Compta C3 · distinction absente du PCG, à reconstruire</span></div></li>
+<li><span class="cnum">C2</span><div class="cbody"><b>Le seuil de rentabilité &amp; le point mort</b><span class="k sys">SYS</span><span class="k auto">AUT</span><span class="dep">Prérequis : <b>C1</b> — dépendance totale</span></div></li>
+<li><span class="cnum">C3</span><div class="cbody"><b>Le levier d'exploitation &amp; les choix de structure</b><span class="k sys">SYS</span><span class="dep">Prérequis : <b>C2</b></span></div></li>
+<li><span class="cnum">C4</span><div class="cbody"><b>La gestion des stocks : Wilson, alerte, sécurité</b><span class="k sys">SYS</span><span class="k auto">AUT</span><span class="dep">Prérequis : <b>C1</b> · nature des coûts</span></div></li>
+<li><span class="cnum">C5</span><div class="cbody"><b>La méthode ABC</b><span class="k sys">SYS</span><span class="dep">Prérequis : <b>C4</b></span></div></li>
+<li><span class="cnum">C6</span><div class="cbody"><b>La prévision : tendance &amp; saisonnalité</b><span class="k auto">AUT</span><span class="dep">Prérequis : statistiques de base · <b>Alimente :</b> C4</span></div></li>
+<li><span class="cnum">C7</span><div class="cbody"><b>Le tableau de bord</b><span class="k sys">SYS</span><span class="dep">Prérequis : <b>C2, C4, C6</b> · agrège tout le reste</span></div></li></ol>
+
+    <p class="blockt"><span class="bdot"></span>Structure de dépendance</p>
+    <div class="strata">
+<div class="tier"><div class="tl">Préalable</div><div class="tc"><span class="node f">C1 · Fixe / variable</span></div></div>
+<div class="flow"><span class="fdot"></span>deux branches indépendantes, réunies à la fin<span class="fdot"></span></div>
+<div class="tier"><div class="tl">Branche A</div><div class="tc"><span class="node s">C2 · Seuil</span><span class="ar">→</span><span class="node s">C3 · Levier</span></div></div>
+<div class="tier"><div class="tl">Branche B</div><div class="tc"><span class="node s">C4 · Stocks</span><span class="ar">→</span><span class="node s">C5 · ABC</span><span class="ar">←</span><span class="node a">C6 · Prévision</span></div></div>
+<div class="flow"><span class="fdot"></span>réunion<span class="fdot"></span></div>
+<div class="tier"><div class="tl">Pilotage</div><div class="tc"><span class="node s">C7 · Tableau de bord</span></div></div>
+</div>
+    <p class="note">Le stock est de la trésorerie déguisée en marchandise : C4 et C5 rejoignent directement le BFR de la Gestion financière.</p>
+
+    <p class="blockt"><span class="bdot"></span>Concepts-colonnes</p>
+    <div class="spine"><span class="sp">Comportement des coûts<i>C1·C2·C3</i></span><span class="sp">Optimum = minimum d'une somme<i>C4</i></span><span class="sp">Décider sous incertitude<i>C6·C7</i></span></div>
+
+    <p class="blockt"><span class="bdot"></span>Compréhension / automatisme</p><div class="split"><div class="u"><h5>À comprendre</h5><ul><li>Pourquoi on divise par le <em>taux</em> de MCV et non par la MCV</li><li>Pourquoi l'optimum de Wilson est un minimum de somme, pas de coût</li><li>Pourquoi une structure lourde en fixes est rentable ET risquée</li></ul></div><div class="m"><h5>À automatiser</h5><ul><li>MCV → taux → SR → point mort → marge de sécurité</li><li>Formule de Wilson et cohérence des unités</li><li>Moindres carrés et coefficients saisonniers</li><li>Point d'indifférence entre deux structures</li></ul></div></div>
+  </div>
+</section>
+
+<section class="disc" id="d08">
+  <div class="tab">篇 VIII</div>
+  <div class="dhead">
+    <p class="dnum">Discipline 08</p>
+    <h3>Management interculturel</h3>
+    <p class="dmeta">S6 · Isabelle Noël · Hofstede, Hall, Trompenaars</p>
+    <div class="cls">
+      <span class="clab">Classification</span>
+      <span class="cbar"><span class="sy" style="width:80%"></span><span class="au" style="width:20%"></span></span>
+      <span class="crd">Système <b class="s">80%</b> · Automatisme <b class="a">20%</b></span>
+      <span class="verd sys">Système</span>
+    </div>
+  </div>
+  <div class="dbody">
+    <p class="blockt"><span class="bdot"></span>Problème générateur</p>
+    <p class="gen">Deux managers compétents et de bonne foi produisent un échec commun. <b>Comment rendre lisibles des malentendus qui ne viennent ni de la langue ni des faits</b>, mais de présupposés invisibles sur ce qui va de soi ?</p>
+
+    <p class="blockt"><span class="bdot"></span>Chapitres &amp; ordre logique</p>
+    <ol class="ch"><li><span class="cnum">C1</span><div class="cbody"><b>Culture, stéréotype, et les limites de la mesure</b><span class="k fondation">FONDATION</span><span class="k sys">SYS</span><span class="dep">Prérequis : aucun · pose ce qu'une grille peut et ne peut pas dire</span></div></li>
+<li><span class="cnum">C2</span><div class="cbody"><b>Hofstede : les six dimensions</b><span class="k fondation">FONDATION</span><span class="k sys">SYS</span><span class="k auto">AUT</span><span class="dep">Prérequis : <b>C1</b> · la grille la plus opératoire</span></div></li>
+<li><span class="cnum">C3</span><div class="cbody"><b>Hall : contexte, temps, espace</b><span class="k sys">SYS</span><span class="dep">Prérequis : <b>C1</b> · grille concurrente, centrée sur la communication</span></div></li>
+<li><span class="cnum">C4</span><div class="cbody"><b>Trompenaars : les dilemmes de valeurs</b><span class="k sys">SYS</span><span class="dep">Prérequis : <b>C1, C2</b></span></div></li>
+<li><span class="cnum">C5</span><div class="cbody"><b>La négociation internationale</b><span class="k sys">SYS</span><span class="dep">Prérequis : <b>C2, C3</b> · application des grilles</span></div></li>
+<li><span class="cnum">C6</span><div class="cbody"><b>Équipes multiculturelles &amp; management à distance</b><span class="k sys">SYS</span><span class="dep">Prérequis : <b>C2, C3, C4</b></span></div></li></ol>
+
+    <p class="blockt"><span class="bdot"></span>Structure de dépendance</p>
+    <div class="strata">
+<div class="tier"><div class="tl">Cadre</div><div class="tc"><span class="node f">C1 · Ce qu'une grille vaut</span></div></div>
+<div class="flow"><span class="fdot"></span>trois grilles concurrentes, non exclusives<span class="fdot"></span></div>
+<div class="tier"><div class="tl">Grilles</div><div class="tc"><span class="node f">C2 · Hofstede</span><span class="ar">‖</span><span class="node s">C3 · Hall</span><span class="ar">‖</span><span class="node s">C4 · Trompenaars</span></div></div>
+<div class="flow"><span class="fdot"></span>mises à l'épreuve d'une situation<span class="fdot"></span></div>
+<div class="tier"><div class="tl">Application</div><div class="tc"><span class="node s">C5 · Négociation</span><span class="ar">·</span><span class="node s">C6 · Équipes</span></div></div>
+</div>
+    <p class="note">Attention structurelle : C2, C3 et C4 ne se succèdent pas, elles <em>rivalisent</em>. L'exercice consiste à choisir la grille qui éclaire le mieux un cas, pas à les empiler.</p>
+
+    <p class="blockt"><span class="bdot"></span>Concepts-colonnes</p>
+    <div class="spine"><span class="sp">L'implicite culturel<i>tous</i></span><span class="sp">Rapport au temps<i>C2·C3·C5</i></span><span class="sp">Distance hiérarchique<i>C2·C4·C6</i></span><span class="sp">Grille ≠ vérité sur un individu<i>C1</i></span></div>
+
+    
+  </div>
+</section>
+
+<section class="disc" id="d09">
+  <div class="tab">篇 IX</div>
+  <div class="dhead">
+    <p class="dnum">Discipline 09</p>
+    <h3>Gestion de projet</h3>
+    <p class="dmeta">S5 · CM 6h + TD 18h · 2 ECTS · Sonia Tesson</p>
+    <div class="cls">
+      <span class="clab">Classification</span>
+      <span class="cbar"><span class="sy" style="width:60%"></span><span class="au" style="width:40%"></span></span>
+      <span class="crd">Système <b class="s">60%</b> · Automatisme <b class="a">40%</b></span>
+      <span class="verd hyb">Hybride</span>
+    </div>
+  </div>
+  <div class="dbody">
+    <p class="blockt"><span class="bdot"></span>Problème générateur</p>
+    <p class="gen">Un projet est <b>unique, daté et contraint</b> : il n'existe pas de routine pour le faire. Comment obtenir un résultat non répétitif, à plusieurs, sans dépasser ni le budget ni le délai ?</p>
+
+    <p class="blockt"><span class="bdot"></span>Chapitres &amp; ordre logique</p>
+    <ol class="ch"><li><span class="cnum">C1</span><div class="cbody"><b>Ce qu'est un projet, et le triangle QCD</b><span class="k fondation">FONDATION</span><span class="k sys">SYS</span><span class="dep">Prérequis : aucun · qualité–coût–délai, et l'impossibilité d'optimiser les trois</span></div></li>
+<li><span class="cnum">C2</span><div class="cbody"><b>Cadrage : charte, objectifs SMART, parties prenantes</b><span class="k fondation">FONDATION</span><span class="k sys">SYS</span><span class="dep">Prérequis : <b>C1</b></span></div></li>
+<li><span class="cnum">C3</span><div class="cbody"><b>Découpage : le WBS</b><span class="k sys">SYS</span><span class="k auto">AUT</span><span class="dep">Prérequis : <b>C2</b> · <b>Ouvre :</b> C4 — on ne planifie que ce qu'on a découpé</span></div></li>
+<li><span class="cnum">C4</span><div class="cbody"><b>Planification : Gantt, PERT, chemin critique</b><span class="k auto">AUT</span><span class="dep">Prérequis : <b>C3</b></span></div></li>
+<li><span class="cnum">C5</span><div class="cbody"><b>Risques &amp; pilotage par indicateurs</b><span class="k sys">SYS</span><span class="dep">Prérequis : <b>C2, C4</b></span></div></li>
+<li><span class="cnum">C6</span><div class="cbody"><b>Clôture &amp; retour d'expérience</b><span class="k sys">SYS</span><span class="dep">Prérequis : <b>C5</b></span></div></li></ol>
+
+    <p class="blockt"><span class="bdot"></span>Structure de dépendance</p>
+    <div class="strata">
+<div class="tier"><div class="tl">Contrainte</div><div class="tc"><span class="node f">C1 · Triangle QCD</span><span class="ar">→</span><span class="node f">C2 · Cadrage</span></div></div>
+<div class="flow"><span class="fdot"></span>enchaînement strictement séquentiel<span class="fdot"></span></div>
+<div class="tier"><div class="tl">Séquence</div><div class="tc"><span class="node s">C3 · WBS</span><span class="ar">→</span><span class="node a">C4 · Gantt / PERT</span><span class="ar">→</span><span class="node s">C5 · Pilotage</span><span class="ar">→</span><span class="node s">C6 · Clôture</span></div></div>
+</div>
+    <p class="note">Discipline la plus <b>linéaire</b> du programme : chaque chapitre est strictement le prérequis du suivant, sans branches parallèles.</p>
+
+    <p class="blockt"><span class="bdot"></span>Concepts-colonnes</p>
+    <div class="spine"><span class="sp">Arbitrage QCD<i>tous</i></span><span class="sp">Découper avant de planifier<i>C3·C4</i></span><span class="sp">Capitaliser l'expérience<i>C6</i></span></div>
+
+    
+  </div>
+</section>
+
+<section class="disc" id="d10">
+  <div class="tab">篇 X</div>
+  <div class="dhead">
+    <p class="dnum">Discipline 10</p>
+    <h3>Rédaction universitaire &amp; initiation à la recherche</h3>
+    <p class="dmeta">S5 · CM 18h + TD 12h · 2 ECTS · Sonia Tesson</p>
+    <div class="cls">
+      <span class="clab">Classification</span>
+      <span class="cbar"><span class="sy" style="width:45%"></span><span class="au" style="width:55%"></span></span>
+      <span class="crd">Système <b class="s">45%</b> · Automatisme <b class="a">55%</b></span>
+      <span class="verd hyb">Hybride</span>
+    </div>
+  </div>
+  <div class="dbody">
+    <p class="blockt"><span class="bdot"></span>Problème générateur</p>
+    <p class="gen">Un lecteur ne peut pas vérifier ce qu'il lit s'il ignore <b>d'où vient chaque affirmation</b>. Comment produire un écrit dont chaque énoncé soit traçable, et distinguer sa propre pensée de celle d'autrui ?</p>
+
+    <p class="blockt"><span class="bdot"></span>Chapitres &amp; ordre logique</p>
+    <ol class="ch"><li><span class="cnum">C1</span><div class="cbody"><b>Hiérarchie des sources &amp; fiabilité</b><span class="k fondation">FONDATION</span><span class="k sys">SYS</span><span class="dep">Prérequis : aucun · primaires → scientifiques → presse → tertiaires</span></div></li>
+<li><span class="cnum">C2</span><div class="cbody"><b>Problématique &amp; construction du plan</b><span class="k fondation">FONDATION</span><span class="k sys">SYS</span><span class="dep">Prérequis : <b>C1</b></span></div></li>
+<li><span class="cnum">C3</span><div class="cbody"><b>Le paragraphe argumentatif</b><span class="k sys">SYS</span><span class="k auto">AUT</span><span class="dep">Prérequis : <b>C2</b> · affirmation → explication → exemple → transition</span></div></li>
+<li><span class="cnum">C4</span><div class="cbody"><b>Citation, paraphrase, plagiat</b><span class="k auto">AUT</span><span class="dep">Prérequis : <b>C1</b></span></div></li>
+<li><span class="cnum">C5</span><div class="cbody"><b>Référencement &amp; bibliographie normée</b><span class="k auto">AUT</span><span class="dep">Prérequis : <b>C4</b></span></div></li></ol>
+
+    <p class="blockt"><span class="bdot"></span>Structure de dépendance</p>
+    <div class="strata">
+<div class="tier"><div class="tl">Exigence</div><div class="tc"><span class="node f">C1 · Traçabilité</span></div></div>
+<div class="flow"><span class="fdot"></span>elle se décline sur deux plans : la structure et l'attribution<span class="fdot"></span></div>
+<div class="tier"><div class="tl">Structure</div><div class="tc"><span class="node f">C2 · Problématique</span><span class="ar">→</span><span class="node s">C3 · Paragraphe</span></div></div>
+<div class="tier"><div class="tl">Attribution</div><div class="tc"><span class="node a">C4 · Citer</span><span class="ar">→</span><span class="node a">C5 · Référencer</span></div></div>
+</div>
+    <p class="note">Discipline <b>transversale</b> : elle conditionne la note de tous les écrits du programme — rapport de stage, comptes rendus de civilisation, <em>informes</em> en espagnol.</p>
+
+    <p class="blockt"><span class="bdot"></span>Concepts-colonnes</p>
+    <div class="spine"><span class="sp">Traçabilité de l'énoncé<i>tous</i></span><span class="sp">Distinguer sa voix de celle d'autrui<i>C3·C4</i></span><span class="sp">Une idée = un paragraphe<i>C3</i></span></div>
+
+    
+  </div>
+</section>
+
+<section class="disc" id="d11">
+  <div class="tab">篇 XI</div>
+  <div class="dhead">
+    <p class="dnum">Discipline 11</p>
+    <h3>Anglais économique et commercial</h3>
+    <p class="dmeta">S5 + S6 · TD 18h · 3 ECTS · Alice Michel · supports CELENE</p>
+    <div class="cls">
+      <span class="clab">Classification</span>
+      <span class="cbar"><span class="sy" style="width:35%"></span><span class="au" style="width:65%"></span></span>
+      <span class="crd">Système <b class="s">35%</b> · Automatisme <b class="a">65%</b></span>
+      <span class="verd hyb">Hybride</span>
+    </div>
+  </div>
+  <div class="dbody">
+    <p class="blockt"><span class="bdot"></span>Problème générateur</p>
+    <p class="gen">Une lettre commerciale est une <b>pièce opposable</b> et un acte de négociation. Comment obtenir ce qu'on veut d'un interlocuteur étranger sans s'engager plus qu'on ne le souhaite, ni rompre la relation ?</p>
+
+    <p class="blockt"><span class="bdot"></span>Chapitres &amp; ordre logique</p>
+    <ol class="ch"><li><span class="cnum">C1</span><div class="cbody"><b>Architecture de la business letter</b><span class="k fondation">FONDATION</span><span class="k auto">AUT</span><span class="dep">Prérequis : aucun · forme fixe car valeur probante</span></div></li>
+<li><span class="cnum">C2</span><div class="cbody"><b>Le registre : gradation de la fermeté</b><span class="k fondation">FONDATION</span><span class="k sys">SYS</span><span class="dep">Prérequis : <b>C1</b> · <b>Ouvre :</b> le choix du ton dans tous les types de lettres</span></div></li>
+<li><span class="cnum">C3</span><div class="cbody"><b>La chaîne commerciale : les 7 types de lettres</b><span class="k auto">AUT</span><span class="dep">Prérequis : <b>C1, C2</b></span></div></li>
+<li><span class="cnum">C4</span><div class="cbody"><b>Lexique socio-économique &amp; faux amis</b><span class="k auto">AUT</span><span class="dep">Acquisition parallèle et continue</span></div></li>
+<li><span class="cnum">C5</span><div class="cbody"><b>Presse économique &amp; synthèse écrite</b><span class="k sys">SYS</span><span class="k auto">AUT</span><span class="dep">Prérequis : <b>C4</b> · dominante du S6</span></div></li></ol>
+
+    <p class="blockt"><span class="bdot"></span>Structure de dépendance</p>
+    <div class="strata">
+<div class="tier"><div class="tl">Forme</div><div class="tc"><span class="node f">C1 · Structure fixe</span><span class="ar">+</span><span class="node f">C2 · Registre</span></div></div>
+<div class="flow"><span class="fdot"></span>la combinaison forme + ton engendre chaque type de lettre<span class="fdot"></span></div>
+<div class="tier"><div class="tl">Production</div><div class="tc"><span class="node a">C3 · Les 7 lettres</span></div></div>
+<div class="tier"><div class="tl">Continu</div><div class="tc"><span class="node a">C4 · Lexique</span><span class="ar">→</span><span class="node a">C5 · Presse &amp; synthèse</span></div></div>
+</div>
+    <p class="note">Le registre (C2) est le seul chapitre véritablement « système » : tout le reste se joue à la répétition.</p>
+
+    <p class="blockt"><span class="bdot"></span>Concepts-colonnes</p>
+    <div class="spine"><span class="sp">Le document engage<i>C1·C3</i></span><span class="sp">Gradation du ton<i>C2·C3</i></span><span class="sp">Faux amis<i>C4·C5</i></span></div>
+
+    <p class="blockt"><span class="bdot"></span>Compréhension / automatisme</p><div class="split"><div class="u"><h5>À comprendre</h5><ul><li>Pourquoi la forme est fixe : valeur de preuve</li><li>Comment passif, conditionnel et modérateurs atténuent</li><li>Quelle stratégie dans une réclamation : concéder le vrai, refuser le reste</li></ul></div><div class="m"><h5>À automatiser</h5><ul><li>Le couple imposé <em>Dear Sir → Yours faithfully</em> / nom → <em>sincerely</em></li><li>Les formules d'ouverture et de clôture par type</li><li>La liste des faux amis — piège d'examen systématique</li><li><em>billion</em> = milliard ; inversion de la ponctuation décimale</li></ul></div></div>
+  </div>
+</section>
+
+<section class="disc" id="d12">
+  <div class="tab">篇 XII</div>
+  <div class="dhead">
+    <p class="dnum">Discipline 12</p>
+    <h3>Traduction anglaise · thème &amp; version</h3>
+    <p class="dmeta">S5 · TD 24h · 3 ECTS · CT écrit 2h · Alice Michel</p>
+    <div class="cls">
+      <span class="clab">Classification</span>
+      <span class="cbar"><span class="sy" style="width:25%"></span><span class="au" style="width:75%"></span></span>
+      <span class="crd">Système <b class="s">25%</b> · Automatisme <b class="a">75%</b></span>
+      <span class="verd aut">Automatisme</span>
+    </div>
+  </div>
+  <div class="dbody">
+    <p class="blockt"><span class="bdot"></span>Problème générateur</p>
+    <p class="gen">Deux langues ne découpent pas la réalité de la même façon. Traduire n'est donc pas <b>substituer des mots</b> mais reconstruire un même effet avec des moyens différents. Où s'arrête la fidélité, où commence la trahison ?</p>
+
+    <p class="blockt"><span class="bdot"></span>Chapitres &amp; ordre logique</p>
+    <ol class="ch"><li><span class="cnum">C1</span><div class="cbody"><b>Les 7 procédés de Vinay &amp; Darbelnet</b><span class="k fondation">FONDATION</span><span class="k sys">SYS</span><span class="dep">Prérequis : aucun · seule partie théorique — donne le vocabulaire pour nommer ses choix</span></div></li>
+<li><span class="cnum">C2</span><div class="cbody"><b>Contrastes structurels FR/EN</b><span class="k fondation">FONDATION</span><span class="k sys">SYS</span><span class="k auto">AUT</span><span class="dep">Prérequis : <b>C1</b> · nominalisation FR vs verbalisation EN</span></div></li>
+<li><span class="cnum">C3</span><div class="cbody"><b>Version EN → FR</b><span class="k auto">AUT</span><span class="dep">Prérequis : <b>C1, C2</b> · Guardian, Economist, NYT</span></div></li>
+<li><span class="cnum">C4</span><div class="cbody"><b>Thème FR → EN</b><span class="k auto">AUT</span><span class="dep">Prérequis : <b>C1, C2</b> · Le Monde, Libération, Le Point</span></div></li>
+<li><span class="cnum">C5</span><div class="cbody"><b>Pièges lexicaux : faux amis &amp; chiffres</b><span class="k auto">AUT</span><span class="dep">Acquisition continue, parallèle à C3 et C4</span></div></li>
+<li><span class="cnum">C6</span><div class="cbody"><b>Méthode d'épreuve</b><span class="k auto">AUT</span><span class="dep">Prérequis : <b>C3, C4</b> · lecture → repérage → jet → relectures séparées</span></div></li></ol>
+
+    <p class="blockt"><span class="bdot"></span>Structure de dépendance</p>
+    <div class="strata">
+<div class="tier"><div class="tl">Théorie</div><div class="tc"><span class="node f">C1 · Procédés</span><span class="ar">→</span><span class="node f">C2 · Contrastes</span></div></div>
+<div class="flow"><span class="fdot"></span>à partir d'ici, seule la répétition produit du progrès<span class="fdot"></span></div>
+<div class="tier"><div class="tl">Pratique</div><div class="tc"><span class="node a">C3 · Version</span><span class="ar">‖</span><span class="node a">C4 · Thème</span><span class="ar">←</span><span class="node a">C5 · Lexique</span></div></div>
+<div class="tier"><div class="tl">Épreuve</div><div class="tc"><span class="node a">C6 · Méthode chronométrée</span></div></div>
+</div>
+    <p class="note">La théorie occupe moins de 20 % du temps utile. <b>Le volume de pratique détermine seul la note</b> — et la matière pèse coefficient 3 en contrôle terminal.</p>
+
+    <p class="blockt"><span class="bdot"></span>Concepts-colonnes</p>
+    <div class="spine"><span class="sp">Effet équivalent, pas mot équivalent<i>C1·C3·C4</i></span><span class="sp">Contrastes structurels<i>C2</i></span><span class="sp">Gestion du temps d'épreuve<i>C6</i></span></div>
+
+    <p class="blockt"><span class="bdot"></span>Compréhension / automatisme</p><div class="split"><div class="u"><h5>À comprendre</h5><ul><li>Quand une traduction littérale devient un contresens</li><li>Pourquoi le titre de presse obéit à des règles propres</li></ul></div><div class="m"><h5>À automatiser</h5><ul><li>Titres : présent simple et ellipse en EN, nominalisation en FR</li><li>Le corpus de faux amis, testé à chaque épreuve</li><li>Conversion des chiffres et de la ponctuation</li><li>15 minutes de relecture systématiquement réservées</li></ul></div></div>
+  </div>
+</section>
+
+<section class="disc" id="d13">
+  <div class="tab">篇 XIII</div>
+  <div class="dhead">
+    <p class="dnum">Discipline 13</p>
+    <h3>Compréhension et expression anglaises</h3>
+    <p class="dmeta">S6 · 2 ECTS · Elodie Gallet · audio BBC authentiques</p>
+    <div class="cls">
+      <span class="clab">Classification</span>
+      <span class="cbar"><span class="sy" style="width:15%"></span><span class="au" style="width:85%"></span></span>
+      <span class="crd">Système <b class="s">15%</b> · Automatisme <b class="a">85%</b></span>
+      <span class="verd aut">Automatisme</span>
+    </div>
+  </div>
+  <div class="dbody">
+    <p class="blockt"><span class="bdot"></span>Problème générateur</p>
+    <p class="gen">À l'oral, <b>on ne peut ni revenir en arrière ni contrôler le débit</b>. Comment extraire l'information d'un flux continu, prononcé par des locuteurs aux accents variés, en une ou deux écoutes ?</p>
+
+    <p class="blockt"><span class="bdot"></span>Chapitres &amp; ordre logique</p>
+    <ol class="ch"><li><span class="cnum">C1</span><div class="cbody"><b>Ce qui bloque : liaisons, réductions, débit</b><span class="k fondation">FONDATION</span><span class="k sys">SYS</span><span class="dep">Prérequis : aucun · identifier l'obstacle avant de l'entraîner</span></div></li>
+<li><span class="cnum">C2</span><div class="cbody"><b>Méthode d'écoute en deux temps</b><span class="k fondation">FONDATION</span><span class="k auto">AUT</span><span class="dep">Prérequis : <b>C1</b> · globale puis notes ciblées</span></div></li>
+<li><span class="cnum">C3</span><div class="cbody"><b>Prise de notes : qui, quoi, où, chiffres</b><span class="k auto">AUT</span><span class="dep">Prérequis : <b>C2</b></span></div></li>
+<li><span class="cnum">C4</span><div class="cbody"><b>Variétés d'accents</b><span class="k auto">AUT</span><span class="dep">Exposition continue · RP, écossais, nord, non natifs</span></div></li>
+<li><span class="cnum">C5</span><div class="cbody"><b>Restitution : synthèse orale et écrite</b><span class="k auto">AUT</span><span class="dep">Prérequis : <b>C3</b></span></div></li></ol>
+
+    <p class="blockt"><span class="bdot"></span>Structure de dépendance</p>
+    <div class="strata">
+<div class="tier"><div class="tl">Diagnostic</div><div class="tc"><span class="node f">C1 · Où ça bloque</span></div></div>
+<div class="tier"><div class="tl">Protocole</div><div class="tc"><span class="node f">C2 · Deux écoutes</span><span class="ar">→</span><span class="node a">C3 · Notes</span><span class="ar">→</span><span class="node a">C5 · Restitution</span></div></div>
+<div class="tier"><div class="tl">Exposition</div><div class="tc"><span class="node a">C4 · Accents — dose quotidienne</span></div></div>
+</div>
+    <p class="note">Progression <b>strictement proportionnelle au temps d'exposition</b>. Vingt minutes par jour dès l'été rendent le format trivial ; le bachotage tardif n'y produit presque rien.</p>
+
+    <p class="blockt"><span class="bdot"></span>Concepts-colonnes</p>
+    <div class="spine"><span class="sp">Flux non contrôlable<i>C1·C2</i></span><span class="sp">Écouter pour l'information, pas pour les mots<i>C2·C3</i></span><span class="sp">Exposition cumulée<i>C4</i></span></div>
+
+    
+  </div>
+</section>
+
+<section class="disc" id="d14">
+  <div class="tab">篇 XIV</div>
+  <div class="dhead">
+    <p class="dnum">Discipline 14</p>
+    <h3>Espagnol économique et commercial</h3>
+    <p class="dmeta">S5 + S6 · TD 18h · 2 ECTS · Claire Decobert · Segura, <em>Textos y Métodos activos</em></p>
+    <div class="cls">
+      <span class="clab">Classification</span>
+      <span class="cbar"><span class="sy" style="width:40%"></span><span class="au" style="width:60%"></span></span>
+      <span class="crd">Système <b class="s">40%</b> · Automatisme <b class="a">60%</b></span>
+      <span class="verd hyb">Hybride</span>
+    </div>
+  </div>
+  <div class="dbody">
+    <p class="blockt"><span class="bdot"></span>Problème générateur</p>
+    <p class="gen">Une seule langue ouvre <b>deux mondes économiques opposés</b> — une économie européenne mature et un continent aux logiques d'intégration contradictoires. Comment écrire juste, et à qui exactement ?</p>
+
+    <p class="blockt"><span class="bdot"></span>Chapitres &amp; ordre logique</p>
+    <ol class="ch"><li><span class="cnum">C1</span><div class="cbody"><b>Architecture de la carta comercial</b><span class="k fondation">FONDATION</span><span class="k auto">AUT</span><span class="dep">Prérequis : aucun</span></div></li>
+<li><span class="cnum">C2</span><div class="cbody"><b>Grammaire de la correspondance</b><span class="k fondation">FONDATION</span><span class="k sys">SYS</span><span class="k auto">AUT</span><span class="dep">Prérequis : <b>C1</b> · usted, subjonctif imposé, conditionnel de courtoisie</span></div></li>
+<li><span class="cnum">C3</span><div class="cbody"><b>La chaîne commerciale espagnole</b><span class="k auto">AUT</span><span class="dep">Prérequis : <b>C1, C2</b> · consulta → presupuesto → pedido → albarán → factura → reclamación</span></div></li>
+<li><span class="cnum">C4</span><div class="cbody"><b>Lexique de l'entreprise &amp; faux amis</b><span class="k auto">AUT</span><span class="dep">Acquisition continue</span></div></li>
+<li><span class="cnum">C5</span><div class="cbody"><b>L'économie espagnole par secteurs</b><span class="k sys">SYS</span><span class="dep">Prérequis : <b>C4</b></span></div></li>
+<li><span class="cnum">C6</span><div class="cbody"><b>Économies latino-américaines &amp; blocs régionaux</b><span class="k sys">SYS</span><span class="dep">Prérequis : <b>C5</b> · Mercosur ‖ Alliance du Pacifique</span></div></li>
+<li><span class="cnum">C7</span><div class="cbody"><b>Écrits professionnels : CV, informe, resumen</b><span class="k auto">AUT</span><span class="dep">Prérequis : <b>C2, C4</b></span></div></li></ol>
+
+    <p class="blockt"><span class="bdot"></span>Structure de dépendance</p>
+    <div class="strata">
+<div class="tier"><div class="tl">Écrire</div><div class="tc"><span class="node f">C1 · Forme</span><span class="ar">→</span><span class="node f">C2 · Grammaire</span><span class="ar">→</span><span class="node a">C3 · Les lettres</span><span class="ar">→</span><span class="node a">C7 · Autres écrits</span></div></div>
+<div class="flow"><span class="fdot"></span>branche indépendante : savoir à qui l'on écrit<span class="fdot"></span></div>
+<div class="tier"><div class="tl">Connaître</div><div class="tc"><span class="node a">C4 · Lexique</span><span class="ar">→</span><span class="node s">C5 · Espagne</span><span class="ar">→</span><span class="node s">C6 · Amérique latine</span></div></div>
+</div>
+    <p class="note">Deux branches quasi autonomes : une branche <b>production écrite</b> (automatisme) et une branche <b>connaissance des marchés</b> (système). Elles ne se rejoignent qu'au moment du <em>informe</em>.</p>
+
+    <p class="blockt"><span class="bdot"></span>Concepts-colonnes</p>
+    <div class="spine"><span class="sp">Registre imposé par la forme<i>C1·C2</i></span><span class="sp">Cycle de la transaction<i>C3</i></span><span class="sp">Ouvrir ou protéger<i>C6</i></span></div>
+
+    
+  </div>
+</section>
+
+<section class="disc" id="d15">
+  <div class="tab">篇 XV</div>
+  <div class="dhead">
+    <p class="dnum">Discipline 15</p>
+    <h3>Thème &amp; version espagnols</h3>
+    <p class="dmeta">S5 + S6 · TD 12h + 12h · Annie Baccon (thème) · Sylvie Fournié-Chaboche (version)</p>
+    <div class="cls">
+      <span class="clab">Classification</span>
+      <span class="cbar"><span class="sy" style="width:20%"></span><span class="au" style="width:80%"></span></span>
+      <span class="crd">Système <b class="s">20%</b> · Automatisme <b class="a">80%</b></span>
+      <span class="verd aut">Automatisme</span>
+    </div>
+  </div>
+  <div class="dbody">
+    <p class="blockt"><span class="bdot"></span>Problème générateur</p>
+    <p class="gen">La proximité du français et de l'espagnol est un <b>piège autant qu'un avantage</b> : elle rend le calque naturel et l'erreur invisible. Comment traduire sans se laisser porter par la ressemblance ?</p>
+
+    <p class="blockt"><span class="bdot"></span>Chapitres &amp; ordre logique</p>
+    <ol class="ch"><li><span class="cnum">C1</span><div class="cbody"><b>Le calque : l'ennemi structurel</b><span class="k fondation">FONDATION</span><span class="k sys">SYS</span><span class="dep">Prérequis : aucun</span></div></li>
+<li><span class="cnum">C2</span><div class="cbody"><b>Contrastes FR/ES : ser-estar, por-para, subjonctif, prépositions</b><span class="k fondation">FONDATION</span><span class="k auto">AUT</span><span class="dep">Prérequis : <b>C1</b></span></div></li>
+<li><span class="cnum">C3</span><div class="cbody"><b>Thème FR → ES</b><span class="k auto">AUT</span><span class="dep">Prérequis : <b>C2</b></span></div></li>
+<li><span class="cnum">C4</span><div class="cbody"><b>Version ES → FR</b><span class="k auto">AUT</span><span class="dep">Prérequis : <b>C2</b> · courant et spécialisé</span></div></li>
+<li><span class="cnum">C5</span><div class="cbody"><b>Faux amis &amp; registres</b><span class="k auto">AUT</span><span class="dep">Acquisition continue</span></div></li></ol>
+
+    <p class="blockt"><span class="bdot"></span>Structure de dépendance</p>
+    <div class="strata">
+<div class="tier"><div class="tl">Vigilance</div><div class="tc"><span class="node f">C1 · Le calque</span><span class="ar">→</span><span class="node f">C2 · Points de divergence</span></div></div>
+<div class="tier"><div class="tl">Pratique</div><div class="tc"><span class="node a">C3 · Thème</span><span class="ar">‖</span><span class="node a">C4 · Version</span><span class="ar">←</span><span class="node a">C5 · Faux amis</span></div></div>
+</div>
+    <p class="note">Outil central de la discipline : le <b>journal d'erreurs</b>. Les mêmes fautes reviennent — les répertorier vaut mieux que traduire davantage.</p>
+
+    <p class="blockt"><span class="bdot"></span>Concepts-colonnes</p>
+    <div class="spine"><span class="sp">Le calque comme erreur par défaut<i>C1·C3</i></span><span class="sp">Points de divergence FR/ES<i>C2</i></span><span class="sp">Registre<i>C5</i></span></div>
+
+    
+  </div>
+</section>
+
+<section class="disc" id="d16">
+  <div class="tab">篇 XVI</div>
+  <div class="dhead">
+    <p class="dnum">Discipline 16</p>
+    <h3>Civilisation britannique — The UK since 1945</h3>
+    <p class="dmeta">S5 · CM 12h + TD 12h · Karine Rivière de Franco</p>
+    <div class="cls">
+      <span class="clab">Classification</span>
+      <span class="cbar"><span class="sy" style="width:85%"></span><span class="au" style="width:15%"></span></span>
+      <span class="crd">Système <b class="s">85%</b> · Automatisme <b class="a">15%</b></span>
+      <span class="verd sys">Système</span>
+    </div>
+  </div>
+  <div class="dbody">
+    <p class="blockt"><span class="bdot"></span>Problème générateur</p>
+    <p class="gen">Comment un pays peut-il <b>protéger tous ses citoyens du berceau à la tombe sans que son économie s'effondre</b> — et que se passe-t-il quand la réponse trouvée en 1945 cesse de fonctionner ?</p>
+
+    <p class="blockt"><span class="bdot"></span>Chapitres &amp; ordre logique</p>
+    <ol class="ch"><li><span class="cnum">C1</span><div class="cbody"><b>Le diagnostic de 1942 : Beveridge et les <em>five giants</em></b><span class="k fondation">FONDATION</span><span class="k sys">SYS</span><span class="dep">Prérequis : aucun · pose le problème que quarante ans de politique vont tenter de résoudre</span></div></li>
+<li><span class="cnum">C2</span><div class="cbody"><b>La construction du Welfare State (1945–51)</b><span class="k fondation">FONDATION</span><span class="k sys">SYS</span><span class="dep">Prérequis : <b>C1</b> · NHS 1948, nationalisations</span></div></li>
+<li><span class="cnum">C3</span><div class="cbody"><b>Le consensus d'après-guerre (1951–79)</b><span class="k sys">SYS</span><span class="dep">Prérequis : <b>C2</b> · « Butskellism »</span></div></li>
+<li><span class="cnum">C4</span><div class="cbody"><b>La crise du modèle &amp; le Winter of Discontent</b><span class="k fondation">FONDATION</span><span class="k sys">SYS</span><span class="dep">Prérequis : <b>C3</b> · <b>Ouvre :</b> C5 — sans la crise, le thatchérisme est incompréhensible</span></div></li>
+<li><span class="cnum">C5</span><div class="cbody"><b>Le thatchérisme (1979–90)</b><span class="k sys">SYS</span><span class="dep">Prérequis : <b>C4</b> · monétarisme, privatisations, syndicats, Big Bang, poll tax</span></div></li>
+<li><span class="cnum">C6</span><div class="cbody"><b>Major puis New Labour (1990–2007)</b><span class="k sys">SYS</span><span class="dep">Prérequis : <b>C5</b> · Third Way, dévolution, Good Friday Agreement</span></div></li>
+<li><span class="cnum">C7</span><div class="cbody"><b>Lectures transversales : économie, société, éducation</b><span class="k sys">SYS</span><span class="dep">Prérequis : tous · relecture des mêmes décennies sous trois angles</span></div></li></ol>
+
+    <p class="blockt"><span class="bdot"></span>Structure de dépendance</p>
+    <div class="strata">
+<div class="tier"><div class="tl">Problème</div><div class="tc"><span class="node f">C1 · Beveridge · 5 fléaux</span></div></div>
+<div class="flow"><span class="fdot"></span>réponse institutionnelle<span class="fdot"></span></div>
+<div class="tier"><div class="tl">Réponse</div><div class="tc"><span class="node f">C2 · Welfare State</span><span class="ar">→</span><span class="node s">C3 · Consensus</span></div></div>
+<div class="flow"><span class="fdot"></span>épuisement de la réponse : inflation, syndicats, déficit<span class="fdot"></span></div>
+<div class="tier"><div class="tl">Rupture</div><div class="tc"><span class="node f">C4 · Crise 1970s</span><span class="ar">→</span><span class="node s">C5 · Thatchérisme</span></div></div>
+<div class="flow"><span class="fdot"></span>synthèse des deux modèles<span class="fdot"></span></div>
+<div class="tier"><div class="tl">Recomposition</div><div class="tc"><span class="node s">C6 · Third Way</span><span class="ar">→</span><span class="node s">C7 · Relectures thématiques</span></div></div>
+</div>
+    <p class="note">C4 est le <b>pivot</b> de toute la discipline : le thatchérisme n'est pas un programme surgi de nulle part, c'est la réponse à l'échec documenté du modèle précédent. Qui saute C4 ne peut que mémoriser C5.</p>
+
+    <p class="blockt"><span class="bdot"></span>Concepts-colonnes</p>
+    <div class="spine"><span class="sp">Consensus ↔ rupture<i>C3·C4·C5·C6</i></span><span class="sp">Rôle de l'État<i>tous</i></span><span class="sp">Universalité vs ciblage<i>C2·C5·C6</i></span><span class="sp">Syndicats &amp; rapport de force<i>C3·C4·C5</i></span></div>
+
+    
+  </div>
+</section>
+
+<section class="disc" id="d17">
+  <div class="tab">篇 XVII</div>
+  <div class="dhead">
+    <p class="dnum">Discipline 17</p>
+    <h3>Civilisation espagnole — de la Transición à nos jours</h3>
+    <p class="dmeta">S5 · CM 12h + TD 12h · 1 ECTS · Claire Decobert</p>
+    <div class="cls">
+      <span class="clab">Classification</span>
+      <span class="cbar"><span class="sy" style="width:85%"></span><span class="au" style="width:15%"></span></span>
+      <span class="crd">Système <b class="s">85%</b> · Automatisme <b class="a">15%</b></span>
+      <span class="verd sys">Système</span>
+    </div>
+  </div>
+  <div class="dbody">
+    <p class="blockt"><span class="bdot"></span>Problème générateur</p>
+    <p class="gen">Comment <b>passer d'une dictature de quarante ans à une démocratie sans guerre civile</b>, alors que les institutions, l'armée et les élites du régime précédent sont toujours en place ?</p>
+
+    <p class="blockt"><span class="bdot"></span>Chapitres &amp; ordre logique</p>
+    <ol class="ch"><li><span class="cnum">C1</span><div class="cbody"><b>L'héritage franquiste : ce qu'il faut démonter</b><span class="k fondation">FONDATION</span><span class="k sys">SYS</span><span class="dep">Prérequis : aucun</span></div></li>
+<li><span class="cnum">C2</span><div class="cbody"><b>La Transición 1975–78</b><span class="k fondation">FONDATION</span><span class="k sys">SYS</span><span class="dep">Prérequis : <b>C1</b> · Suárez, Pactos de la Moncloa, Constitution de 1978</span></div></li>
+<li><span class="cnum">C3</span><div class="cbody"><b>La consolidation : le 23-F (1981)</b><span class="k sys">SYS</span><span class="dep">Prérequis : <b>C2</b> · le test de solidité du nouveau régime</span></div></li>
+<li><span class="cnum">C4</span><div class="cbody"><b>Modernisation et intégration européenne (1982–96)</b><span class="k sys">SYS</span><span class="dep">Prérequis : <b>C3</b> · González, CEE 1986, 1992</span></div></li>
+<li><span class="cnum">C5</span><div class="cbody"><b>Aznar, l'euro et le 11-M (1996–2004)</b><span class="k sys">SYS</span><span class="dep">Prérequis : <b>C4</b></span></div></li>
+<li><span class="cnum">C6</span><div class="cbody"><b>L'État des autonomies &amp; la question catalane</b><span class="k fondation">FONDATION</span><span class="k sys">SYS</span><span class="dep">Prérequis : <b>C2</b> · conséquence directe du compromis de 1978</span></div></li></ol>
+
+    <p class="blockt"><span class="bdot"></span>Structure de dépendance</p>
+    <div class="strata">
+<div class="tier"><div class="tl">Contrainte</div><div class="tc"><span class="node f">C1 · Héritage à démonter</span></div></div>
+<div class="flow"><span class="fdot"></span>le compromis de 1978 est la clé de tout ce qui suit<span class="fdot"></span></div>
+<div class="tier"><div class="tl">Compromis</div><div class="tc"><span class="node f">C2 · Transición</span><span class="ar">→</span><span class="node s">C3 · 23-F</span></div></div>
+<div class="tier"><div class="tl">Effets</div><div class="tc"><span class="node s">C4 · Modernisation</span><span class="ar">→</span><span class="node s">C5 · Aznar</span><span class="ar">·</span><span class="node f">C6 · Autonomies</span></div></div>
+</div>
+    <p class="note">C6 n'est pas un chapitre d'actualité isolé : la question catalane est la <b>conséquence différée</b> du compromis territorial de 1978. C'est la relation C2 → C6 qui structure une bonne copie.</p>
+
+    <p class="blockt"><span class="bdot"></span>Concepts-colonnes</p>
+    <div class="spine"><span class="sp">Consensus négocié<i>C2·C4·C6</i></span><span class="sp">Question territoriale<i>C2·C6</i></span><span class="sp">Ancrage européen comme modernisation<i>C4·C5</i></span></div>
+
+    
+  </div>
+</section>
+
+<section class="disc" id="d18">
+  <div class="tab">篇 XVIII</div>
+  <div class="dhead">
+    <p class="dnum">Discipline 18</p>
+    <h3>Civilisation américaine — publicité et marketing</h3>
+    <p class="dmeta">S6 · 2 ECTS · Eric Tabuteau · XX<sup>e</sup>–XXI<sup>e</sup> siècles</p>
+    <div class="cls">
+      <span class="clab">Classification</span>
+      <span class="cbar"><span class="sy" style="width:80%"></span><span class="au" style="width:20%"></span></span>
+      <span class="crd">Système <b class="s">80%</b> · Automatisme <b class="a">20%</b></span>
+      <span class="verd sys">Système</span>
+    </div>
+  </div>
+  <div class="dbody">
+    <p class="blockt"><span class="bdot"></span>Problème générateur</p>
+    <p class="gen">La production de masse crée un problème inédit : <b>fabriquer plus vite que les gens ne désirent</b>. Comment une industrie entière s'est-elle constituée pour produire de la demande — et comment mesure-t-on un effet sur les esprits ?</p>
+
+    <p class="blockt"><span class="bdot"></span>Chapitres &amp; ordre logique</p>
+    <ol class="ch"><li><span class="cnum">C1</span><div class="cbody"><b>Le problème de la surproduction &amp; la naissance d'un métier</b><span class="k fondation">FONDATION</span><span class="k sys">SYS</span><span class="dep">Prérequis : aucun</span></div></li>
+<li><span class="cnum">C2</span><div class="cbody"><b>La professionnalisation (1900s–20s)</b><span class="k sys">SYS</span><span class="dep">Prérequis : <b>C1</b> · Lasker, Hopkins, Bernays</span></div></li>
+<li><span class="cnum">C3</span><div class="cbody"><b>La mesure : études de marché (1930s–40s)</b><span class="k fondation">FONDATION</span><span class="k sys">SYS</span><span class="dep">Prérequis : <b>C2</b> · Gallup, Nielsen · <b>Ouvre :</b> tout le reste — sans mesure, pas de stratégie</span></div></li>
+<li><span class="cnum">C4</span><div class="cbody"><b>Télévision &amp; consommation de masse (1950s)</b><span class="k sys">SYS</span><span class="dep">Prérequis : <b>C3</b> · USP de Rosser Reeves</span></div></li>
+<li><span class="cnum">C5</span><div class="cbody"><b>La creative revolution (1960s)</b><span class="k sys">SYS</span><span class="dep">Prérequis : <b>C4</b> · Bernbach, Ogilvy — réaction contre C4</span></div></li>
+<li><span class="cnum">C6</span><div class="cbody"><b>Segmentation, numérique, données</b><span class="k sys">SYS</span><span class="dep">Prérequis : <b>C3, C5</b> · retour de la mesure à une échelle nouvelle</span></div></li></ol>
+
+    <p class="blockt"><span class="bdot"></span>Structure de dépendance</p>
+    <div class="strata">
+<div class="tier"><div class="tl">Problème</div><div class="tc"><span class="node f">C1 · Produire le désir</span></div></div>
+<div class="flow"><span class="fdot"></span>le métier se professionnalise, puis cherche à se prouver<span class="fdot"></span></div>
+<div class="tier"><div class="tl">Deux moteurs</div><div class="tc"><span class="node s">C2 · Métier</span><span class="ar">→</span><span class="node f">C3 · Mesure</span></div></div>
+<div class="flow"><span class="fdot"></span>oscillation entre science et création<span class="fdot"></span></div>
+<div class="tier"><div class="tl">Balancier</div><div class="tc"><span class="node s">C4 · Science · USP</span><span class="ar">⇄</span><span class="node s">C5 · Création</span><span class="ar">→</span><span class="node s">C6 · Données</span></div></div>
+</div>
+    <p class="note">La discipline s'organise autour d'un <b>balancier</b> entre approche scientifique et approche créative. Chaque décennie est une position sur ce balancier — c'est le fil qui empêche la chronologie de devenir une liste de noms.</p>
+
+    <p class="blockt"><span class="bdot"></span>Concepts-colonnes</p>
+    <div class="spine"><span class="sp">Science ⇄ création<i>C2·C4·C5·C6</i></span><span class="sp">Mesure de l'audience<i>C3·C6</i></span><span class="sp">Fabrication du consentement<i>C2·C4</i></span></div>
+
+    
+  </div>
+</section>
+
+<section class="disc" id="d19">
+  <div class="tab">篇 XIX</div>
+  <div class="dhead">
+    <p class="dnum">Discipline 19</p>
+    <h3>Civilisation latino-américaine — la ville contemporaine</h3>
+    <p class="dmeta">S6 · 2 ECTS · Marcos Eymar · photographies, films, textes</p>
+    <div class="cls">
+      <span class="clab">Classification</span>
+      <span class="cbar"><span class="sy" style="width:85%"></span><span class="au" style="width:15%"></span></span>
+      <span class="crd">Système <b class="s">85%</b> · Automatisme <b class="a">15%</b></span>
+      <span class="verd sys">Système</span>
+    </div>
+  </div>
+  <div class="dbody">
+    <p class="blockt"><span class="bdot"></span>Problème générateur</p>
+    <p class="gen">Un continent s'urbanise en <b>deux générations au lieu de deux siècles</b>. Que devient une ville qui reçoit des millions d'habitants qu'elle n'a ni logés, ni employés, ni raccordés — et comment se représente-t-elle elle-même ?</p>
+
+    <p class="blockt"><span class="bdot"></span>Chapitres &amp; ordre logique</p>
+    <ol class="ch"><li><span class="cnum">C1</span><div class="cbody"><b>L'urbanisation accélérée : causes et rythme</b><span class="k fondation">FONDATION</span><span class="k sys">SYS</span><span class="dep">Prérequis : aucun · ~80 % d'urbains, mégapoles</span></div></li>
+<li><span class="cnum">C2</span><div class="cbody"><b>L'informalité comme réponse spontanée</b><span class="k fondation">FONDATION</span><span class="k sys">SYS</span><span class="dep">Prérequis : <b>C1</b> · favelas, villas miseria, barriadas · <b>Ouvre :</b> C3, C4, C5</span></div></li>
+<li><span class="cnum">C3</span><div class="cbody"><b>La ségrégation spatiale</b><span class="k sys">SYS</span><span class="dep">Prérequis : <b>C2</b> · barrios cerrados, périphéries, gentrification</span></div></li>
+<li><span class="cnum">C4</span><div class="cbody"><b>Violence urbaine &amp; ses représentations</b><span class="k sys">SYS</span><span class="dep">Prérequis : <b>C2, C3</b></span></div></li>
+<li><span class="cnum">C5</span><div class="cbody"><b>Politiques urbaines : le cas de Medellín</b><span class="k sys">SYS</span><span class="dep">Prérequis : <b>C3, C4</b> · metrocable, bibliothèques-parcs</span></div></li>
+<li><span class="cnum">C6</span><div class="cbody"><b>Le corpus filmique &amp; l'analyse d'image</b><span class="k sys">SYS</span><span class="k auto">AUT</span><span class="dep">Prérequis : <b>C4</b> · <em>Cidade de Deus</em>, <em>Amores perros</em>, <em>La Zona</em>, <em>Elefante blanco</em></span></div></li></ol>
+
+    <p class="blockt"><span class="bdot"></span>Structure de dépendance</p>
+    <div class="strata">
+<div class="tier"><div class="tl">Choc</div><div class="tc"><span class="node f">C1 · Urbanisation accélérée</span></div></div>
+<div class="flow"><span class="fdot"></span>l'État ne suit pas : la ville se construit sans lui<span class="fdot"></span></div>
+<div class="tier"><div class="tl">Effet primaire</div><div class="tc"><span class="node f">C2 · Informalité</span></div></div>
+<div class="flow"><span class="fdot"></span>effets secondaires en cascade<span class="fdot"></span></div>
+<div class="tier"><div class="tl">Conséquences</div><div class="tc"><span class="node s">C3 · Ségrégation</span><span class="ar">→</span><span class="node s">C4 · Violence</span><span class="ar">→</span><span class="node s">C6 · Représentations</span></div></div>
+<div class="flow"><span class="fdot"></span>tentative de réponse publique<span class="fdot"></span></div>
+<div class="tier"><div class="tl">Réponse</div><div class="tc"><span class="node s">C5 · Urbanisme social · Medellín</span></div></div>
+</div>
+    <p class="note">Architecture <b>en cascade causale</b> : un choc démographique produit l'informalité, qui produit la ségrégation, qui produit la violence, que les films représentent. Medellín est le seul chapitre qui remonte la chaîne.</p>
+
+    <p class="blockt"><span class="bdot"></span>Concepts-colonnes</p>
+    <div class="spine"><span class="sp">Informalité<i>C2·C3·C4</i></span><span class="sp">Absence / retour de l'État<i>C2·C5</i></span><span class="sp">Frontière intérieure à la ville<i>C3·C4·C6</i></span></div>
+
+    
+  </div>
+</section>
+
+  <div class="cross">
+    <h2>Concepts qui traversent plusieurs disciplines</h2>
+    <p>Ces notions circulent d'une matière à l'autre. Les traiter une fois évite de les réapprendre quatre fois.</p>
+    <div class="cm"><div class="k2">TEMPS = ARGENT</div><div class="v">Le délai entre décaissement et encaissement gouverne le <b>BFR</b> (Gestion financière), le <b>stock d'alerte</b> (Outils de gestion), le choix du <b>mode de transport</b> et du <b>moyen de paiement</b> (TCI).</div></div>
+    <div class="cm"><div class="k2">NORME PRIVÉE</div><div class="v">Incoterms et RUU 600 émanent de la <b>CCI</b>, pas d'un État : la <b>soft law</b> (Droit des affaires) explique leur autorité sans contrainte légale.</div></div>
+    <div class="cm"><div class="k2">DOCUMENT = PREUVE</div><div class="v">Le <b>connaissement</b> (TCI), la <b>lettre opposable</b> (anglais et espagnol), la <b>référence bibliographique</b> (méthodologie) et la <b>partie double</b> (comptabilité) reposent sur la même exigence : rendre une affirmation vérifiable par un tiers.</div></div>
+    <div class="cm"><div class="k2">RUPTURE 1979</div><div class="v">Le tournant néolibéral relie <b>Civilisation britannique</b> (thatchérisme), <b>Civilisation américaine</b> (dérégulation publicitaire) et les <b>logiques d'ouverture</b> latino-américaines.</div></div>
+    <div class="cm"><div class="k2">OUVRIR / PROTÉGER</div><div class="v">L'arbitrage libre-échange contre protection structure <b>Mercosur ‖ Alliance du Pacifique</b> (espagnol), la <b>politique douanière</b> (TCI) et les <b>règles de l'OMC</b> (Droit des affaires).</div></div>
+    <div class="cm"><div class="k2">FIXE / VARIABLE</div><div class="v">La distinction fonde le <b>seuil de rentabilité</b> (Outils de gestion), éclaire le <b>levier financier</b> (Gestion financière) et le <b>choix d'internaliser</b> (Introduction au CI).</div></div>
+    <div class="cm"><div class="k2">IMPLICITE CULTUREL</div><div class="v">Ce qui reste non-dit relie le <b>management interculturel</b>, le <b>registre épistolaire</b> des deux langues commerciales et la <b>négociation</b> internationale.</div></div>
+  </div>
+
+  <div class="cross">
+    <h2>Ordre de traitement recommandé</h2>
+    <p>Séquence qui respecte les dépendances entre disciplines, indépendamment du calendrier universitaire.</p>
+    <div class="cm"><div class="k2">BLOC 1</div><div class="v"><b>Comptabilité générale</b> → <b>Gestion financière</b> → <b>Outils de gestion</b>. Chaîne strictement dépendante : rien de la seconde ne se tient sans la première.</div></div>
+    <div class="cm"><div class="k2">BLOC 2</div><div class="v"><b>Droit des affaires (soft law)</b> → <b>Introduction au CI</b> → <b>TCI 1 et 2</b> → <b>Droit des contrats &amp; Common Law</b>. La soft law en amont rend les Incoterms déductibles au lieu d'arbitraires.</div></div>
+    <div class="cm"><div class="k2">BLOC 3</div><div class="v">Les quatre <b>civilisations</b>, indépendantes entre elles mais toutes bâties sur le même schéma : problème → réponse → épuisement → recomposition.</div></div>
+    <div class="cm"><div class="k2">CONTINU</div><div class="v">Les cinq disciplines à dominante <b>automatisme</b> (traduction ×2, compréhension orale, anglais et espagnol commerciaux) : dose quotidienne, jamais en bloc. Elles ne se rattrapent pas.</div></div>
+  </div>
+
+  <div class="foot">
+    <div class="mark"><svg><use href="#i-flower"/></svg>Étape 1 terminée · 19 disciplines cartographiées</div>
+  </div>
+</div>
+</body>
+</html>

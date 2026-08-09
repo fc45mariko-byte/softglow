@@ -1,0 +1,193 @@
+/* Master Plans — Cours détaillés par matière
+   Feuille de style commune, identité visuelle reprise du document
+   "L'Architecture des Disciplines". --dom / --dom-lt sont redéfinies
+   par chaque fichier de cours pour sa couleur dominante propre. */
+
+:root{
+  --rose:#d9689a; --rose-clair:#f0b9d2; --blush:#f7dbe8;
+  --lav:#b79bd6; --lav-clair:#d8c6ec;
+  --perv:#7f9bd8; --perv-fonce:#4f6db6; --bleu:#3f5aa0;
+  --prune:#5f4270; --prune-clair:#7d5f8e; --encre:#4a3358;
+  --carte:rgba(255,255,255,.64); --or:#e0a34e; --vert:#5d9e86;
+  /* couleur dominante propre à la matière — surchargée par chaque page */
+  --dom:#d9689a; --dom-lt:#f0b9d2;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Spectral',Georgia,serif;color:var(--encre);line-height:1.68;
+  background:
+    radial-gradient(1100px 760px at 12% -4%, #f9d9e8 0%, transparent 58%),
+    radial-gradient(1000px 900px at 96% 30%, #aec0ea 0%, transparent 52%),
+    radial-gradient(1000px 720px at 34% 104%, #f3cfe2 0%, transparent 58%),
+    linear-gradient(158deg,#f3dbea 0%, #ddccec 42%, #c3cdec 72%, #ecd2e4 100%);
+  background-attachment:fixed;overflow-x:hidden;
+}
+.sheet{max-width:1060px;margin:0 auto;padding:26px 18px 90px}
+
+/* top bar */
+.top{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;
+  border-bottom:1px solid rgba(217,104,154,.4);padding-bottom:10px;margin-bottom:20px}
+.top .cn{font-family:'Josefin Sans';font-weight:300;letter-spacing:.28em;color:var(--perv-fonce);
+  font-size:.66rem;text-transform:uppercase}
+.backlink{font-family:'Josefin Sans';font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--dom);text-decoration:none;border:1px solid rgba(183,155,214,.5);border-radius:20px;
+  padding:6px 14px;background:rgba(255,255,255,.55);transition:background .15s}
+.backlink:hover{background:rgba(255,255,255,.85)}
+
+/* page hero (index only) */
+.hero{text-align:center;padding:4px 0 2px}
+.eyebrow{font-family:'Josefin Sans';letter-spacing:.4em;text-transform:uppercase;font-size:.7rem;color:var(--rose)}
+h1{font-family:'Cormorant Garamond';font-weight:700;font-size:clamp(2.1rem,6vw,3.7rem);
+  line-height:1.05;color:var(--prune);margin:6px 0}
+h1 .it{font-style:italic;font-weight:600;color:var(--rose)}
+.enfr{font-family:'Josefin Sans';font-weight:300;letter-spacing:.24em;text-transform:uppercase;
+  font-size:.72rem;color:var(--perv-fonce)}
+.intro{max-width:720px;margin:14px auto 0;color:var(--prune);font-size:.98rem}
+
+/* légende */
+.leg{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:20px}
+.lg{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.6);
+  border:1px solid rgba(183,155,214,.5);border-radius:20px;padding:5px 14px;
+  font-family:'Josefin Sans';font-size:.64rem;letter-spacing:.08em;color:var(--prune)}
+.lg i{width:9px;height:9px;border-radius:50%;display:block}
+.lg i.s{background:var(--perv-fonce)} .lg i.a{background:var(--rose)}
+.lg i.h{background:var(--lav)} .lg i.f{background:var(--or)} .lg i.p{background:var(--vert)}
+
+/* grille des matières (index) */
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:26px}
+@media(max-width:720px){.grid{grid-template-columns:1fr}}
+.card{position:relative;display:block;text-decoration:none;color:inherit;
+  background:var(--carte);border:1px solid rgba(183,155,214,.4);border-radius:18px;
+  padding:16px 18px 16px 20px;box-shadow:0 10px 26px rgba(95,66,112,.1);
+  border-left:5px solid var(--dom);transition:transform .15s, box-shadow .15s}
+.card:hover{transform:translateY(-2px);box-shadow:0 16px 34px rgba(95,66,112,.16)}
+.card .cix{font-family:'Josefin Sans';font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--dom)}
+.card h3{font-family:'Cormorant Garamond';font-weight:700;font-size:1.22rem;line-height:1.16;
+  color:var(--prune);margin:3px 0 6px}
+.card .cmeta{font-family:'Josefin Sans';font-size:.66rem;color:var(--prune-clair);letter-spacing:.02em}
+.card .cfoot{display:flex;align-items:center;justify-content:space-between;margin-top:10px;gap:8px}
+.card .verd{font-family:'Josefin Sans';font-size:.56rem;letter-spacing:.13em;text-transform:uppercase;
+  color:#fff;padding:3px 10px;border-radius:12px}
+.card .verd.sys{background:var(--perv-fonce)} .card .verd.aut{background:var(--rose)} .card .verd.hyb{background:var(--lav)}
+.card .swatch{width:22px;height:22px;border-radius:50%;flex:none;background:linear-gradient(135deg,var(--dom),var(--dom-lt));
+  box-shadow:0 3px 8px rgba(0,0,0,.14)}
+
+/* étapes (index) */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:24px}
+.st{background:rgba(255,255,255,.55);border:1px solid rgba(183,155,214,.5);border-radius:14px;padding:12px 14px}
+.st.on{background:linear-gradient(120deg,var(--rose),var(--lav));border-color:transparent;color:#fff}
+.st .sl{font-family:'Josefin Sans';font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;opacity:.75}
+.st b{display:block;font-family:'Cormorant Garamond';font-size:1.05rem;font-weight:600;line-height:1.2;margin-top:2px}
+.st.on b{color:#fff}
+@media(max-width:640px){.steps{grid-template-columns:1fr}}
+
+/* discipline (fiche de cours) */
+.disc{position:relative;margin-top:38px;background:var(--carte);backdrop-filter:blur(3px);
+  border:1px solid rgba(217,104,154,.26);border-radius:22px;
+  box-shadow:0 16px 46px rgba(95,66,112,.13)}
+.disc:first-of-type{margin-top:22px}
+.tab{position:absolute;top:-15px;left:26px;background:linear-gradient(120deg,var(--dom),var(--dom-lt));
+  color:#fff;border-radius:16px;padding:6px 18px;font-family:'Cormorant Garamond';font-weight:600;
+  font-size:.95rem;letter-spacing:.06em;box-shadow:0 8px 18px rgba(0,0,0,.18)}
+.dhead{padding:26px 26px 16px;border-bottom:1px solid rgba(183,155,214,.4)}
+.dnum{font-family:'Josefin Sans';font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--dom)}
+.dhead h3{font-family:'Cormorant Garamond';font-weight:700;font-size:1.7rem;line-height:1.14;
+  color:var(--prune);margin:2px 0 3px}
+.dmeta{font-family:'Josefin Sans';font-size:.72rem;color:var(--prune-clair)}
+.cls{display:flex;align-items:center;gap:12px;margin-top:14px;flex-wrap:wrap}
+.clab{font-family:'Josefin Sans';font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;color:var(--lav)}
+.cbar{flex:1 1 200px;height:14px;display:flex;border-radius:8px;overflow:hidden;min-width:170px;
+  border:1px solid rgba(183,155,214,.5);background:#fff}
+.cbar .sy{background:linear-gradient(90deg,#9db4e4,var(--perv-fonce))}
+.cbar .au{background:linear-gradient(90deg,var(--rose-clair),var(--rose))}
+.crd{font-family:'Josefin Sans';font-size:.68rem;color:var(--prune);white-space:nowrap}
+.crd b.s{color:var(--perv-fonce)} .crd b.a{color:var(--rose)}
+.verd{font-family:'Josefin Sans';font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;
+  color:#fff;padding:4px 11px;border-radius:12px}
+.verd.sys{background:var(--perv-fonce)} .verd.aut{background:var(--rose)} .verd.hyb{background:var(--lav)}
+
+.dbody{padding:20px 26px 26px}
+.blockt{display:flex;align-items:center;gap:9px;font-family:'Josefin Sans';font-size:.62rem;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--dom);margin:24px 0 10px}
+.blockt:first-child{margin-top:0}
+.bdot{width:14px;height:14px;flex:none;background:
+  radial-gradient(circle at 50% 50%, #fff 0 22%, var(--dom) 23% 40%, transparent 41%),
+  conic-gradient(from 0deg, var(--dom-lt) 0 12.5%, transparent 0 25%, var(--dom-lt) 0 37.5%, transparent 0 50%, var(--dom-lt) 0 62.5%, transparent 0 75%, var(--dom-lt) 0 87.5%, transparent 0);
+  border-radius:50%}
+.gen{font-size:.97rem;color:var(--prune);background:rgba(255,255,255,.55);
+  border-left:3px solid var(--dom);border-radius:0 12px 12px 0;padding:12px 16px}
+.gen b{color:var(--dom);font-weight:600}
+
+/* chapitres */
+.ch{list-style:none}
+.ch li{display:flex;gap:12px;padding:8px 0;border-bottom:1px dotted rgba(183,155,214,.55)}
+.ch li:last-child{border-bottom:none}
+.cnum{flex:none;width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.85);
+  border:1.5px solid var(--dom);display:flex;align-items:center;justify-content:center;
+  font-family:'Josefin Sans';font-size:.6rem;color:var(--prune);margin-top:2px}
+.cbody{flex:1;min-width:0}
+.cbody b{font-weight:600;color:var(--encre);font-size:.92rem}
+.k{display:inline-block;font-family:'Josefin Sans';font-size:.52rem;letter-spacing:.1em;
+  padding:1px 6px;margin-left:6px;border-radius:8px;vertical-align:2px;color:#fff}
+.k.fondation{background:var(--or)} .k.sys{background:var(--perv-fonce)} .k.auto{background:var(--rose)}
+.dep{display:block;font-size:.76rem;color:var(--prune-clair);font-style:italic;margin-top:1px}
+.dep b{color:var(--dom);font-style:normal;font-weight:600}
+
+/* strates */
+.strata{background:rgba(255,255,255,.5);border:1px solid rgba(183,155,214,.45);border-radius:16px;overflow:hidden}
+.tier{display:grid;grid-template-columns:96px 1fr;border-bottom:1px solid rgba(183,155,214,.35)}
+.tier:last-child{border-bottom:none}
+.tl{font-family:'Josefin Sans';font-size:.56rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--prune-clair);padding:12px 8px;border-right:1px solid rgba(183,155,214,.35);
+  display:flex;align-items:center;justify-content:center;text-align:center;background:rgba(216,198,236,.28)}
+.tc{padding:12px;display:flex;flex-wrap:wrap;gap:8px;align-items:center;min-width:0}
+.node{font-family:'Josefin Sans';font-size:.74rem;padding:6px 12px;border-radius:14px;
+  background:#fff;border:1.5px solid rgba(183,155,214,.6);white-space:nowrap;color:var(--encre)}
+.node.f{border-color:var(--or);background:rgba(224,163,78,.1)}
+.node.s{border-color:var(--perv);background:rgba(127,155,216,.1)}
+.node.a{border-color:var(--rose);background:rgba(217,104,154,.09)}
+.node.x{border-style:dashed;background:rgba(255,255,255,.6)}
+.ar{color:var(--prune-clair);font-size:1.05rem;font-weight:600;flex:none;opacity:.85}
+.flow{display:flex;align-items:center;justify-content:center;gap:10px;padding:6px 12px;
+  background:rgba(216,198,236,.22);border-bottom:1px solid rgba(183,155,214,.35);
+  font-size:.78rem;font-style:italic;color:var(--prune-clair);text-align:center}
+.fdot{width:9px;height:9px;flex:none;border-radius:50%;
+  background:radial-gradient(circle,#fff 0 25%,var(--dom) 26% 100%)}
+.note{font-size:.84rem;color:var(--prune-clair);font-style:italic;margin-top:10px}
+.note b{color:var(--dom);font-style:normal}
+
+/* spine */
+.spine{display:flex;flex-wrap:wrap;gap:8px}
+.sp{font-family:'Josefin Sans';font-size:.74rem;border:1px solid var(--vert);color:#3f7a66;
+  padding:5px 12px;border-radius:14px;background:rgba(93,158,134,.08)}
+.sp i{color:var(--prune-clair);font-size:.62rem;font-style:normal;margin-left:6px}
+
+/* split */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.split > div{border-radius:14px;padding:14px 16px}
+.split .u{background:rgba(127,155,216,.1);border:1px solid rgba(127,155,216,.45)}
+.split .m{background:rgba(217,104,154,.09);border:1px solid rgba(217,104,154,.4)}
+.split h5{font-family:'Josefin Sans';font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:8px}
+.split .u h5{color:var(--perv-fonce)} .split .m h5{color:var(--rose)}
+.split ul{list-style:none}
+.split li{font-size:.83rem;padding:3px 0 3px 16px;position:relative;color:var(--encre)}
+.split li::before{content:"❀";position:absolute;left:0;font-size:.55rem;top:6px;color:var(--dom)}
+@media(max-width:600px){.split{grid-template-columns:1fr}}
+
+/* navigation bas de page */
+.foot{margin-top:40px;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.navbtn{font-family:'Josefin Sans';font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--prune);text-decoration:none;border:1px solid rgba(183,155,214,.5);border-radius:20px;
+  padding:9px 18px;background:rgba(255,255,255,.55);transition:background .15s, color .15s}
+.navbtn:hover{background:var(--dom);color:#fff;border-color:transparent}
+.navbtn.home{color:var(--dom);border-color:var(--dom)}
+.foot .mark{margin:0 auto;text-align:center;color:var(--prune);
+  font-family:'Cormorant Garamond';font-style:italic;font-size:.95rem;width:100%;margin-top:10px}
+
+@media(max-width:620px){
+  .tier{grid-template-columns:72px 1fr}
+  .tc{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .tl{font-size:.5rem;padding:10px 4px}
+  .foot{flex-direction:column}
+}

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Outils de gestion — Cours détaillé · Master Plans</title>
+<meta name="description" content="Fiche de cours détaillée — Outils de gestion, discipline 07 de L'Architecture des Disciplines.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Josefin+Sans:wght@300;400;600&family=Spectral:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>:root{--dom:#c98a3a;--dom-lt:#f0c988}</style>
+</head>
+<body>
+<div class="sheet">
+  <div class="top">
+    <span class="cn">Master Plans · Cours détaillé · Discipline 07/19</span>
+    <a class="backlink" href="index.html">↩ Index des matières</a>
+  </div>
+
+<section class="disc" id="d07">
+  <div class="tab">篇 VII</div>
+  <div class="dhead">
+    <p class="dnum">Discipline 07</p>
+    <h3>Outils de gestion</h3>
+    <p class="dmeta">S6 · 2 ECTS · Isabelle Noël · contrôle de gestion appliqué</p>
+    <div class="cls">
+      <span class="clab">Classification</span>
+      <span class="cbar"><span class="sy" style="width:50%"></span><span class="au" style="width:50%"></span></span>
+      <span class="crd">Système <b class="s">50%</b> · Automatisme <b class="a">50%</b></span>
+      <span class="verd hyb">Hybride</span>
+    </div>
+  </div>
+  <div class="dbody">
+    <p class="blockt"><span class="bdot"></span>Problème générateur</p>
+    <p class="gen">Toutes les décisions de gestion doivent être prises <b>avant</b> de connaître la demande réelle. Comment décider quoi produire, quoi commander et quand, sans information certaine — et savoir de combien on peut se tromper ?</p>
+
+    <p class="blockt"><span class="bdot"></span>Chapitres &amp; ordre logique</p>
+    <ol class="ch"><li><span class="cnum">C1</span><div class="cbody"><b>Charges fixes vs variables : la reconstruction du réel</b><span class="k fondation">FONDATION</span><span class="k sys">SYS</span><span class="dep">Prérequis : Compta C3 · distinction absente du PCG, à reconstruire</span></div></li>
+<li><span class="cnum">C2</span><div class="cbody"><b>Le seuil de rentabilité &amp; le point mort</b><span class="k sys">SYS</span><span class="k auto">AUT</span><span class="dep">Prérequis : <b>C1</b> — dépendance totale</span></div></li>
+<li><span class="cnum">C3</span><div class="cbody"><b>Le levier d'exploitation &amp; les choix de structure</b><span class="k sys">SYS</span><span class="dep">Prérequis : <b>C2</b></span></div></li>
+<li><span class="cnum">C4</span><div class="cbody"><b>La gestion des stocks : Wilson, alerte, sécurité</b><span class="k sys">SYS</span><span class="k auto">AUT</span><span class="dep">Prérequis : <b>C1</b> · nature des coûts</span></div></li>
+<li><span class="cnum">C5</span><div class="cbody"><b>La méthode ABC</b><span class="k sys">SYS</span><span class="dep">Prérequis : <b>C4</b></span></div></li>
+<li><span class="cnum">C6</span><div class="cbody"><b>La prévision : tendance &amp; saisonnalité</b><span class="k auto">AUT</span><span class="dep">Prérequis : statistiques de base · <b>Alimente :</b> C4</span></div></li>
+<li><span class="cnum">C7</span><div class="cbody"><b>Le tableau de bord</b><span class="k sys">SYS</span><span class="dep">Prérequis : <b>C2, C4, C6</b> · agrège tout le reste</span></div></li></ol>
+
+    <p class="blockt"><span class="bdot"></span>Structure de dépendance</p>
+    <div class="strata">
+<div class="tier"><div class="tl">Préalable</div><div class="tc"><span class="node f">C1 · Fixe / variable</span></div></div>
+<div class="flow"><span class="fdot"></span>deux branches indépendantes, réunies à la fin<span class="fdot"></span></div>
+<div class="tier"><div class="tl">Branche A</div><div class="tc"><span class="node s">C2 · Seuil</span><span class="ar">→</span><span class="node s">C3 · Levier</span></div></div>
+<div class="tier"><div class="tl">Branche B</div><div class="tc"><span class="node s">C4 · Stocks</span><span class="ar">→</span><span class="node s">C5 · ABC</span><span class="ar">←</span><span class="node a">C6 · Prévision</span></div></div>
+<div class="flow"><span class="fdot"></span>réunion<span class="fdot"></span></div>
+<div class="tier"><div class="tl">Pilotage</div><div class="tc"><span class="node s">C7 · Tableau de bord</span></div></div>
+</div>
+    <p class="note">Le stock est de la trésorerie déguisée en marchandise : C4 et C5 rejoignent directement le BFR de la Gestion financière.</p>
+
+    <p class="blockt"><span class="bdot"></span>Concepts-colonnes</p>
+    <div class="spine"><span class="sp">Comportement des coûts<i>C1·C2·C3</i></span><span class="sp">Optimum = minimum d'une somme<i>C4</i></span><span class="sp">Décider sous incertitude<i>C6·C7</i></span></div>
+
+    <p class="blockt"><span class="bdot"></span>Compréhension / automatisme</p><div class="split"><div class="u"><h5>À comprendre</h5><ul><li>Pourquoi on divise par le <em>taux</em> de MCV et non par la MCV</li><li>Pourquoi l'optimum de Wilson est un minimum de somme, pas de coût</li><li>Pourquoi une structure lourde en fixes est rentable ET risquée</li></ul></div><div class="m"><h5>À automatiser</h5><ul><li>MCV → taux → SR → point mort → marge de sécurité</li><li>Formule de Wilson et cohérence des unités</li><li>Moindres carrés et coefficients saisonniers</li><li>Point d'indifférence entre deux structures</li></ul></div></div>
+  </div>
+</section>
+
+  <div class="foot">
+    <a class="navbtn prev" href="06-gestion-financiere.html">← Gestion financière</a>
+    <a class="navbtn home" href="index.html">Index des matières</a>
+    <a class="navbtn next" href="08-management-interculturel.html">Management interculturel →</a>
+  </div>
+  <p class="foot mark">Master Plans — L'Architecture des Disciplines · Étape 2, cours détaillé</p>
+</div>
+</body>
+</html>
