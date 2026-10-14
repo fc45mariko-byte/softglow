@@ -334,7 +334,7 @@ if __name__ == "__main__":
             print(f"  {k}/{total}", flush=True)
     ff.stdin.close(); ff.wait()
     out = "renders/scene1_animatic.mp4"
-    crf = 24
+    crf = 28  # crf 24 and 26 both exceeded 30 MB on this scene
     while True:
         subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", master, "-vf", "hqdn3d=1.5:1.5:4:4",
                         "-c:v", "libx264", "-crf", str(crf), "-preset", "slow", "-pix_fmt", "yuv420p",

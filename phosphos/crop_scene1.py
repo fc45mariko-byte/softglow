@@ -31,6 +31,9 @@ def blocks(a):
         y0, y1, x0, x1 = sl[0].start, sl[0].stop, sl[1].start, sl[1].stop
         if (x1 - x0) > W * 0.1 and (y1 - y0) > H * 0.1:
             boxes.append((x0, y0, x1, y1))
+    # drop fragments inside another panel (pale areas like a white tablecloth split a panel's mask)
+    inside = lambda a, b: a != b and a[0] >= b[0] - 8 and a[1] >= b[1] - 8 and a[2] <= b[2] + 8 and a[3] <= b[3] + 8
+    boxes = [a for a in boxes if not any(inside(a, b) for b in boxes)]
     boxes.sort(key=lambda b: (int(b[1] // (H / 6)), b[0]))
     return boxes
 
