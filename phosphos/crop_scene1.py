@@ -1,110 +1,96 @@
-"""Cut Scene 1 storyboard pages (3x2 grid, labels under panels) into clean panels.
+"""Cut Scene 1 storyboard pages into clean panels (no border, no labels).
 
 usage: python crop_scene1.py storyboards/scene1_p1.png ... -> panels/scene1/p{page}_{n}.png + panels/scene1/contact.png
-Grid is detected from the image: panel interiors are "ink-dense", gutters/labels/header are mostly bare paper.
+Panels are found as large connected blocks of non-paper pixels (works for irregular layouts, e.g. page 1's tall
+first panel), ordered in reading order, snapped inside their black border, and stripped of label boxes drawn inside
+the panel's top-left corner (page 1 shot labels, page 3 numbers). Labels outside panels sit on bare paper and drop out.
 """
 import sys, os, re
 import numpy as np
-from PIL import Image, ImageDraw
+from PIL import Image
+from scipy import ndimage
 
 OUT = "panels/scene1/"
-INSET = 6  # extra trim inside the detected black border
+INSET = 4        # trim just inside the black border
+SKIP = {(1, 5)}  # page 1, block 5 (bottom-left): duplicate of panel 3, mislabelled "4. MEDIUM — DEMETRIA"
 
 
-def runs(mask, min_len):
-    """[start, end) runs of True in a 1-D bool array, at least min_len long."""
-    out, s = [], None
-    for i, v in enumerate(list(mask) + [False]):
-        if v and s is None:
-            s = i
-        elif not v and s is not None:
-            if i - s >= min_len:
-                out.append((s, i))
-            s = None
-    return out
-
-
-def paper_mask(a):
-    """True where the pixel is bare paper (bright, low saturation)."""
+def paper(a):
     mx, mn = a.max(2), a.min(2)
-    return (mx > 0.70 * 255) & ((mx - mn) < 0.22 * 255)
+    return (mx > 200) & ((mx - mn) < 60)
 
 
-def best_k(profile, k, min_len):
-    """Find exactly k ink-dense runs by raising the threshold until k runs exist (largest k kept)."""
-    for thr in np.linspace(0.35, 0.9, 23):
-        r = runs(profile > thr, min_len)
-        if len(r) >= k:
-            r = sorted(r, key=lambda ab: ab[1] - ab[0], reverse=True)[:k]
-            return sorted(r)
-    raise RuntimeError(f"could not find {k} panel runs")
+def blocks(a):
+    """Bounding boxes of big non-paper blocks, reading order."""
+    H, W = a.shape[:2]
+    m = ndimage.binary_opening(~paper(a), iterations=3)  # drop thin text strokes
+    m = ndimage.binary_fill_holes(m)
+    lab, _ = ndimage.label(m)
+    boxes = []
+    for sl in ndimage.find_objects(lab):
+        y0, y1, x0, x1 = sl[0].start, sl[0].stop, sl[1].start, sl[1].stop
+        if (x1 - x0) > W * 0.1 and (y1 - y0) > H * 0.1:
+            boxes.append((x0, y0, x1, y1))
+    boxes.sort(key=lambda b: (int(b[1] // (H / 6)), b[0]))
+    return boxes
 
 
-def gaps_to_bounds(rs, total):
-    """Turn k ink runs into k [lo, hi) slots split at the middle of each gutter."""
-    cuts = [0] + [(rs[i][1] + rs[i + 1][0]) // 2 for i in range(len(rs) - 1)] + [total]
-    return list(zip(cuts[:-1], cuts[1:]))
-
-
-def first_line(prof, maxw, thr=0.6):
-    """Index just past the first border-dark run (scanning from index 0), capped at maxw px so dark art
-    touching the border is not swallowed; None if no border found."""
-    for i, v in enumerate(prof):
-        if v > thr:
-            j = i
-            while j < len(prof) and prof[j] > thr and j - i < maxw:
-                j += 1
-            return j
-    return None
-
-
-def tighten(dark, x0, x1, y0, y1):
-    """Within the slot, scan inward from each side to the black panel border, then step inside it."""
+def snap(dark, x0, y0, x1, y1):
+    """Move each edge inward past the black border line (border capped at 12 px)."""
     sub = dark[y0:y1, x0:x1]
     cols, rows = sub.mean(0), sub.mean(1)
-    mw = max(3, dark.shape[1] // 300)  # thin border: ~9 px on a 2752 px page
-    l, r = first_line(cols, mw), first_line(cols[::-1], mw)
-    t, b = first_line(rows, mw), first_line(rows[::-1], mw)
-    return (x0 + (l or 0) + INSET, x1 - (r or 0) - INSET, y0 + (t or 0) + INSET, y1 - (b or 0) - INSET)
+    def past(prof):
+        for i in range(min(25, len(prof))):
+            if prof[i] > 0.5:
+                j = i
+                while j < len(prof) and prof[j] > 0.5 and j - i < 12:
+                    j += 1
+                return j
+        return 0
+    return x0 + past(cols), y0 + past(rows), x1 - past(cols[::-1]), y1 - past(rows[::-1])
+
+
+def label_box(a):
+    """Height of a cream label box in the panel's top-left corner, or 0."""
+    p = (a.max(2) > 245) & (a.min(2) > 160)  # label fill: pale cream, lighter than any panel wash
+    if p[6:30, 6:50].mean() < 0.5:
+        return 0
+    hh = 6
+    while hh < a.shape[0] // 4 and p[hh, 6:40].mean() > 0.25:
+        hh += 1
+    return hh
 
 
 def cut(path):
     page = int(re.search(r"p(\d)", os.path.basename(path)).group(1))
     im = Image.open(path).convert("RGB")
     a = np.asarray(im).astype(np.int16)
-    H, W = a.shape[:2]
-    content = ~paper_mask(a)
-    dark = a.max(2) < 70
-
-    # columns: average over full height; panel columns are dense, gutters are paper
-    cols = gaps_to_bounds(best_k(content.mean(0) / max(content.mean(0).max(), 1e-6), 3, W // 8), W)
-    boxes = []
-    for x0, x1 in cols:
-        band = content[:, x0:x1].mean(1)
-        for y0, y1 in gaps_to_bounds(best_k(band / max(band.max(), 1e-6), 2, H // 6), H):
-            boxes.append((x0, x1, y0, y1))
-    # reading order: row-major (top row left->right, then bottom row)
-    boxes.sort(key=lambda b: (round(b[2] / (H / 3)), b[0]))
-    crops = []
-    for n, (x0, x1, y0, y1) in enumerate(boxes, 1):
-        X0, X1, Y0, Y1 = tighten(dark, x0, x1, y0, y1)
+    dark = a.max(2) < 80
+    crops, n = [], 0
+    for k, (x0, y0, x1, y1) in enumerate(blocks(a), 1):
+        if (page, k) in SKIP:
+            print(f"page {page} block {k} {(x0, y0, x1, y1)}: skipped (duplicate)")
+            continue
+        n += 1
+        X0, Y0, X1, Y1 = snap(dark, x0, y0, x1, y1)
+        X0, Y0, X1, Y1 = X0 + INSET, Y0 + INSET, X1 - INSET, Y1 - INSET
+        hh = label_box(a[Y0:Y1, X0:X1])
+        if hh:
+            Y0 += hh + 8  # drop the strip holding the label box
         c = im.crop((X0, Y0, X1, Y1))
         name = f"{OUT}p{page}_{n}.png"
         c.save(name)
         crops.append(c)
-        print(name, (X0, Y0, X1, Y1), c.size)
-    return page, im, crops
+        print(name, (X0, Y0, X1, Y1), c.size, f"label strip {hh}px" if hh else "")
+    return page, crops
 
 
 if __name__ == "__main__":
     os.makedirs(OUT, exist_ok=True)
-    sheet_rows = []
-    for p in sys.argv[1:]:
-        sheet_rows.append(cut(p))
-    # contact sheet: one row per page, 6 thumbs
+    rows = [cut(p) for p in sys.argv[1:]]
     tw, th = 300, 190
-    sheet = Image.new("RGB", (6 * (tw + 8) + 8, len(sheet_rows) * (th + 8) + 8), (40, 40, 40))
-    for r, (page, _, crops) in enumerate(sheet_rows):
+    sheet = Image.new("RGB", (6 * (tw + 8) + 8, len(rows) * (th + 8) + 8), (40, 40, 40))
+    for r, (_, crops) in enumerate(rows):
         for c, im in enumerate(crops):
             t = im.copy(); t.thumbnail((tw, th))
             sheet.paste(t, (8 + c * (tw + 8), 8 + r * (th + 8)))

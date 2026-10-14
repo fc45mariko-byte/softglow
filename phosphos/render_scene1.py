@@ -171,24 +171,24 @@ def subtitle(img, speaker, text, alpha):
 # (panel, camera, rain strength, flicker, extra, [(speaker, line), ...], min seconds)
 A, D, M = "ASHOKA", "DEMETRIA", "MAN"
 SHOTS = [
-    ("p1_1", pan(0.3, 0.7, 0.5, 0.95), 1.0, 0.03, None, [], 5.5),             # EXT wide, rain over Phosphos
-    ("p1_2", pull(0.5, 0.5, 0.78, 0.98), 0, 0.06, None, [], 4.5),             # INT the salon
-    ("p1_3", push(0.45, 0.42, 1.0, 0.84), 0, 0.05, None, [], 4.0),            # Ashoka + merchant
-    ("p1_4", push(0.5, 0.4, 0.98, 0.84), 0, 0.05, None,
+    ("p1_1", tilt(0.0, 1.0, 0.5, 1.0), 1.0, 0.03, None, [], 5.5),             # EXT wide, rain over Phosphos
+    ("p1_2", pan(0.12, 0.88, 0.5, 1.0), 0, 0.06, None, [], 4.5),             # INT the salon
+    ("p1_3", push(0.4, 0.4, 1.0, 0.82), 0, 0.05, None, [], 4.0),            # Ashoka + merchant
+    ("p1_4", push(0.72, 0.4, 1.0, 0.8), 0, 0.05, None,
      [(D, "He’s going to offer her a house."), (A, "He already owns three.")], 3.5),
     ("p1_5", pull(0.5, 0.45, 0.82, 1.0), 0, 0.05, None,
      [(D, "Then she’ll get four."), (A, "You always did have a weakness for optimistic men."),
       (D, "And you always did mistake boredom for intelligence.")], 4.0),
-    ("p1_6", push(0.5, 0.42, 1.0, 0.82), 0, 0.05, None,
+    ("p1_6", push(0.68, 0.4, 1.0, 0.8), 0, 0.05, None,
      [(D, "Do you think he’ll come back?"), (A, "Of course."), (D, "Why?"), (A, "I told him he was a good father.")], 4.0),
     ("p2_1", push(0.5, 0.4, 1.0, 0.86), 0, 0.05, None, [], 3.2),              # Demetria laughs
     ("p2_2", push(0.5, 0.4, 0.98, 0.78), 0, 0.03, None, [], 4.0),             # Ashoka looks; room falls away
     ("p2_3", pan(0.42, 0.58, 0.45, 0.9), 0, 0.05, None, [(D, "How unfortunate.")], 3.5),
     ("p2_4", push(0.5, 0.5, 1.0, 0.85), 0, 0.10, None, [], 4.0),              # private chamber, single lantern
-    ("p2_5", pan(0.6, 0.4, 0.45, 0.9), 0, 0.10, None, [], 3.2),               # Ashoka closes the door
+    ("p2_5", push(0.5, 0.35, 1.0, 0.8), 0, 0.10, None, [], 3.2),               # Ashoka closes the door
     ("p2_6", push(0.5, 0.45, 1.0, 0.86), 0, 0.10, None,
      [(D, "Stay. You’ve paid for the evening."), (M, "I thought the evening was going rather well."), (A, "It was.")], 4.0),
-    ("p3_1", push(0.5, 0.4, 1.0, 0.8), 0, 0.10, None,
+    ("p3_1", push(0.35, 0.4, 1.0, 0.8), 0, 0.10, None,
      [(A, "Tell me something. When you came here tonight,"), (A, "what did you think you were buying?"),
       (M, "Your company."), (D, "And what did you think we were selling?")], 4.0),
     ("p3_2", push(0.5, 0.45, 0.95, 0.75), 0, 0.22, None, [], 3.0),            # INSERT the flame
@@ -198,9 +198,9 @@ SHOTS = [
     ("p3_6", pull(0.5, 0.45, 0.85, 1.0), 0.35, 0.03, None, [], 3.8),          # courtyard, later
     ("p4_1", push(0.5, 0.5, 1.0, 0.86), 0.3, 0.03, None,
      [(D, "Do you remember when we first came here?"), (A, "To Phosphos?"), (D, "No. Here.")], 4.0),
-    ("p4_2", push(0.5, 0.4, 1.0, 0.84), 0.3, 0.03, None,
+    ("p4_2", push(0.35, 0.4, 1.0, 0.82), 0.3, 0.03, None,
      [(A, "We have lived in so many houses."), (D, "That’s not what I asked."), (A, "No.")], 4.0),
-    ("p4_3", push(0.5, 0.4, 1.0, 0.86), 0.3, 0.03, None, [], 3.4),            # Demetria waits
+    ("p4_3", push(0.68, 0.4, 1.0, 0.84), 0.3, 0.03, None, [], 3.4),            # Demetria waits
     ("p4_4", push(0.5, 0.5, 0.98, 0.8), 0.3, 0.03, None,
      [(A, "Does it matter?"), (D, "I don’t know.")], 3.5),
     ("p4_5", pull(0.5, 0.55, 0.62, 1.0), 0.3, 0.03, None, [], 5.0),           # pulling away
