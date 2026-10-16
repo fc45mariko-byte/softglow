@@ -9,7 +9,7 @@ All motion is built in Remotion from still keyframes; no AI video.
 |---|---|
 | 1 Setup | done: Remotion project, ledger, reference sheets identified |
 | 2 Keyframes | 16/16 generated in Magnific (`imagen-nano-banana-2`, 9:16) |
-| 3 Layers | 13 foreground cutouts generated (shots 2–8, 10–13, 15, 16) |
+| 3 Layers | 13 foreground cutouts generated; 8 in the repo (shots 5–8, 11, 12, 15, 16), 5 still to fetch (2, 3, 4, 10, 13) |
 | 4 Audio | 17 voice takes, 2 music tracks, 14 SFX generated; `voices.json` |
 | 5 Animation | all 16 shots + effect library + transitions + grade |
 | 6 Subtitles | `subtitles.fr.srt` + burned-in `Subtitles` component |
@@ -18,7 +18,7 @@ All motion is built in Remotion from still keyframes; no AI video.
 Credits: **1,883 / 4,000** (see `ledger.csv`, reconciled against the account balance).
 
 **The 16 keyframes are in the repo** (`public/assets/shots/shotNN.jpg`, 1536×2752, JPEG q93).
-Cutouts, voices, music and SFX are not: the generating session could not reach the Magnific
+Cutouts for shots 5–8, 11, 12, 15 and 16 are in `public/assets/layers/`. The other 5 cutouts, voices, music and SFX are not: the generating session could not reach the Magnific
 CDN (`pikaso.cdnpk.net`). Until `npm run fetch` gets them, shots render without parallax
 cutouts and the film has no sound. Every asset's creation id and signed URL is in `assets_manifest.json`.
 
