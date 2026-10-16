@@ -23,7 +23,7 @@ Credits: **1,883 / 4,000** (see `ledger.csv`, reconciled against the account bal
 |---|---|---|
 | Keyframes | 16/16 (`public/assets/shots/*.jpg`) | none |
 | Cutouts | 12/13: all except shot 3 | shot 3: Magnific background removal returned the full frame (no transparency), so shot 3 runs without a cutout |
-| Voice lines | 16/17 (mapping in `assets/voice_file_mapping.md`) | shot13_cheers_luna (audio_19) |
+| Voice lines | 17/17 (mapping in `assets/voice_file_mapping.md`) | none |
 | Music | hunt + party (both 156 s; hunt cut at the shot 11 switch) | none |
 | SFX | 14/14 | none |
 

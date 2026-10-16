@@ -21,6 +21,6 @@ duration (ceil of the real length) and the speech end from `audio_timing_get`.
 | audio_16 | 12 | shot15_cara | 1.28 / 1.28 s |
 | audio_17 | 13 | shot16_luna | 0.90 / 0.88 s |
 | audio_18 | 14 | shot13_cheers_tara | 0.72 s |
-| audio_19 | 15 | shot13_cheers_luna | not supplied |
+| audio_19 | 15 | shot13_cheers_luna | supplied (Magnific timing 0.64 s) |
 | audio_20 | 16 | shot13_cheers_cara | 0.65 / 0.80 s |
 | audio_21 | 17 | shot13_cheers_luca | 0.50 s |
