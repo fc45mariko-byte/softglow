@@ -17,3 +17,5 @@ to takes already identified.
 | audio_13 | shot11_luca | ends 1.64 s (timing 1.68 s); timbre closest to the male voices |
 | audio_15 | shot13_tara | 3.44 s, timbre closest to Tara |
 | audio_17 | shot16_luna | ends 0.90 s (timing 0.88 s), timbre closest to Luna |
+| audio_20 | shot13_cheers_tara | ~0.55 s of speech, length rounds up to 3 s, timbre closest to Tara |
+| audio_21 | shot13_cheers_luca | ~0.4 s of speech, length rounds up to 4 s (only the Luca take is 4 s) |

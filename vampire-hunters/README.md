@@ -23,12 +23,11 @@ Credits: **1,883 / 4,000** (see `ledger.csv`, reconciled against the account bal
 |---|---|---|
 | Keyframes | 16/16 (`public/assets/shots/*.jpg`) | none |
 | Cutouts | 8/13: shots 5–8, 11, 12, 15, 16 | shots 2, 3, 4, 10, 13 |
-| Voice lines | 10/17 (mapping in `assets/voice_file_mapping.md`) | shot03_luca, shot10_tara, shot12_luna, the four "Cheers!" takes |
-| Music | hunt (156 s; cut at the shot 11 switch) | party |
-| SFX | 5/14: wind_bell, boots, crossbow, bolt_impact, daggers | katana, stake, ash, neon, bottles, glasses, cheer, crowd, birds |
+| Voice lines | 12/17 (mapping in `assets/voice_file_mapping.md`) | shot03_luca, shot10_tara, shot12_luna, cheers_luna, cheers_cara |
+| Music | hunt + party (both 156 s; hunt cut at the shot 11 switch) | none |
+| SFX | 14/14 | none |
 
 Missing pieces are skipped at render time (no cutout = no parallax for that shot; missing audio is silent).
-Without the party track, Act 2 has no music and shot 14's strobe runs on a 120 BPM grid.
 The CDN (`pikaso.cdnpk.net`) was unreachable from the generating session; `npm run fetch` pulls the rest.
 Every asset's creation id and signed URL is in `assets_manifest.json`.
 
