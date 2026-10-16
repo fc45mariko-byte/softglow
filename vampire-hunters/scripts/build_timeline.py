@@ -63,7 +63,11 @@ def duration(path: pathlib.Path, fallback: float) -> float:
         y, sr = librosa.load(str(path), sr=16000, mono=True)
         rms = librosa.feature.rms(y=y, frame_length=640, hop_length=160)[0]
         voiced = np.where(rms > rms.max() * 0.06)[0]
-        return float((voiced[-1] + 1) * 160 / sr) + 0.1
+        # Split into runs separated by >= 0.2 s; drop trailing clicks shorter than 0.1 s.
+        runs = np.split(voiced, np.where(np.diff(voiced) > 20)[0] + 1)
+        while len(runs) > 1 and len(runs[-1]) < 10:
+            runs.pop()
+        return float((runs[-1][-1] + 1) * 160 / sr) + 0.1
     return fallback
 
 

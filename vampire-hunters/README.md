@@ -23,7 +23,7 @@ Credits: **1,883 / 4,000** (see `ledger.csv`, reconciled against the account bal
 |---|---|---|
 | Keyframes | 16/16 (`public/assets/shots/*.jpg`) | none |
 | Cutouts | 8/13: shots 5–8, 11, 12, 15, 16 | shots 2, 3, 4, 10, 13 |
-| Voice lines | 12/17 (mapping in `assets/voice_file_mapping.md`) | shot03_luca, shot10_tara, shot12_luna, cheers_luna, cheers_cara |
+| Voice lines | 16/17 (mapping in `assets/voice_file_mapping.md`) | shot13_cheers_luna (audio_19) |
 | Music | hunt + party (both 156 s; hunt cut at the shot 11 switch) | none |
 | SFX | 14/14 | none |
 

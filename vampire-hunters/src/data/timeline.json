@@ -95,7 +95,7 @@
    "file": "assets/vo/shot03_luca.mp3",
    "speaker": "luca",
    "from": 290,
-   "dur": 59
+   "dur": 39
   },
   {
    "file": "assets/vo/shot04_cara.mp3",
@@ -107,7 +107,7 @@
    "file": "assets/vo/shot06_tara.mp3",
    "speaker": "tara",
    "from": 647,
-   "dur": 107
+   "dur": 82
   },
   {
    "file": "assets/vo/shot07_luca.mp3",
@@ -131,7 +131,7 @@
    "file": "assets/vo/shot10_tara.mp3",
    "speaker": "tara",
    "from": 1152,
-   "dur": 59
+   "dur": 35
   },
   {
    "file": "assets/vo/shot11_luca.mp3",
@@ -143,7 +143,7 @@
    "file": "assets/vo/shot12_luna.mp3",
    "speaker": "luna",
    "from": 1395,
-   "dur": 72
+   "dur": 53
   },
   {
    "file": "assets/vo/shot13_tara.mp3",
@@ -155,7 +155,7 @@
    "file": "assets/vo/shot13_cheers_tara.mp3",
    "speaker": "all",
    "from": 1617,
-   "dur": 92
+   "dur": 80
   },
   {
    "file": "assets/vo/shot13_cheers_luna.mp3",
@@ -167,7 +167,7 @@
    "file": "assets/vo/shot13_cheers_cara.mp3",
    "speaker": "all",
    "from": 1617,
-   "dur": 26
+   "dur": 23
   },
   {
    "file": "assets/vo/shot13_cheers_luca.mp3",
@@ -179,7 +179,7 @@
    "file": "assets/vo/shot15_cara.mp3",
    "speaker": "cara",
    "from": 1901,
-   "dur": 35
+   "dur": 42
   },
   {
    "file": "assets/vo/shot16_luna.mp3",
@@ -198,7 +198,7 @@
   },
   {
    "from": 290,
-   "to": 357,
+   "to": 337,
    "speaker": "luca",
    "text": "« Le couvre-feu, c'est\npour les vivants. »",
    "en": "Curfew's for the living."
@@ -212,7 +212,7 @@
   },
   {
    "from": 647,
-   "to": 762,
+   "to": 737,
    "speaker": "tara",
    "text": "« Je t'ai manqué ? Moi,\nje ne t'ai pas raté. »",
    "en": "Missed me? I didn't miss you."
@@ -240,7 +240,7 @@
   },
   {
    "from": 1152,
-   "to": 1219,
+   "to": 1195,
    "speaker": "tara",
    "text": "« Alors c'est Luca\nqui paie les verres. »",
    "en": "Then drinks are on Luca."
@@ -254,7 +254,7 @@
   },
   {
    "from": 1395,
-   "to": 1475,
+   "to": 1456,
    "speaker": "luna",
    "text": "« Parce que t'as perdu\nle pari, mon cœur. »",
    "en": "Because you lost the bet, babe."
@@ -268,14 +268,14 @@
   },
   {
    "from": 1617,
-   "to": 1717,
+   "to": 1705,
    "speaker": "all",
    "text": "« Santé ! »",
    "en": "Cheers!"
   },
   {
    "from": 1901,
-   "to": 1944,
+   "to": 1951,
    "speaker": "cara",
    "text": "« Même heure demain ? »",
    "en": "Same time tomorrow?"
