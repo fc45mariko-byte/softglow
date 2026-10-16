@@ -54,7 +54,7 @@ export const MoonBackdrop: React.FC<{moonY?: number}> = ({moonY = 760}) => {
   return (
     <AbsoluteFill style={{background: COLORS.ink}}>
       <svg width={width} height={height}>
-        <circle cx={width / 2} cy={moonY} r={430} fill={COLORS.red} />
+        <circle cx={545} cy={moonY} r={410} fill={COLORS.red} />
         {spires.map(([x, top, w], i) => (
           <g key={i} fill={COLORS.ink}>
             <polygon points={`${x - w / 2},${height} ${x - w / 2},${top + 160} ${x},${top} ${x + w / 2},${top + 160} ${x + w / 2},${height}`} />

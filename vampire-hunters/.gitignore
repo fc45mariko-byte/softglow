@@ -1,3 +1,4 @@
 node_modules/
 out/*.mp4
-public/assets/
+public/assets/*
+!public/assets/shots/

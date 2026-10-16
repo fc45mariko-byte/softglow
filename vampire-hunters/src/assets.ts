@@ -7,7 +7,11 @@ const present = new Set(getStaticFiles().map((f) => f.name));
 export const has = (path: string) => present.has(path);
 export const src = (path: string) => staticFile(path);
 
-export const shotPath = (n: number) => `assets/shots/shot${String(n).padStart(2, '0')}.png`;
+// Keyframes may be the CDN PNG (fetch_assets.py) or a committed JPEG copy.
+export const shotPath = (n: number) => {
+  const base = `assets/shots/shot${String(n).padStart(2, '0')}`;
+  return has(`${base}.jpg`) ? `${base}.jpg` : `${base}.png`;
+};
 export const fgPath = (n: number) => `assets/layers/shot${String(n).padStart(2, '0')}_fg.png`;
 
 export const COLORS = {

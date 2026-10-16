@@ -17,9 +17,10 @@ All motion is built in Remotion from still keyframes; no AI video.
 
 Credits: **1,883 / 4,000** (see `ledger.csv`, reconciled against the account balance).
 
-**Assets are not in the repo yet.** The session that generated them could not reach
-the Magnific CDN (`pikaso.cdnpk.net`), so everything renders with placeholders until
-you fetch them. Every asset's creation id and signed URL is in `assets_manifest.json`.
+**The 16 keyframes are in the repo** (`public/assets/shots/shotNN.jpg`, 1536×2752, JPEG q93).
+Cutouts, voices, music and SFX are not: the generating session could not reach the Magnific
+CDN (`pikaso.cdnpk.net`). Until `npm run fetch` gets them, shots render without parallax
+cutouts and the film has no sound. Every asset's creation id and signed URL is in `assets_manifest.json`.
 
 ## Build
 
@@ -58,9 +59,8 @@ Cara: Cordelia Ashford (1047) · Luca: Alistair Ashford (1103).
 
 ## Deviations from the production plan
 
-- **Keyframes are 768×1344**, not "2k": Nano Banana Pro returns 768×1344 at 9:16 even with
-  `resolution: 2k`. Frames are scaled ~1.43× to cover 1080×1920. Upscaling would sharpen them
-  (not done; check the cost with `simulate_cost` on `images_upscale` first).
+- **Keyframe size**: Magnific metadata reports 768×1344, but the delivered files are 1536×2752,
+  so they are scaled down to 1080×1920 and no upscale is needed.
 - **Music uses `google-lyria-3-pro`** (160 credits/track): `google-lyria-3` is fixed at 30 s,
   shorter than both the 42 s and 33 s cues.
 - **Sheets passed as `image` references**: Magnific's `character` type accepts only its
@@ -71,5 +71,15 @@ Cara: Cordelia Ashford (1047) · Luca: Alistair Ashford (1103).
 - **Shot 9 dissolve** masks the whole keyframe top-to-bottom over a flat moon/spire backdrop
   (no cutout was planned for shot 9).
 - **"Cheers!"** is four separate takes (one per voice) layered.
-- Effect positions (moon glow, eye glint, burst centres) were placed without seeing the keyframes;
-  adjust the coordinates in `src/shots/Shots.tsx` after the first real render.
+- Effect positions (moon glow, eye glint, goggle glint, impact points, dagger launch points,
+  slash path, foam origin, dawn sun) are matched to the delivered keyframes in `src/shots/Shots.tsx`.
+
+## Keyframe QA against the sheets (no retakes made)
+
+| Shot | Note |
+|---|---|
+| 5 | A rifle-like object floats next to the vampire; the crossbow is drawn in his hand rather than as a bolt in his shoulder |
+| 6, 10, 11, 13–16 | Tara's hair is rendered white rather than platinum blonde; in 6 and 16 her outfit is sage instead of black |
+| 9 | The dissolving silhouette has spiky hair and a red-lined coat, closer to Luca than to the gaunt vampire |
+| 11, 13, 15 | Neon signs contain pseudo-letters |
+| 16 | Cara's outfit is red instead of black |

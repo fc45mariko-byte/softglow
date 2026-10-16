@@ -17,8 +17,8 @@ export const Shot01: React.FC<ShotProps> = ({dur}) => {
   return (
     <KenBurns from={1} to={1.08}>
       <Plate path={shotPath(1)} label={label(1)} />
-      <Glow x={540} y={760} r={620} color={COLORS.red} opacity={pulse} />
-      <Bats />
+      <Glow x={550} y={440} r={560} color={COLORS.red} opacity={pulse} />
+      <Bats count={4} />
     </KenBurns>
   );
 };
@@ -37,7 +37,7 @@ export const Shot02: React.FC<ShotProps> = ({dur}) => {
         amount={0.012}
         fgStyle={(f) => ({transformOrigin: '50% 0%', transform: `skewX(${Math.sin(f / 9) * 1.2}deg)`})}
       />
-      <Glow x={540} y={640} r={120} color={COLORS.neonRed} opacity={glint} />
+      <Glow x={392} y={300} r={90} color={COLORS.neonRed} opacity={glint} />
     </KenBurns>
   );
 };
@@ -48,20 +48,21 @@ export const Shot03: React.FC<ShotProps> = () => (
     <KenBurns from={1.07} to={1}>
       <Parallax bg={shotPath(3)} fg={fgPath(3)} label={label(3)} amount={0.01} />
     </KenBurns>
-    <Particles kind="dust" count={80} origin={{x: 540, y: 1600}} seed="bootdust" />
+    <Particles kind="dust" count={50} origin={{x: 270, y: 1570}} seed="bootdustL" />
+    <Particles kind="dust" count={50} origin={{x: 800, y: 1520}} seed="bootdustR" />
   </Shake>
 );
 
 // 4 · Cara aims: push-in on her eye, red glint sweeps the goggles, hair sways.
 export const Shot04: React.FC<ShotProps> = ({dur}) => {
   const frame = useCurrentFrame();
-  const sweep = interpolate(frame, [at(dur, 0.3), at(dur, 0.55)], [-300, 1300], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
+  const sweep = interpolate(frame, [at(dur, 0.3), at(dur, 0.55)], [560, 820], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
   return (
-    <KenBurns from={1} to={1.14} x={[0, -40]} y={[0, 60]}>
+    <KenBurns from={1} to={1.14} x={[0, -17]} y={[0, 84]}>
       <Parallax bg={shotPath(4)} fg={fgPath(4)} label={label(4)} amount={0.015} fgStyle={(f) => ({transform: `rotate(${Math.sin(f / 14) * 0.4}deg)`})} />
       <AbsoluteFill style={{mixBlendMode: 'screen'}}>
         <svg width={1080} height={1920}>
-          <polygon points={`${sweep},300 ${sweep + 70},300 ${sweep - 130},800 ${sweep - 200},800`} fill={COLORS.neonRed} opacity={0.55} />
+          <polygon points={`${sweep},280 ${sweep + 50},280 ${sweep - 40},440 ${sweep - 90},440`} fill={COLORS.cream} opacity={0.6} />
         </svg>
       </AbsoluteFill>
     </KenBurns>
@@ -78,7 +79,7 @@ export const Shot05: React.FC<ShotProps> = ({dur}) => (
         </KenBurns>
       </Shake>
     </HitStop>
-    <SpeedLines cx={600} cy={820} from={2} to={dur - 20} seed="bolt" />
+    <SpeedLines cx={545} cy={415} from={2} to={dur - 20} seed="bolt" />
     <Flash at={0} hold={2} fade={2} />
   </>
 );
@@ -90,8 +91,8 @@ export const Shot06: React.FC<ShotProps> = ({dur}) => (
       <Parallax bg={shotPath(6)} fg={fgPath(6)} label={label(6)} amount={0.02} />
     </KenBurns>
     <SpeedLines cx={540} cy={900} from={at(dur, 0.12)} to={at(dur, 0.55)} count={36} seed="dag" />
-    <FlyingDagger from={at(dur, 0.12)} frames={18} startX={470} startY={820} endX={-200} endY={1500} spin={900} />
-    <FlyingDagger from={at(dur, 0.18)} frames={18} startX={610} startY={800} endX={1300} endY={1350} spin={-800} />
+    <FlyingDagger from={at(dur, 0.12)} frames={18} startX={170} startY={1240} endX={-260} endY={1900} spin={900} />
+    <FlyingDagger from={at(dur, 0.18)} frames={18} startX={700} startY={1080} endX={1350} endY={1700} spin={-800} />
   </>
 );
 
@@ -103,7 +104,7 @@ export const Shot07: React.FC<ShotProps> = () => (
         <Parallax bg={shotPath(7)} fg={fgPath(7)} label={label(7)} amount={0.02} dir={-1} />
       </KenBurns>
     </WhipIn>
-    <SlashArc at={8} frames={5} />
+    <SlashArc at={8} frames={5} d="M 60 1800 Q 1110 1330 870 480" width={22} />
     <Flash at={13} color="#fff" hold={1} fade={5} max={0.8} />
   </>
 );
@@ -129,8 +130,8 @@ export const Shot08: React.FC<ShotProps> = ({dur}) => {
               const a = (i / 14) * Math.PI * 2;
               const r1 = 60 + burst * 300;
               const r2 = 160 + burst * 900;
-              const cx = 540;
-              const cy = 960;
+              const cx = 425;
+              const cy = 1160;
               return (
                 <polygon
                   key={i}
@@ -150,7 +151,7 @@ export const Shot08: React.FC<ShotProps> = ({dur}) => {
 // 9 · Ash: top-to-bottom particle dissolve, ash drifts upward.
 export const Shot09: React.FC<ShotProps> = ({dur}) => (
   <>
-    <MoonBackdrop />
+    <MoonBackdrop moonY={520} />
     <DissolveMask from={at(dur, 0.1)} to={at(dur, 0.85)}>
       <Plate path={shotPath(9)} label={label(9)} />
     </DissolveMask>
@@ -195,7 +196,7 @@ export const Shot12: React.FC<ShotProps> = ({dur}) => {
       <KenBurns from={1} to={1.12}>
         <Cutout path={fgPath(12)} />
       </KenBurns>
-      <Particles kind="foam" count={70} origin={{x: 540, y: 760}} from={clink} seed="foam" />
+      <Particles kind="foam" count={70} origin={{x: 620, y: 520}} from={clink} seed="foam" />
       <Flash at={clink} color="#fff" hold={1} fade={4} max={0.6} />
     </>
   );
@@ -245,7 +246,7 @@ export const Shot16: React.FC<ShotProps & {titleAt: number; blackAt: number}> = 
     <>
       <KenBurns from={1} to={1.08}>
         <Parallax bg={shotPath(16)} fg={fgPath(16)} label={label(16)} tint={COLORS.cream} amount={0.008} />
-        <Glow x={540} y={820} r={700} color="#fff4dc" opacity={sun} />
+        <Glow x={560} y={650} r={520} color="#fff4dc" opacity={sun} />
       </KenBurns>
       {title > 0 && (
         <AbsoluteFill style={{background: COLORS.ink, opacity: title, alignItems: 'center', justifyContent: 'center'}}>
