@@ -1,7 +1,7 @@
 {
  "fps": 30,
  "total": 2250,
- "musicSwitch": 1260,
+ "musicSwitch": 1262,
  "shots": [
   {
    "id": 1,
@@ -11,52 +11,52 @@
   {
    "id": 2,
    "from": 120,
-   "dur": 150
+   "dur": 152
   },
   {
    "id": 3,
-   "from": 270,
-   "dur": 120
+   "from": 272,
+   "dur": 121
   },
   {
    "id": 4,
-   "from": 390,
-   "dur": 150
+   "from": 393,
+   "dur": 149
   },
   {
    "id": 5,
-   "from": 540,
+   "from": 542,
    "dur": 90
   },
   {
    "id": 6,
-   "from": 630,
+   "from": 632,
    "dur": 120
   },
   {
    "id": 7,
-   "from": 750,
+   "from": 752,
    "dur": 90
   },
   {
    "id": 8,
-   "from": 840,
+   "from": 842,
    "dur": 150
   },
   {
    "id": 9,
-   "from": 990,
+   "from": 992,
    "dur": 90
   },
   {
    "id": 10,
-   "from": 1080,
+   "from": 1082,
    "dur": 180
   },
   {
    "id": 11,
-   "from": 1260,
-   "dur": 120
+   "from": 1262,
+   "dur": 118
   },
   {
    "id": 12,
@@ -88,56 +88,56 @@
   {
    "file": "assets/vo/shot02_vampire.mp3",
    "speaker": "vampire",
-   "from": 138,
-   "dur": 84
+   "from": 132,
+   "dur": 141
   },
   {
    "file": "assets/vo/shot03_luca.mp3",
    "speaker": "luca",
-   "from": 288,
+   "from": 290,
    "dur": 59
   },
   {
    "file": "assets/vo/shot04_cara.mp3",
    "speaker": "cara",
-   "from": 402,
-   "dur": 82
+   "from": 405,
+   "dur": 132
   },
   {
    "file": "assets/vo/shot06_tara.mp3",
    "speaker": "tara",
-   "from": 645,
-   "dur": 69
+   "from": 647,
+   "dur": 107
   },
   {
    "file": "assets/vo/shot07_luca.mp3",
    "speaker": "luca",
-   "from": 774,
-   "dur": 30
+   "from": 776,
+   "dur": 38
   },
   {
    "file": "assets/vo/shot08_luna.mp3",
    "speaker": "luna",
-   "from": 849,
-   "dur": 65
+   "from": 851,
+   "dur": 79
   },
   {
    "file": "assets/vo/shot10_cara.mp3",
    "speaker": "cara",
-   "from": 1095,
-   "dur": 51
+   "from": 1097,
+   "dur": 46
   },
   {
    "file": "assets/vo/shot10_tara.mp3",
    "speaker": "tara",
-   "from": 1155,
+   "from": 1152,
    "dur": 59
   },
   {
    "file": "assets/vo/shot11_luca.mp3",
    "speaker": "luca",
-   "from": 1290,
-   "dur": 51
+   "from": 1292,
+   "dur": 52
   },
   {
    "file": "assets/vo/shot12_luna.mp3",
@@ -149,105 +149,105 @@
    "file": "assets/vo/shot13_tara.mp3",
    "speaker": "tara",
    "from": 1545,
-   "dur": 67
+   "dur": 68
   },
   {
    "file": "assets/vo/shot13_cheers_tara.mp3",
    "speaker": "all",
-   "from": 1616,
+   "from": 1617,
    "dur": 26
   },
   {
    "file": "assets/vo/shot13_cheers_luna.mp3",
    "speaker": "all",
-   "from": 1616,
+   "from": 1617,
    "dur": 26
   },
   {
    "file": "assets/vo/shot13_cheers_cara.mp3",
    "speaker": "all",
-   "from": 1616,
+   "from": 1617,
    "dur": 26
   },
   {
    "file": "assets/vo/shot13_cheers_luca.mp3",
    "speaker": "all",
-   "from": 1616,
+   "from": 1617,
    "dur": 26
   },
   {
    "file": "assets/vo/shot15_cara.mp3",
    "speaker": "cara",
    "from": 1896,
-   "dur": 49
+   "dur": 35
   },
   {
    "file": "assets/vo/shot16_luna.mp3",
    "speaker": "luna",
    "from": 2070,
-   "dur": 32
+   "dur": 30
   }
  ],
  "subs": [
   {
-   "from": 138,
-   "to": 230,
+   "from": 132,
+   "to": 281,
    "speaker": "vampire",
    "text": "« Quatre petits chasseurs…\ndehors après le couvre-feu ? »",
    "en": "Four little hunters… out past curfew?"
   },
   {
-   "from": 288,
-   "to": 355,
+   "from": 290,
+   "to": 357,
    "speaker": "luca",
    "text": "« Le couvre-feu, c'est\npour les vivants. »",
    "en": "Curfew's for the living."
   },
   {
-   "from": 402,
-   "to": 492,
+   "from": 405,
+   "to": 545,
    "speaker": "cara",
    "text": "« Ne bouge pas. Ça ne fait\nmal que pour l'éternité. »",
    "en": "Hold still. This only hurts forever."
   },
   {
-   "from": 645,
-   "to": 722,
+   "from": 647,
+   "to": 762,
    "speaker": "tara",
    "text": "« Je t'ai manqué ? Moi,\nje ne t'ai pas raté. »",
    "en": "Missed me? I didn't miss you."
   },
   {
-   "from": 774,
-   "to": 812,
+   "from": 776,
+   "to": 822,
    "speaker": "luca",
    "text": "« Trop lent. »",
    "en": "Too slow."
   },
   {
-   "from": 849,
-   "to": 922,
+   "from": 851,
+   "to": 938,
    "speaker": "luna",
    "text": "« Chut… fais de beaux\nrêves, mon chéri. »",
    "en": "Shh… sweet dreams, darling."
   },
   {
-   "from": 1095,
-   "to": 1154,
+   "from": 1097,
+   "to": 1151,
    "speaker": "cara",
    "text": "« Ça fait quatre ce soir. »",
    "en": "That's four tonight."
   },
   {
-   "from": 1155,
-   "to": 1222,
+   "from": 1152,
+   "to": 1219,
    "speaker": "tara",
    "text": "« Alors c'est Luca\nqui paie les verres. »",
    "en": "Then drinks are on Luca."
   },
   {
-   "from": 1290,
-   "to": 1349,
+   "from": 1292,
+   "to": 1352,
    "speaker": "luca",
    "text": "« Pourquoi c'est toujours moi ? »",
    "en": "Why is it always me?"
@@ -261,28 +261,28 @@
   },
   {
    "from": 1545,
-   "to": 1620,
+   "to": 1621,
    "speaker": "tara",
    "text": "« Aux morts qui restent morts ! »",
    "en": "To dead things staying dead!"
   },
   {
-   "from": 1616,
-   "to": 1650,
+   "from": 1617,
+   "to": 1651,
    "speaker": "all",
    "text": "« Santé ! »",
    "en": "Cheers!"
   },
   {
    "from": 1896,
-   "to": 1953,
+   "to": 1939,
    "speaker": "cara",
    "text": "« Même heure demain ? »",
    "en": "Same time tomorrow?"
   },
   {
    "from": 2070,
-   "to": 2110,
+   "to": 2108,
    "speaker": "luna",
    "text": "« Évidemment. »",
    "en": "Obviously."
@@ -296,42 +296,42 @@
   },
   {
    "file": "assets/sfx/boots.mp3",
-   "from": 270,
+   "from": 272,
    "shot": 3
   },
   {
    "file": "assets/sfx/crossbow.mp3",
-   "from": 518,
+   "from": 520,
    "shot": 4
   },
   {
    "file": "assets/sfx/bolt_impact.mp3",
-   "from": 540,
+   "from": 542,
    "shot": 5
   },
   {
    "file": "assets/sfx/daggers.mp3",
-   "from": 648,
+   "from": 650,
    "shot": 6
   },
   {
    "file": "assets/sfx/katana.mp3",
-   "from": 754,
+   "from": 756,
    "shot": 7
   },
   {
    "file": "assets/sfx/stake.mp3",
-   "from": 900,
+   "from": 902,
    "shot": 8
   },
   {
    "file": "assets/sfx/ash.mp3",
-   "from": 990,
+   "from": 992,
    "shot": 9
   },
   {
    "file": "assets/sfx/neon.mp3",
-   "from": 1260,
+   "from": 1262,
    "shot": 11
   },
   {
@@ -365,6 +365,76 @@
    "shot": 16
   }
  ],
- "partyBeats": [],
- "beatSource": "none (music not downloaded yet)"
+ "partyBeats": [
+  1262,
+  1277,
+  1292,
+  1307,
+  1322,
+  1337,
+  1352,
+  1367,
+  1382,
+  1397,
+  1412,
+  1427,
+  1442,
+  1457,
+  1472,
+  1487,
+  1502,
+  1517,
+  1532,
+  1547,
+  1562,
+  1577,
+  1592,
+  1607,
+  1622,
+  1637,
+  1652,
+  1667,
+  1682,
+  1697,
+  1712,
+  1727,
+  1742,
+  1757,
+  1772,
+  1787,
+  1802,
+  1817,
+  1832,
+  1847,
+  1862,
+  1877,
+  1892,
+  1907,
+  1922,
+  1937,
+  1952,
+  1967,
+  1982,
+  1997,
+  2012,
+  2027,
+  2042,
+  2057,
+  2072,
+  2087,
+  2102,
+  2117,
+  2132,
+  2147,
+  2162,
+  2177,
+  2192,
+  2207,
+  2222,
+  2237
+ ],
+ "beatSource": {
+  "hunt": "librosa",
+  "party": "missing (120 BPM grid)"
+ }
 }

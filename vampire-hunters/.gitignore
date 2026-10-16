@@ -3,3 +3,6 @@ out/*.mp4
 public/assets/*
 !public/assets/shots/
 !public/assets/layers/
+!public/assets/vo/
+!public/assets/sfx/
+!public/assets/music/

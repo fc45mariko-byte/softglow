@@ -17,10 +17,20 @@ All motion is built in Remotion from still keyframes; no AI video.
 
 Credits: **1,883 / 4,000** (see `ledger.csv`, reconciled against the account balance).
 
-**The 16 keyframes are in the repo** (`public/assets/shots/shotNN.jpg`, 1536×2752, JPEG q93).
-Cutouts for shots 5–8, 11, 12, 15 and 16 are in `public/assets/layers/`. The other 5 cutouts, voices, music and SFX are not: the generating session could not reach the Magnific
-CDN (`pikaso.cdnpk.net`). Until `npm run fetch` gets them, shots render without parallax
-cutouts and the film has no sound. Every asset's creation id and signed URL is in `assets_manifest.json`.
+### Assets in the repo
+
+| Kind | Present | Still to fetch |
+|---|---|---|
+| Keyframes | 16/16 (`public/assets/shots/*.jpg`) | none |
+| Cutouts | 8/13: shots 5–8, 11, 12, 15, 16 | shots 2, 3, 4, 10, 13 |
+| Voice lines | 10/17 (mapping in `assets/voice_file_mapping.md`) | shot03_luca, shot10_tara, shot12_luna, the four "Cheers!" takes |
+| Music | hunt (156 s; cut at the shot 11 switch) | party |
+| SFX | 5/14: wind_bell, boots, crossbow, bolt_impact, daggers | katana, stake, ash, neon, bottles, glasses, cheer, crowd, birds |
+
+Missing pieces are skipped at render time (no cutout = no parallax for that shot; missing audio is silent).
+Without the party track, Act 2 has no music and shot 14's strobe runs on a 120 BPM grid.
+The CDN (`pikaso.cdnpk.net`) was unreachable from the generating session; `npm run fetch` pulls the rest.
+Every asset's creation id and signed URL is in `assets_manifest.json`.
 
 ## Build
 

@@ -30,7 +30,7 @@ MUSIC_SWITCH_SHOT = 11
 
 # shot, speaker, files (layered), english, french, delay after shot start or previous line (s)
 LINES = [
-    (2, "vampire", ["shot02_vampire"], "Four little hunters… out past curfew?", "Quatre petits chasseurs… dehors après le couvre-feu ?", 0.6),
+    (2, "vampire", ["shot02_vampire"], "Four little hunters… out past curfew?", "Quatre petits chasseurs… dehors après le couvre-feu ?", 0.4),
     (3, "luca", ["shot03_luca"], "Curfew's for the living.", "Le couvre-feu, c'est pour les vivants.", 0.6),
     (4, "cara", ["shot04_cara"], "Hold still. This only hurts forever.", "Ne bouge pas. Ça ne fait mal que pour l'éternité.", 0.4),
     (6, "tara", ["shot06_tara"], "Missed me? I didn't miss you.", "Je t'ai manqué ? Moi, je ne t'ai pas raté.", 0.5),
@@ -56,9 +56,14 @@ SFX = [
 
 
 def duration(path: pathlib.Path, fallback: float) -> float:
+    """Seconds until speech ends (eleven_v3 takes carry up to 4 s of trailing silence)."""
     if path.exists():
         import librosa
-        return float(librosa.get_duration(path=str(path)))
+        import numpy as np
+        y, sr = librosa.load(str(path), sr=16000, mono=True)
+        rms = librosa.feature.rms(y=y, frame_length=640, hop_length=160)[0]
+        voiced = np.where(rms > rms.max() * 0.06)[0]
+        return float((voiced[-1] + 1) * 160 / sr) + 0.1
     return fallback
 
 
@@ -158,8 +163,9 @@ def main() -> None:
         "vo": vo,
         "subs": subs,
         "sfx": sfx,
-        "partyBeats": [switch + round(t * FPS) for t in party],
-        "beatSource": "librosa" if hunt and party else "none (music not downloaded yet)",
+        # Without the party track, fall back to a 120 BPM grid so shot 14's strobe still fires.
+        "partyBeats": [switch + round(t * FPS) for t in party] if party else list(range(switch, TOTAL, FPS // 2)),
+        "beatSource": {"hunt": "librosa" if hunt else "missing", "party": "librosa" if party else "missing (120 BPM grid)"},
     }
     (ROOT / "src/data/timeline.json").write_text(json.dumps(timeline, indent=1, ensure_ascii=False))
 
