@@ -2,10 +2,14 @@
   "name": "vampire-hunters",
   "private": true,
   "scripts": {
+    "fetch": "python3 scripts/fetch_assets.py",
+    "timeline": "python3 scripts/build_timeline.py",
     "studio": "remotion studio",
-    "render": "remotion render VampireHunters out/vampire-hunters.mp4 --codec=h264 --crf=18"
+    "render": "python3 scripts/build_timeline.py && remotion render src/index.ts VampireHunters out/vampire-hunters.mp4 --codec=h264 --crf=18",
+    "build": "npm run fetch && npm run render"
   },
   "dependencies": {
+    "@fontsource/barlow-condensed": "^5.1.0",
     "@remotion/cli": "4.0.536",
     "@remotion/google-fonts": "4.0.536",
     "react": "19.0.0",

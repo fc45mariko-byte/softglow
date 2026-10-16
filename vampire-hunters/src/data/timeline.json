@@ -1,0 +1,370 @@
+{
+ "fps": 30,
+ "total": 2250,
+ "musicSwitch": 1260,
+ "shots": [
+  {
+   "id": 1,
+   "from": 0,
+   "dur": 120
+  },
+  {
+   "id": 2,
+   "from": 120,
+   "dur": 150
+  },
+  {
+   "id": 3,
+   "from": 270,
+   "dur": 120
+  },
+  {
+   "id": 4,
+   "from": 390,
+   "dur": 150
+  },
+  {
+   "id": 5,
+   "from": 540,
+   "dur": 90
+  },
+  {
+   "id": 6,
+   "from": 630,
+   "dur": 120
+  },
+  {
+   "id": 7,
+   "from": 750,
+   "dur": 90
+  },
+  {
+   "id": 8,
+   "from": 840,
+   "dur": 150
+  },
+  {
+   "id": 9,
+   "from": 990,
+   "dur": 90
+  },
+  {
+   "id": 10,
+   "from": 1080,
+   "dur": 180
+  },
+  {
+   "id": 11,
+   "from": 1260,
+   "dur": 120
+  },
+  {
+   "id": 12,
+   "from": 1380,
+   "dur": 150
+  },
+  {
+   "id": 13,
+   "from": 1530,
+   "dur": 180
+  },
+  {
+   "id": 14,
+   "from": 1710,
+   "dur": 150
+  },
+  {
+   "id": 15,
+   "from": 1860,
+   "dur": 180
+  },
+  {
+   "id": 16,
+   "from": 2040,
+   "dur": 210
+  }
+ ],
+ "vo": [
+  {
+   "file": "assets/vo/shot02_vampire.mp3",
+   "speaker": "vampire",
+   "from": 138,
+   "dur": 84
+  },
+  {
+   "file": "assets/vo/shot03_luca.mp3",
+   "speaker": "luca",
+   "from": 288,
+   "dur": 59
+  },
+  {
+   "file": "assets/vo/shot04_cara.mp3",
+   "speaker": "cara",
+   "from": 402,
+   "dur": 82
+  },
+  {
+   "file": "assets/vo/shot06_tara.mp3",
+   "speaker": "tara",
+   "from": 645,
+   "dur": 69
+  },
+  {
+   "file": "assets/vo/shot07_luca.mp3",
+   "speaker": "luca",
+   "from": 774,
+   "dur": 30
+  },
+  {
+   "file": "assets/vo/shot08_luna.mp3",
+   "speaker": "luna",
+   "from": 849,
+   "dur": 65
+  },
+  {
+   "file": "assets/vo/shot10_cara.mp3",
+   "speaker": "cara",
+   "from": 1095,
+   "dur": 51
+  },
+  {
+   "file": "assets/vo/shot10_tara.mp3",
+   "speaker": "tara",
+   "from": 1155,
+   "dur": 59
+  },
+  {
+   "file": "assets/vo/shot11_luca.mp3",
+   "speaker": "luca",
+   "from": 1290,
+   "dur": 51
+  },
+  {
+   "file": "assets/vo/shot12_luna.mp3",
+   "speaker": "luna",
+   "from": 1395,
+   "dur": 72
+  },
+  {
+   "file": "assets/vo/shot13_tara.mp3",
+   "speaker": "tara",
+   "from": 1545,
+   "dur": 67
+  },
+  {
+   "file": "assets/vo/shot13_cheers_tara.mp3",
+   "speaker": "all",
+   "from": 1616,
+   "dur": 26
+  },
+  {
+   "file": "assets/vo/shot13_cheers_luna.mp3",
+   "speaker": "all",
+   "from": 1616,
+   "dur": 26
+  },
+  {
+   "file": "assets/vo/shot13_cheers_cara.mp3",
+   "speaker": "all",
+   "from": 1616,
+   "dur": 26
+  },
+  {
+   "file": "assets/vo/shot13_cheers_luca.mp3",
+   "speaker": "all",
+   "from": 1616,
+   "dur": 26
+  },
+  {
+   "file": "assets/vo/shot15_cara.mp3",
+   "speaker": "cara",
+   "from": 1896,
+   "dur": 49
+  },
+  {
+   "file": "assets/vo/shot16_luna.mp3",
+   "speaker": "luna",
+   "from": 2070,
+   "dur": 32
+  }
+ ],
+ "subs": [
+  {
+   "from": 138,
+   "to": 230,
+   "speaker": "vampire",
+   "text": "« Quatre petits chasseurs…\ndehors après le couvre-feu ? »",
+   "en": "Four little hunters… out past curfew?"
+  },
+  {
+   "from": 288,
+   "to": 355,
+   "speaker": "luca",
+   "text": "« Le couvre-feu, c'est\npour les vivants. »",
+   "en": "Curfew's for the living."
+  },
+  {
+   "from": 402,
+   "to": 492,
+   "speaker": "cara",
+   "text": "« Ne bouge pas. Ça ne fait\nmal que pour l'éternité. »",
+   "en": "Hold still. This only hurts forever."
+  },
+  {
+   "from": 645,
+   "to": 722,
+   "speaker": "tara",
+   "text": "« Je t'ai manqué ? Moi,\nje ne t'ai pas raté. »",
+   "en": "Missed me? I didn't miss you."
+  },
+  {
+   "from": 774,
+   "to": 812,
+   "speaker": "luca",
+   "text": "« Trop lent. »",
+   "en": "Too slow."
+  },
+  {
+   "from": 849,
+   "to": 922,
+   "speaker": "luna",
+   "text": "« Chut… fais de beaux\nrêves, mon chéri. »",
+   "en": "Shh… sweet dreams, darling."
+  },
+  {
+   "from": 1095,
+   "to": 1154,
+   "speaker": "cara",
+   "text": "« Ça fait quatre ce soir. »",
+   "en": "That's four tonight."
+  },
+  {
+   "from": 1155,
+   "to": 1222,
+   "speaker": "tara",
+   "text": "« Alors c'est Luca\nqui paie les verres. »",
+   "en": "Then drinks are on Luca."
+  },
+  {
+   "from": 1290,
+   "to": 1349,
+   "speaker": "luca",
+   "text": "« Pourquoi c'est toujours moi ? »",
+   "en": "Why is it always me?"
+  },
+  {
+   "from": 1395,
+   "to": 1475,
+   "speaker": "luna",
+   "text": "« Parce que t'as perdu\nle pari, mon cœur. »",
+   "en": "Because you lost the bet, babe."
+  },
+  {
+   "from": 1545,
+   "to": 1620,
+   "speaker": "tara",
+   "text": "« Aux morts qui restent morts ! »",
+   "en": "To dead things staying dead!"
+  },
+  {
+   "from": 1616,
+   "to": 1650,
+   "speaker": "all",
+   "text": "« Santé ! »",
+   "en": "Cheers!"
+  },
+  {
+   "from": 1896,
+   "to": 1953,
+   "speaker": "cara",
+   "text": "« Même heure demain ? »",
+   "en": "Same time tomorrow?"
+  },
+  {
+   "from": 2070,
+   "to": 2110,
+   "speaker": "luna",
+   "text": "« Évidemment. »",
+   "en": "Obviously."
+  }
+ ],
+ "sfx": [
+  {
+   "file": "assets/sfx/wind_bell.mp3",
+   "from": 0,
+   "shot": 1
+  },
+  {
+   "file": "assets/sfx/boots.mp3",
+   "from": 270,
+   "shot": 3
+  },
+  {
+   "file": "assets/sfx/crossbow.mp3",
+   "from": 518,
+   "shot": 4
+  },
+  {
+   "file": "assets/sfx/bolt_impact.mp3",
+   "from": 540,
+   "shot": 5
+  },
+  {
+   "file": "assets/sfx/daggers.mp3",
+   "from": 648,
+   "shot": 6
+  },
+  {
+   "file": "assets/sfx/katana.mp3",
+   "from": 754,
+   "shot": 7
+  },
+  {
+   "file": "assets/sfx/stake.mp3",
+   "from": 900,
+   "shot": 8
+  },
+  {
+   "file": "assets/sfx/ash.mp3",
+   "from": 990,
+   "shot": 9
+  },
+  {
+   "file": "assets/sfx/neon.mp3",
+   "from": 1260,
+   "shot": 11
+  },
+  {
+   "file": "assets/sfx/bottles.mp3",
+   "from": 1455,
+   "shot": 12
+  },
+  {
+   "file": "assets/sfx/glasses.mp3",
+   "from": 1665,
+   "shot": 13
+  },
+  {
+   "file": "assets/sfx/cheer.mp3",
+   "from": 1674,
+   "shot": 13
+  },
+  {
+   "file": "assets/sfx/crowd.mp3",
+   "from": 1710,
+   "shot": 14
+  },
+  {
+   "file": "assets/sfx/crowd.mp3",
+   "from": 1860,
+   "shot": 15
+  },
+  {
+   "file": "assets/sfx/birds.mp3",
+   "from": 2040,
+   "shot": 16
+  }
+ ],
+ "partyBeats": [],
+ "beatSource": "none (music not downloaded yet)"
+}

@@ -1,0 +1,322 @@
+{
+ "refs": {
+  "style": "fH4uD3pCDY",
+  "luna": "SyD7r9VUb8",
+  "tara": "YMq0RElWeC",
+  "cara": "1lnjF96r4r",
+  "cara_dup_or_unknown": "TdkDGuzVNR",
+  "luca": "Cq9FlhNEEy"
+ },
+ "assets": [
+  {
+   "path": "assets/shots/shot01.png",
+   "creation": "p8jBtDOehw",
+   "url": "https://pikaso.cdnpk.net/private/production/5754136493/render.png?token=exp=1792368000~hmac=4b709c0c690c1c14b80c685bfc6322bae95602fa84deafd6b8874457e6cb914f"
+  },
+  {
+   "path": "assets/shots/shot02.png",
+   "creation": "s7TU2Q9l8e",
+   "url": "https://pikaso.cdnpk.net/private/production/5754222075/render.png?token=exp=1792368000~hmac=7fb27bc47837583294747f2614280d0edb8ba11536a20f6497b91241372577be"
+  },
+  {
+   "path": "assets/shots/shot03.png",
+   "creation": "huOCLDWvqL",
+   "url": "https://pikaso.cdnpk.net/private/production/5754223187/render.png?token=exp=1792368000~hmac=3ad330b2e460635fd36993364cb8875c1062f7e5567e20912d2adf68bb47e13d"
+  },
+  {
+   "path": "assets/shots/shot04.png",
+   "creation": "tC7axpOmZJ",
+   "url": "https://pikaso.cdnpk.net/private/production/5754222353/render.png?token=exp=1792368000~hmac=5b2691a29c11684eb815a6b0b427a1626fef4d253fcc76ce19cd23ce69d19865"
+  },
+  {
+   "path": "assets/shots/shot05.png",
+   "creation": "p8jBHTkehw",
+   "url": "https://pikaso.cdnpk.net/private/production/5754223562/render.png?token=exp=1792368000~hmac=2ca296a8432adab657349cf0332eba7de2d9586beceb8d75eca81c675e21243c"
+  },
+  {
+   "path": "assets/shots/shot06.png",
+   "creation": "Lw0SZjgswO",
+   "url": "https://pikaso.cdnpk.net/private/production/5754223858/render.png?token=exp=1792368000~hmac=973f772457f23fa481689b276e8a3dd5fc4705397934c0da2be574262204b9d9"
+  },
+  {
+   "path": "assets/shots/shot07.png",
+   "creation": "P386MNW42C",
+   "url": "https://pikaso.cdnpk.net/private/production/5754225411/render.png?token=exp=1792368000~hmac=19698894f3a46f436fa3abad6252e1d9fe8d2562bf714d7991cc16e86fa35cfa"
+  },
+  {
+   "path": "assets/shots/shot08.png",
+   "creation": "ovSm1vr829",
+   "url": "https://pikaso.cdnpk.net/private/production/5754228265/render.png?token=exp=1792368000~hmac=6b26dba6b015dc4abd70be51007d75e15d54b600397273dc8a5b1c9cae62518e"
+  },
+  {
+   "path": "assets/shots/shot09.png",
+   "creation": "p8jBqm7ehw",
+   "url": "https://pikaso.cdnpk.net/private/production/5754229119/render.png?token=exp=1792368000~hmac=913a41dcac8420e55f4f83167ab231e23144c93e07433d85b14f6ef213c6cee1"
+  },
+  {
+   "path": "assets/shots/shot10.png",
+   "creation": "xSWl3vZjfW",
+   "url": "https://pikaso.cdnpk.net/private/production/5754222822/render.png?token=exp=1792368000~hmac=a6f63d612f5fe856848b472a6b48ace03fe83fd3fe1eaaa9dace14ab47217791"
+  },
+  {
+   "path": "assets/shots/shot11.png",
+   "creation": "KLGxNwzkqp",
+   "url": "https://pikaso.cdnpk.net/private/production/5754231452/render.png?token=exp=1792368000~hmac=93d96906ac31f20ecdbf704d71a973f02f186873520f96f2fa96edf792aca09d"
+  },
+  {
+   "path": "assets/shots/shot12.png",
+   "creation": "bx2147j5Y2",
+   "url": "https://pikaso.cdnpk.net/private/production/5754228971/render.png?token=exp=1792368000~hmac=273ebb3195c286f233e45d77d1c01d98dee0890ebd10fbe06e86663359d80dc3"
+  },
+  {
+   "path": "assets/shots/shot13.png",
+   "creation": "u56q7wLQLD",
+   "url": "https://pikaso.cdnpk.net/private/production/5754231589/render.png?token=exp=1792368000~hmac=ffddda2b2f01d0e3bc99efdeff68f87fb9bf7345403f5e6c21ea9cfc3ebc2737"
+  },
+  {
+   "path": "assets/shots/shot14.png",
+   "creation": "Lw0S2ztswO",
+   "url": "https://pikaso.cdnpk.net/private/production/5754236658/render.png?token=exp=1792368000~hmac=25fa7bce1dca6b3ea9f648dd67254a6cddcd1fcfe18739732e8c4c6cb5f2fce9"
+  },
+  {
+   "path": "assets/shots/shot15.png",
+   "creation": "huOCs7LvqL",
+   "url": "https://pikaso.cdnpk.net/private/production/5754230665/render.png?token=exp=1792368000~hmac=66732eee6c7f5e1f2b99522fc16b90f14d5ca237a310046105904fed1701053b"
+  },
+  {
+   "path": "assets/shots/shot16.png",
+   "creation": "u56q7iyQLD",
+   "url": "https://pikaso.cdnpk.net/private/production/5754235518/render.png?token=exp=1792368000~hmac=90748f9b6d373e9c2c7c025c756d12952112e34a4959a44b813ffdfc8c037923"
+  },
+  {
+   "path": "assets/vo/shot02_vampire.mp3",
+   "creation": "bx21i6g5Y2",
+   "url": "https://pikaso.cdnpk.net/private/production/5754252445/audio.mp3?token=exp=1792368000~hmac=fae798d9691a646f82ee6c9bcd57f27e2a59e662ca0aecd732acc6e2998e4468"
+  },
+  {
+   "path": "assets/vo/shot03_luca.mp3",
+   "creation": "SyDJ0T4Ub8",
+   "url": "https://pikaso.cdnpk.net/private/production/5754252628/audio.mp3?token=exp=1792368000~hmac=c9c3917d9059fb0d37bc76a1d9e0dbf91876804194f53416207e9d28747adb90"
+  },
+  {
+   "path": "assets/vo/shot04_cara.mp3",
+   "creation": "vQyEwOMa47",
+   "url": "https://pikaso.cdnpk.net/private/production/5754252992/audio.mp3?token=exp=1792368000~hmac=56df3a748112a78f93030f7974f93c908a21e2768b47a254433062d48bb316e3"
+  },
+  {
+   "path": "assets/vo/shot06_tara.mp3",
+   "creation": "cp5MFkm0eP",
+   "url": "https://pikaso.cdnpk.net/private/production/5754253016/audio.mp3?token=exp=1792368000~hmac=aee06dcd33107be60e6cc19ef50da60575201fe148426d3859a90a037c4733f7"
+  },
+  {
+   "path": "assets/vo/shot07_luca.mp3",
+   "creation": "9Zt3BaGNYZ",
+   "url": "https://pikaso.cdnpk.net/private/production/5754253301/audio.mp3?token=exp=1792368000~hmac=7715592672886b80b3bbe1656a28f7c14589feedb5d192ff6c1f2611d36fe0b8"
+  },
+  {
+   "path": "assets/vo/shot08_luna.mp3",
+   "creation": "gOM7cXFSXO",
+   "url": "https://pikaso.cdnpk.net/private/production/5754253580/audio.mp3?token=exp=1792368000~hmac=26f78e1affd7fb7dd79b21d65d3f596c7c5a185212b2b4bc62e93127186a0c20"
+  },
+  {
+   "path": "assets/vo/shot10_cara.mp3",
+   "creation": "huOCUiUvqL",
+   "url": "https://pikaso.cdnpk.net/private/production/5754253802/audio.mp3?token=exp=1792368000~hmac=c578d655f62a6826ff16b7060a098992bbe6e2a621c94a5c4680638a97db61b4"
+  },
+  {
+   "path": "assets/vo/shot10_tara.mp3",
+   "creation": "fH4QJALCDY",
+   "url": "https://pikaso.cdnpk.net/private/production/5754254017/audio.mp3?token=exp=1792368000~hmac=bfdf23e7fb55980b767b0b40bc7af42eccbb7dd9580bebfbe1241c1efb413666"
+  },
+  {
+   "path": "assets/vo/shot11_luca.mp3",
+   "creation": "0eKDHUETfW",
+   "url": "https://pikaso.cdnpk.net/private/production/5754254371/audio.mp3?token=exp=1792368000~hmac=a276f2a3796e3f296dbada51ef2ee02f5c466f4cdef441556632bc4ad8518a26"
+  },
+  {
+   "path": "assets/vo/shot12_luna.mp3",
+   "creation": "N2mRo5M6D9",
+   "url": "https://pikaso.cdnpk.net/private/production/5754254651/audio.mp3?token=exp=1792368000~hmac=831923973f37f88b66bb2b4bbef65d7d16bc735439a140e61441ae9908855876"
+  },
+  {
+   "path": "assets/vo/shot13_tara.mp3",
+   "creation": "mEJfSzvhJQ",
+   "url": "https://pikaso.cdnpk.net/private/production/5754254808/audio.mp3?token=exp=1792368000~hmac=eb72e9cdcf5f8f5d0f9fbea0fcdeab759e9b564283cda85ae258b26e8aed8f60"
+  },
+  {
+   "path": "assets/vo/shot15_cara.mp3",
+   "creation": "VX1eb9kMMU",
+   "url": "https://pikaso.cdnpk.net/private/production/5754255119/audio.mp3?token=exp=1792368000~hmac=6fbed8fb9aa5fdd300c8650007330e3da6392e13c61323ab40b6806ae782ee3e"
+  },
+  {
+   "path": "assets/vo/shot16_luna.mp3",
+   "creation": "UPpOTHAwny",
+   "url": "https://pikaso.cdnpk.net/private/production/5754255373/audio.mp3?token=exp=1792368000~hmac=d20a01df37fcecbdd03c88b7140e030a182ee9754d593a679ac8224f0eb20bff"
+  },
+  {
+   "path": "assets/vo/shot13_cheers_tara.mp3",
+   "creation": "gOM7cHYSXO",
+   "url": "https://pikaso.cdnpk.net/private/production/5754255632/audio.mp3?token=exp=1792368000~hmac=9b0c153604a1c24570c2da04f038ff8b77ef704d7df96aa183dfda296ffb92b4"
+  },
+  {
+   "path": "assets/vo/shot13_cheers_luna.mp3",
+   "creation": "BhgtjWwoQR",
+   "url": "https://pikaso.cdnpk.net/private/production/5754255884/audio.mp3?token=exp=1792368000~hmac=a4081703544e51a96e41d9b768dace90823adf1231390701c818c071b543bc04"
+  },
+  {
+   "path": "assets/vo/shot13_cheers_cara.mp3",
+   "creation": "mEJfSpbhJQ",
+   "url": "https://pikaso.cdnpk.net/private/production/5754256135/audio.mp3?token=exp=1792368000~hmac=023a4d72397d35114e66658da4f3d4a33ec763fe80a5d61db839168edf6f9ceb"
+  },
+  {
+   "path": "assets/vo/shot13_cheers_luca.mp3",
+   "creation": "EbNHyt6uuO",
+   "url": "https://pikaso.cdnpk.net/private/production/5754256412/audio.mp3?token=exp=1792368000~hmac=df4ed5c210f8637e5d155955794c25469fc33f6796ebaab9f78fe0d71eef299b"
+  },
+  {
+   "path": "assets/music/hunt.mp3",
+   "creation": "P386Xjw42C",
+   "url": "https://pikaso.cdnpk.net/private/production/5754271754/a2fed2c3-5efb-400f-9bed-d5b40eb263ff.mp3?token=exp=1792368000~hmac=72d4c7efcb885ad5f7f307d69d995cbfe860219d82afc2b86bb17442deaa9e6e"
+  },
+  {
+   "path": "assets/music/party.mp3",
+   "creation": "kszj2uf16B",
+   "url": "https://pikaso.cdnpk.net/private/production/5754271152/a2fed2c6-9a52-4f6a-9a80-ac5eb2fc3ade.mp3?token=exp=1792368000~hmac=ec06a341deffc0bf054d5aca261291600afdb7d71d4063c89a4578d3e848034a"
+  },
+  {
+   "path": "assets/sfx/wind_bell.mp3",
+   "creation": "KLGxZFskqp",
+   "url": "https://pikaso.cdnpk.net/private/production/5754265309/a2fed2c9-fb2b-4feb-a4fe-2fb0c93c4582.mp3?token=exp=1792368000~hmac=2c5d5a6bac62f72d786cff60cf3bf988870603453b36fd67af883ac37ab0fae9"
+  },
+  {
+   "path": "assets/sfx/boots.mp3",
+   "creation": "rgYsG51xtc",
+   "url": "https://pikaso.cdnpk.net/private/production/5754265634/a2fed2cc-377e-4b15-8edd-e5b8a2fbee48.mp3?token=exp=1792368000~hmac=daaab7ae71a80f0836ad149f67a0b62fd87a3b164c07c92e057b24a129bdfef2"
+  },
+  {
+   "path": "assets/sfx/crossbow.mp3",
+   "creation": "JNX4p7ROq4",
+   "url": "https://pikaso.cdnpk.net/private/production/5754266161/a2fed2ce-6efe-40f0-83d5-85351d866c47.mp3?token=exp=1792368000~hmac=f3c5ab2c229599ebda20b5c8d15a6c8225e4e51b8c4f734c85724f9a57ccdf70"
+  },
+  {
+   "path": "assets/sfx/bolt_impact.mp3",
+   "creation": "1lnLGxVr4r",
+   "url": "https://pikaso.cdnpk.net/private/production/5754266369/a2fed2d0-9b0b-46da-b080-b6bb1dcc29b3.mp3?token=exp=1792368000~hmac=90aae7393b3523d1b3d2ca1ccebffecdcd4420c0a68dcc612817b36e7ea894a9"
+  },
+  {
+   "path": "assets/sfx/daggers.mp3",
+   "creation": "lJVw07agv9",
+   "url": "https://pikaso.cdnpk.net/private/production/5754266843/a2fed2d3-6130-46a5-a484-be446e273f90.mp3?token=exp=1792368000~hmac=2b28fe611fdf19ffb2ffc98993870c78355ab870c33d36c43aebbafbecaa878d"
+  },
+  {
+   "path": "assets/sfx/katana.mp3",
+   "creation": "dts8jhhXSL",
+   "url": "https://pikaso.cdnpk.net/private/production/5754267268/a2fed2d5-7984-43ae-83c3-cd9cbb9d8430.mp3?token=exp=1792368000~hmac=91b3fa0d89299775b8c71e579d501ecc6ef9898e233a147904f5362406e05bd1"
+  },
+  {
+   "path": "assets/sfx/stake.mp3",
+   "creation": "cp5MqB20eP",
+   "url": "https://pikaso.cdnpk.net/private/production/5754267497/a2fed2d7-9e82-459e-a17d-55d9ad3551ca.mp3?token=exp=1792368000~hmac=0cde132b28c26139177205a3edd78c5bb0f32ed662bf6df0960c7ad4c5f93bb5"
+  },
+  {
+   "path": "assets/sfx/ash.mp3",
+   "creation": "Lw0SW9yswO",
+   "url": "https://pikaso.cdnpk.net/private/production/5754267768/a2fed2d9-cc0a-487b-99eb-8f8904220fea.mp3?token=exp=1792368000~hmac=4ba28843759e6a5c7d3f2f2b600815a415288ff9b38e73d97930d9bf917e089c"
+  },
+  {
+   "path": "assets/sfx/neon.mp3",
+   "creation": "WDbVHtNcXe",
+   "url": "https://pikaso.cdnpk.net/private/production/5754268144/a2fed2db-dff1-4890-8ae8-9a03394eea8e.mp3?token=exp=1792368000~hmac=484be498ec4920a86422cbdc9881a9f90746a4610ded589099180ac0aa7562a1"
+  },
+  {
+   "path": "assets/sfx/bottles.mp3",
+   "creation": "mEJfwjRhJQ",
+   "url": "https://pikaso.cdnpk.net/private/production/5754268251/a2fed2df-2aef-4fe6-88f7-495faf506e57.mp3?token=exp=1792368000~hmac=48c26adeb38cbb03b02261c4e986c614cee18536f535179b15acfab200aed880"
+  },
+  {
+   "path": "assets/sfx/glasses.mp3",
+   "creation": "lJVw0n9gv9",
+   "url": "https://pikaso.cdnpk.net/private/production/5754268370/a2fed2e1-999d-4a37-8ed1-5677c8acbf08.mp3?token=exp=1792368000~hmac=f2e5ee7a181a91093e9c4cc9071408a1c406cf0c7f8daada643a63f1c37b187e"
+  },
+  {
+   "path": "assets/sfx/cheer.mp3",
+   "creation": "O6B9dpWynm",
+   "url": "https://pikaso.cdnpk.net/private/production/5754268480/a2fed2e3-bc94-4c0c-9c21-3aa44ffaea0a.mp3?token=exp=1792368000~hmac=68e7425de8c003fa4154c59db35366028eacc2ebb7cb94e33ac0a606c9bffad9"
+  },
+  {
+   "path": "assets/sfx/crowd.mp3",
+   "creation": "kszjAGY16B",
+   "url": "https://pikaso.cdnpk.net/private/production/5754268847/a2fed2e6-a81e-494c-b319-6b0a1b0db6b1.mp3?token=exp=1792368000~hmac=a821b155805dc66ae18bc16963e3fb7d9e74e1256deaaa1e264886a885521a9a"
+  },
+  {
+   "path": "assets/sfx/birds.mp3",
+   "creation": "EbNH4iQuuO",
+   "url": "https://pikaso.cdnpk.net/private/production/5754268972/a2fed2e9-19c5-438d-b54e-ed16cb10e42f.mp3?token=exp=1792368000~hmac=d2353e6a3fe703de62f46a969aa270600edb6dcc2873d1bc4267716ce8c4b99e"
+  },
+  {
+   "path": "assets/layers/shot02_fg.png",
+   "creation": "VX1ekdNMMU",
+   "url": "https://pikaso.cdnpk.net/private/production/5754274669/render.png?token=exp=1792368000~hmac=5a42fe2930abc45c405b9c0db185fcccbd63ecde8af9bbb46361dd4fdd38e09f"
+  },
+  {
+   "path": "assets/layers/shot03_fg.png",
+   "creation": "5jAr2sjKxe",
+   "url": "https://pikaso.cdnpk.net/private/production/5754275011/render.png?token=exp=1792368000~hmac=be58440b3cc6d0e71a5eca3ade23fde135cf8d2a38b70fa19ebd7f30eb97f7df"
+  },
+  {
+   "path": "assets/layers/shot04_fg.png",
+   "creation": "N2mRtnr6D9",
+   "url": "https://pikaso.cdnpk.net/private/production/5754275620/render.png?token=exp=1792368000~hmac=5498e33ca728612a074c31acb6b755854ac2531dfafc0e38b76ec385d97a535a"
+  },
+  {
+   "path": "assets/layers/shot05_fg.png",
+   "creation": "gOM7V6CSXO",
+   "url": "https://pikaso.cdnpk.net/private/production/5754276386/render.png?token=exp=1792368000~hmac=452cdb1d0ddadc441c79f086a8c1b0799b75be9d5a7fb3704bbe6f79ed5e4300"
+  },
+  {
+   "path": "assets/layers/shot06_fg.png",
+   "creation": "Lw0Sc6PswO",
+   "url": "https://pikaso.cdnpk.net/private/production/5754276839/render.png?token=exp=1792368000~hmac=7f19f5196766e0b6b41eb963bb63a696ba2d772d138d60b84911a52c21b3b809"
+  },
+  {
+   "path": "assets/layers/shot07_fg.png",
+   "creation": "9Zt3IVSNYZ",
+   "url": "https://pikaso.cdnpk.net/private/production/5754277291/render.png?token=exp=1792368000~hmac=f037c251b66443a77231da9e7b0ca5c993dad9f41b3265716de5ba579870aabe"
+  },
+  {
+   "path": "assets/layers/shot08_fg.png",
+   "creation": "YMqTHa0WeC",
+   "url": "https://pikaso.cdnpk.net/private/production/5754277677/render.png?token=exp=1792368000~hmac=447b0e547e694ccbb96860de97874e8defefd76d3cd51e8d585746cdc5d7bef5"
+  },
+  {
+   "path": "assets/layers/shot10_fg.png",
+   "creation": "nVH0FfdYQD",
+   "url": "https://pikaso.cdnpk.net/private/production/5754278169/render.png?token=exp=1792368000~hmac=949459b621b29f2c77cf90d8a5855a9b04be2265e6edf1e1a52b15e7fe9a4358"
+  },
+  {
+   "path": "assets/layers/shot11_fg.png",
+   "creation": "nVH0FEBYQD",
+   "url": "https://pikaso.cdnpk.net/private/production/5754278273/render.png?token=exp=1792368000~hmac=57cf580cc837b874bf9dd6344dface6976eafbb424e10cab1804baecb510db24"
+  },
+  {
+   "path": "assets/layers/shot12_fg.png",
+   "creation": "gOM7VTtSXO",
+   "url": "https://pikaso.cdnpk.net/private/production/5754278307/render.png?token=exp=1792368000~hmac=2020c5d56d1ae21feb8415f9f9447e39c85f2ccdb5b2919584df02588d3add04"
+  },
+  {
+   "path": "assets/layers/shot13_fg.png",
+   "creation": "BhgtlgmoQR",
+   "url": "https://pikaso.cdnpk.net/private/production/5754278859/render.png?token=exp=1792368000~hmac=e2782881d893deabb1db69b902ba784114faa54ed85dc8eecc6febda689be5ec"
+  },
+  {
+   "path": "assets/layers/shot15_fg.png",
+   "creation": "N2mRtv36D9",
+   "url": "https://pikaso.cdnpk.net/private/production/5754278960/render.png?token=exp=1792368000~hmac=efa158493b9578921032deedd469c2bf30400762c287ea4cd4f479fa83cf6344"
+  },
+  {
+   "path": "assets/layers/shot16_fg.png",
+   "creation": "tC7awyImZJ",
+   "url": "https://pikaso.cdnpk.net/private/production/5754278817/render.png?token=exp=1792368000~hmac=fb04880465a843578ef16c1a269101655da43a69f34757efe6cd4e5397a6cb5a"
+  }
+ ]
+}

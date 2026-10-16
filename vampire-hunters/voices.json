@@ -1,0 +1,23 @@
+{
+ "vampire": {
+  "id": 520,
+  "name": "Mortimer Nocturne"
+ },
+ "tara": {
+  "id": 159,
+  "name": "Avery Grant"
+ },
+ "luna": {
+  "id": 261,
+  "name": "Harper Olivia"
+ },
+ "cara": {
+  "id": 1047,
+  "name": "Cordelia Ashford"
+ },
+ "luca": {
+  "id": 1103,
+  "name": "Alistair Ashford"
+ },
+ "model": "eleven_v3"
+}
